@@ -43,3 +43,12 @@ next-env.d.ts
 ../.idea
 ../.idea/sonar
 ../.idea*
+
+# ---- Sonar
+.sonar
+
+# ---- IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea
