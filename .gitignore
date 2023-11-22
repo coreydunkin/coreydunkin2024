@@ -6,3 +6,12 @@
 *.iml
 *.ipr
 .idea
+
+./idea/sonar
+./idea
+.idea
+.idea/sonar
+.idea*
+../.idea
+../.idea/sonar
+../.idea*
