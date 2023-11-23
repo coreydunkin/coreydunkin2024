@@ -1,0 +1,269 @@
+//$colors: #583C87, #E45A84, #FFACAC, #FFACAC, #E45A84, #FFACAC, #FFACAC, #E45A84, #583C87, #583C87, #FFACAC, #583C87, #FFACAC, #E45A84, #583C87;
+//$tops: 43%, 5%, 32%, 41%, 28%, 23%, 30%, 23%, 93%, 65%, 33%, 85%, 75%, 64%, 52%;
+//$lefts: 91%, 67%, 51%, 1%, 36%, 20%, 98%, 95%, 81%, 86%, 71%, 37%, 60%, 72%, 51%;
+//$animation-durations: 121s, 400s, 140s, 144s, 280s, 353s, 173s, 483s, 264s, 181s, 194s, 370s, 394s, 333s, 39s;
+//$animation-delays: -303s, -45s, -113s, -82s, -446s, -447s, -404s, -488s, -150s, -389s, -291s, -87s, -309s, -301s, -406s;
+//$transforms-origin: (-17vw -16vh), (-14vw 25vh), (8vw -22vh), (-14vw -8vh), (13vw -4vh), (20vw -7vh), (2vw -20vh), (7vw 21vh), (2vw -5vh), (-23vw 21vh), (9vw 0vh), (10vw -4vh), (3vw 4vh), (-2vw -20vh), (5vw -23vh);
+//$box-shadows: (2vmin 0 1.2289006681761407vmin currentColor), (-2vmin 0 1.1773752148681786vmin currentColor), (2vmin 0 0.6793609596781924vmin currentColor), (2vmin 0 1.2360020367810327vmin currentColor), (2vmin 0 0.9292311694433257vmin currentColor), (2vmin 0 0.36939867059170384vmin currentColor), (2vmin 0 1.134859501453293vmin currentColor), (2vmin 0 0.6092498379126281vmin currentColor), (-2vmin 0 0.6708615487207503vmin currentColor), (-2vmin 0 0.7489835762617001vmin currentColor), (-2vmin 0 0.7293123801279331vmin currentColor), (-2vmin 0 0.817395007094208vmin currentColor), (-2vmin 0 0.7695141572440967vmin currentColor), (2vmin 0 1.1392443801685423vmin currentColor), (-2vmin 0 1.0935223456200491vmin currentColor);
+//
+//
+//@keyframes move {
+//  100% {
+//    transform: translate3d(0, 0, 1px) rotate(360deg);
+//  }
+//}
+//
+//.particles {
+//  position: fixed;
+//  width: 100vw;
+//  height: 100vh;
+//  top: 0;
+//  left: 0;
+//  background: #3E1E68;
+//  overflow: hidden;
+//
+//  span {
+//    width: 1vmin;
+//    height: 1vmin;
+//    border-radius: 1vmin;
+//    backface-visibility: hidden;
+//    position: absolute;
+//    animation: move;
+//    animation-duration: 1s;
+//    animation-timing-function: linear;
+//    animation-iteration-count: infinite;
+//
+//    @for $i from 0 through 14 {
+//      &:nth-child(#{$i}) {
+//        color: $colors[$i + 1];
+//        top: $tops[$i + 1];
+//        left: $lefts[$i + 1];
+//        animation-duration: $animation-durations[$i + 1];
+//        animation-delay: $animation-delays[$i + 1];
+//        transform-origin: $transforms-origin[$i + 1];
+//        box-shadow: $box-shadows[$i + 1];
+//      }
+//    }
+//  }
+//}
+//
+//@keyframes move {
+//  100% {
+//    transform: translate3d(0, 0, 1px) rotate(360deg);
+//  }
+//}
+//
+//.particles {
+//  position: fixed;
+//  width: 100vw;
+//  height: 100vh;
+//  top: 0;
+//  left: 0;
+//  overflow: hidden;
+//}
+//
+//.particles span {
+//  width: 1vmin;
+//  height: 1vmin;
+//  border-radius: 1vmin;
+//  backface-visibility: hidden;
+//  position: absolute;
+//  animation: move;
+//  animation-duration: 1;
+//  animation-timing-function: linear;
+//  animation-iteration-count: infinite;
+//}
+//
+//
+//.particles span:nth-child(0) {
+//  color: #583C87;
+//  top: 43%;
+//  left: 91%;
+//  animation-duration: 121s;
+//  animation-delay: -303s;
+//  transform-origin: -17vw -16vh;
+//  box-shadow: 2vmin 0 1.2289006681761407vmin currentColor;
+//}
+//.particles span:nth-child(1) {
+//  color: #E45A84;
+//  top: 5%;
+//  left: 67%;
+//  animation-duration: 400s;
+//  animation-delay: -45s;
+//  transform-origin: -14vw 25vh;
+//  box-shadow: -2vmin 0 1.1773752148681786vmin currentColor;
+//}
+//.particles span:nth-child(2) {
+//  color: #FFACAC;
+//  top: 32%;
+//  left: 51%;
+//  animation-duration: 140s;
+//  animation-delay: -113s;
+//  transform-origin: 8vw -22vh;
+//  box-shadow: 2vmin 0 0.6793609596781924vmin currentColor;
+//}
+//.particles span:nth-child(3) {
+//  color: #FFACAC;
+//  top: 41%;
+//  left: 1%;
+//  animation-duration: 144s;
+//  animation-delay: -82s;
+//  transform-origin: -14vw -8vh;
+//  box-shadow: 2vmin 0 1.2360020367810327vmin currentColor;
+//}
+//.particles span:nth-child(4) {
+//  color: #E45A84;
+//  top: 28%;
+//  left: 36%;
+//  animation-duration: 280s;
+//  animation-delay: -446s;
+//  transform-origin: 13vw -4vh;
+//  box-shadow: 2vmin 0 0.9292311694433257vmin currentColor;
+//}
+//.particles span:nth-child(5) {
+//  color: #FFACAC;
+//  top: 23%;
+//  left: 20%;
+//  animation-duration: 353s;
+//  animation-delay: -447s;
+//  transform-origin: 20vw -7vh;
+//  box-shadow: 2vmin 0 0.36939867059170384vmin currentColor;
+//}
+//.particles span:nth-child(6) {
+//  color: #FFACAC;
+//  top: 30%;
+//  left: 98%;
+//  animation-duration: 173s;
+//  animation-delay: -404s;
+//  transform-origin: 2vw -20vh;
+//  box-shadow: 2vmin 0 1.134859501453293vmin currentColor;
+//}
+//.particles span:nth-child(7) {
+//  color: #E45A84;
+//  top: 23%;
+//  left: 95%;
+//  animation-duration: 483s;
+//  animation-delay: -488s;
+//  transform-origin: 7vw 21vh;
+//  box-shadow: 2vmin 0 0.6092498379126281vmin currentColor;
+//}
+//.particles span:nth-child(8) {
+//  color: #583C87;
+//  top: 93%;
+//  left: 81%;
+//  animation-duration: 264s;
+//  animation-delay: -150s;
+//  transform-origin: 2vw -5vh;
+//  box-shadow: -2vmin 0 0.6708615487207503vmin currentColor;
+//}
+//.particles span:nth-child(9) {
+//  color: #583C87;
+//  top: 65%;
+//  left: 86%;
+//  animation-duration: 181s;
+//  animation-delay: -389s;
+//  transform-origin: -23vw 21vh;
+//  box-shadow: -2vmin 0 0.7489835762617001vmin currentColor;
+//}
+//.particles span:nth-child(10) {
+//  color: #FFACAC;
+//  top: 33%;
+//  left: 71%;
+//  animation-duration: 194s;
+//  animation-delay: -291s;
+//  transform-origin: 9vw 0vh;
+//  box-shadow: -2vmin 0 0.7293123801279331vmin currentColor;
+//}
+//.particles span:nth-child(11) {
+//  color: #583C87;
+//  top: 85%;
+//  left: 37%;
+//  animation-duration: 370s;
+//  animation-delay: -87s;
+//  transform-origin: 10vw -4vh;
+//  box-shadow: -2vmin 0 0.817395007094208vmin currentColor;
+//}
+//.particles span:nth-child(12) {
+//  color: #FFACAC;
+//  top: 75%;
+//  left: 60%;
+//  animation-duration: 394s;
+//  animation-delay: -309s;
+//  transform-origin: 3vw 4vh;
+//  box-shadow: -2vmin 0 0.7695141572440967vmin currentColor;
+//}
+//.particles span:nth-child(13) {
+//  color: #E45A84;
+//  top: 64%;
+//  left: 72%;
+//  animation-duration: 333s;
+//  animation-delay: -301s;
+//  transform-origin: -2vw -20vh;
+//  box-shadow: 2vmin 0 1.1392443801685423vmin currentColor;
+//}
+//.particles span:nth-child(14) {
+//  color: #583C87;
+//  top: 52%;
+//  left: 51%;
+//  animation-duration: 39s;
+//  animation-delay: -406s;
+//  transform-origin: 5vw -23vh;
+//  box-shadow: -2vmin 0 1.0935223456200491vmin currentColor;
+//}
+$animation-name: move;
+$animation-timing-function: linear;
+$animation-iteration-count: infinite;
+//$color1: #583C87;
+//$color2: #E45A84;
+//$color3: #FFACAC;
+
+$color1: rgba(0,0,0,0.6);
+$color2: rgba(0,0,0,0.2);
+$color3: rgba(0,0,0,0.4);
+
+@keyframes #{$animation-name} {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
+}
+
+.particles {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  span {
+    width: 1vmin;
+    height: 1vmin;
+    border-radius: 1vmin;
+    backface-visibility: hidden;
+    position: absolute;
+
+    @for $i from 0 through 14 {
+      &:nth-child(#{$i}) {
+
+        @if $i % 3 == 0 {
+          color: $color1;
+        } @elseif $i % 3 == 1 {
+          color: $color2;
+        } @else {
+          color: $color3;
+        }
+        //transform: scale(random());
+        top: percentage(random());
+        left: percentage(random());
+        transform-origin: random()*-30 + vw random()*-30 + vh;
+        box-shadow: random()*5 + vmin 0 1.2*random() + vmin currentColor;
+
+        animation: $animation-name;
+        animation-duration: random() * 500 + s;
+        animation-delay: random() * -500 - s;
+        animation-timing-function: $animation-timing-function;
+        animation-iteration-count: $animation-iteration-count;
+      }
+    }
+  }
+}
