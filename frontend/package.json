@@ -9,7 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.88.17",
+    "@react-three/fiber": "^8.15.11",
+    "@types/three": "^0.158.3",
     "next": "14.0.3",
+    "nice-color-palettes": "^3.0.0",
+    "p5": "^1.8.0",
     "react": "^18",
     "react-dom": "^18"
   },
