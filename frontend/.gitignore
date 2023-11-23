@@ -40,6 +40,9 @@ next-env.d.ts
 .idea
 .idea/sonar
 .idea*
+.idea/sonarlint
+.idea/sonarlint/
+.idea/sonarlint/issuestore
 ../.idea
 ../.idea/sonar
 ../.idea*

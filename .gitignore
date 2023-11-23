@@ -6,6 +6,7 @@
 *.iml
 *.ipr
 .idea
+*.idea
 
 ./idea/sonar
 ./idea
@@ -15,3 +16,6 @@
 ../.idea
 ../.idea/sonar
 ../.idea*
+.idea/sonarlint
+.idea/sonarlint/
+.idea/sonarlint/issuestore
