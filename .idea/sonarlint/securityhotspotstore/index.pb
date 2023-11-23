@@ -11,8 +11,6 @@ I
 frontend/src/app/page.tsx,b\b\bbde75c830d3a870e459c43ab64c23b2592df7a1
 G
 frontend/next.config.js,7\4\7408706362fbef314d447491c9360ef11c3863ee
-M
-frontend/src/app/_shared.scss,c\d\cd0bfed69205bdb07ac6363f19f8c7556e251767
 a
 1frontend/src/components/Background/Background.tsx,2\b\2b30100ae9958511fd7a459fff55743358f0e717
 i

@@ -17,10 +17,11 @@ const Background = () => {
 
     const animate = (time) => {
       animationRef.current = requestAnimationFrame(animate);
-      const el = document.body;
+      const el = document.getElementById("background");
       timeRef.current += 0.005; // This will make it more unpredictable
       el.style.setProperty('--posX', ((Math.sin(timeRef.current) + 1) / 2) * 500);
       el.style.setProperty('--posY', ((Math.cos(timeRef.current) + 1) / 2) * 500 + scrollYRef.current / 10);
+      el.style.setProperty('--rotate', ((Math.sin(timeRef.current) + 1) / 2) * 1000);
     };
 
     animationRef.current = requestAnimationFrame(animate);
@@ -33,7 +34,7 @@ const Background = () => {
   return (
     <>
       <Particles />
-      <section className={s.background} />
+      <section id="background" className={s.background} />
     </>
   );
 };

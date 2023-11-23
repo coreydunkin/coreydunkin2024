@@ -217,8 +217,8 @@ $animation-iteration-count: infinite;
 //$color2: #E45A84;
 //$color3: #FFACAC;
 
-$color1: rgba(255,255,255,0.6);
-$color2: rgba(255,255,255,0.2);
+$color1: rgba(0,0,0,0.6);
+$color2: rgba(0,0,0,0.2);
 $color3: rgba(0,0,0,0.4);
 
 @keyframes #{$animation-name} {
@@ -244,6 +244,7 @@ $color3: rgba(0,0,0,0.4);
 
     @for $i from 0 through 14 {
       &:nth-child(#{$i}) {
+
         @if $i % 3 == 0 {
           color: $color1;
         } @elseif $i % 3 == 1 {
@@ -251,7 +252,7 @@ $color3: rgba(0,0,0,0.4);
         } @else {
           color: $color3;
         }
-
+        //transform: scale(random());
         top: percentage(random());
         left: percentage(random());
         transform-origin: random()*-30 + vw random()*-30 + vh;

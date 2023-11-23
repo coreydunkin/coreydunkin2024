@@ -1,5 +1,6 @@
 @import '../_shared.scss';
 
+
 .background {
   position: fixed;
   top: 0;
@@ -15,6 +16,7 @@
           radial-gradient(100% 100% at calc( 80% - var(--x)) calc( 0% - var(--y)), $color5, $color6),
           radial-gradient(150% 210% at calc(100% + var(--x)) calc( 0% + var(--y)), $color7, $color8),
           radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), $color9, $color10),
+          radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), $color2, $color1),
           linear-gradient(60deg, $color11, $color12);
   background-blend-mode: overlay, overlay, difference, difference, difference, normal;
   z-index: -1;
