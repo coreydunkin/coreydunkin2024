@@ -97,31 +97,47 @@ const vertexShader = `
                                 dot(p2,x2), dot(p3,x3) ) );
     }
     
+    // end simplex noise
+    
+    // Main function. This is the entry point of the shader code.
     void main() {
         
+        // Compute the coordinates for the noise calculation.
+        // The values 3. and 4. are scaling factors for the UV coordinates of the texture.
         vec2 noiseCoord = uv*vec2(3., 4.);
         
+        // Compute tilt. The "-0.8*uv.y" gives a tilt towards the lower side of the texture.
+        // You can change this to control the tilt amount.
         float tilt = -0.8*uv.y;
         
+        // Compute incline. The "0.1*uv.x" gives a small incline to the right of the texture.
+        // You can change this to control the incline amount.
         float incline = uv.x*0.1;
         
+        // Compute offset. The "0.5*incline*mix(-.25, 0.25, uv.y)" gives an offset to the shape.
+        // You can change the arguments of the mix function to control the amount and direction of the offset.
         float offset = 0.5*incline*mix(-.25, 0.25, uv.y);
         
+        // Compute noise. The noise is based on a 3D simplex noise function.
+        // You can change the multipliers of the arguments to control the noise frequency and speed.
         float noise = snoise(vec3(noiseCoord.x + u_time * 3., noiseCoord.y, u_time * 10.));
         
+        // Compute the position of the current vertex by adding the original position,
+        // noise applied on *Z* axis, tilt, incline and offset.
         vec3 pos = vec3(
                 position.x, 
                 position.y, 
                 position.z + noise * 0.3 + tilt + incline + offset
             ); 
         
+        // Here you are resetting the noise in case it was replaced as a result of shifting in *Z* axis.
         noise = max(0.,noise);
-        
-        
-        
-    
+
+        // Set the color of the vertex to the 5th value of the color matrix.
         vColor = u_Color[4];
         
+        // Loop over each of the first 4 entries in the color matrix.
+        // Compute and mix a new color based on a different set of noise data.
         for(int i = 0; i < 4; i++){
             float noiseFlow = 5. + float(i) * 0.3;
             float noiseSpeed = 10. + float(i) * 0.3;
@@ -138,11 +154,13 @@ const vertexShader = `
                  )
              ));
             
+            // Mix the colors based on the noise computed.
             vColor = mix(vColor, u_Color[i], noise);
         }
         
-        
+        // Set the UV coordinates of the fragment.
         vUv = uv;
+        // Transform the computed position into clipspace and assign it to gl_Position.
         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
         
     }
