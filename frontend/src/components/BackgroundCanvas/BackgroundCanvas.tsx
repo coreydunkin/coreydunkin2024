@@ -5,7 +5,7 @@ import s from './BackgroundCanvas.module.scss'
 import {Vector2, Color} from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
-import {OrbitControls} from "@react-three/drei";
+import {OrbitControls, Text} from "@react-three/drei";
 
 const Gradient = () => {
   let colors = require('nice-color-palettes');
@@ -14,6 +14,9 @@ const Gradient = () => {
   let palette = colors[ind];
   console.log(colors[ind])
   palette = ['#5e9fa3', '#dcd1b4', '#fab87f', '#f87e7b', '#b05574'];
+  //palette = ['#5e9fa3', '#ffae00ff', '#fab87f', '#f87e7b', '#b05574'];
+  //palette = ['#5e9fa3', '#ffea2f', '#fab87f', '#f87e7b', '#b05574'];
+
   //palette = ['rgb(255 77 0)', 'rgb(0 200 255)', 'rgb(0 10 255)', 'rgb(20 175 125)', 'rgb(36 0 0)'];
   // ['#5e9fa3', '#dcd1b4', '#fab87f', '#f87e7b', '#b05574']
   palette = palette.map((color: any) => new Color(color));
@@ -85,7 +88,6 @@ const Gradient = () => {
           wireframe={false}
         />
       </mesh>
-
     </>
   );
 };
