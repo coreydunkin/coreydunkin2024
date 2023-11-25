@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-between">
 
-      <div className="relative flex min-h-screen  flex-col justify-center overflow-hidden pl-12 pr-12 lg:p-96">
+      <div className="relative flex min-h-screen  flex-col justify-center overflow-hidden pl-12 pr-12 lg:pl-96 lg:pl-96">
         <article className="prose text-left text-white">
           <motion.h1
             className={`
