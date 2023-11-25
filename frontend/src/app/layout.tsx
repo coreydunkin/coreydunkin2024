@@ -1,7 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import Background from "@/components/Background/Background";
+import './globals.scss'
+import {Playfair_Display} from "next/font/google";
+
+const playFairDisplay = Playfair_Display({
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: "--font-playfair-display"
+});
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${playFairDisplay.variable}`}>
       <body className={inter.className}>{children}</body>
     </html>
   )

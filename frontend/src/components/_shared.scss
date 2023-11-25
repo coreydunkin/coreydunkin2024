@@ -1,7 +1,9 @@
+
+
 $color1: rgb(211 255 215);
 $color2: rgb(0 0 0);
 $color3: rgb(200 200 200);
-$color4: rgb(22 0 45);
+$color4: rgb(218, 0, 200);
 $color5: cd rgb(250 255 0);
 $color6: rgb(36 0 0);
 $color7: rgb(20 175 125);
@@ -10,3 +12,50 @@ $color9: rgb(255 77 0);
 $color10: rgb(0 200 255);
 $color11: rgb(255 0 0);
 $color12: rgb(120 86 255);
+
+$colorA: #5e9fa3;
+$colorB: #dcd1b4;
+$colorC: #fab87f;
+$colorD: #f87e7b;
+$colorE: #b05574;
+
+$colorF: #0083A4FF;
+$colorG: #AA1851FF;
+$colorC: #E37411FF;
+$colorD: #96312EFF;
+
+$xsBreakpoint: 576px;
+$smBreakpoint: 768px;
+$mdBreakpoint: 1024px;
+$lgBreakpoint: 1290px;
+$xlBreakpoint: 1440px;
+
+@mixin xs-breakpoint {
+  @media only screen and (max-width: $xsBreakpoint){
+    @content
+  }
+}
+
+@mixin sm-breakpoint {
+  @media only screen and (min-width: $smBreakpoint){
+    @content
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (min-width: $mdBreakpoint){
+    @content
+  }
+}
+
+@mixin lg-breakpoint {
+  @media only screen and (min-width: $lgBreakpoint){
+    @content
+  }
+}
+
+@mixin xl-breakpoint {
+  @media only screen and (min-width: $xlBreakpoint){
+    @content
+  }
+}

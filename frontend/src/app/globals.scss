@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import ".././components/_shared.scss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+
+// Define a set of classes for text shadow
+@mixin text-shadow($type, $x, $y, $blur, $rgba) {
+  .text-shadow-#{$type} {
+    text-shadow: $x $y $blur $rgba;
+  }
+}
+
+.text-outline {
+  &--white {
+    -webkit-text-stroke: 1px white;
+  }
+  &--black {
+    -webkit-text-stroke: 1px black;
+  }
+}
+
+@include md-breakpoint {
+  @include text-shadow('sm', 0px, 2px, 2px, rgb(0 0 0 / 0.50));
+}
+@include text-shadow('sm', 0px, 2px, 1px, rgb(0 0 0 / 0.1));
+@include text-shadow('default', 0px, 1px, 3px, rgb(0 0 0 / 0.01));
+@include text-shadow('md', 0px, 4px, 6px, rgb(0 0 0 / 0.25));
+@include text-shadow('lg', 0px, 10px, 15px, rgb(0 0 0 / 0.25));
+@include text-shadow('xl', 0px, 20px, 25px, rgb(0 0 0 / 0.25));
+@include text-shadow('2xl', 0px, 25px, 50px, rgb(0 0 0 / 0.25));
+@include text-shadow('inner', inset 0px, 2px, 4px, rgb(0 0 0 / 0.25));
+@include text-shadow('none', 0px, 0px, 0px, rgb(0 0 0));

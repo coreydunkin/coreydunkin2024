@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+const {fontFamily} = require('tailwindcss/defaultTheme');
 
 const config: Config = {
   content: [
@@ -14,7 +15,14 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    fontFamily: {
+      playfairDisplay: ["var(--font-playfair-display)", ...fontFamily.serif],
+    }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    //require('@tailwindcss/aspect-ratio'),
+    //require('@tailwindcss/forms'),
+  ],
 }
 export default config

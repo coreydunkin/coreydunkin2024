@@ -144,6 +144,7 @@ const vertexShader = `
             float noiseSeed = 1. + float(i) * 10.;
             vec2 noiseFreq = vec2(0.3, 0.4);
             
+            // noiseFloor and noiseCeil are used to control the range of the noise.
             float noiseFloor = 0.1;
             float noiseCeil = 0.6 + float(i) * 0.07;
             

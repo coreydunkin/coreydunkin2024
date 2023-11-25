@@ -1,6 +1,6 @@
 "use client";
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import {Canvas, useFrame, useThree} from '@react-three/fiber'
 import s from './BackgroundCanvas.module.scss'
 import {Vector2, Color} from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
@@ -55,16 +55,38 @@ const Gradient = () => {
     );
   });
 
+  // TODO:
+  /*
+  * 1. Create a NEW canvas, that sits in the background
+  * 2. This canvas has different shaders/vertexes
+  * 3. its larger but sits behind
+  * 4. only has a gradient, doesn't warp
+  */
+  const { viewport } = useThree();
+  console.log(viewport.width, viewport.height)
   return (
-    <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
-      <planeGeometry args={[1.5, 1.5, 150, 150]} />
-      <shaderMaterial
-        fragmentShader={fragmentShader}
-        vertexShader={vertexShader}
-        uniforms={uniforms}
-        wireframe={false}
-      />
-    </mesh>
+    <>
+      {/*<mesh ref={mesh} position={[2.95, 1.85, -2]} scale={1.5}>*/}
+      {/*  <planeGeometry args={[1.5, 1.5, 150, 150]} />*/}
+      {/*  <shaderMaterial*/}
+      {/*    fragmentShader={fragmentShader}*/}
+      {/*    vertexShader={vertexShader}*/}
+      {/*    uniforms={uniforms}*/}
+      {/*    wireframe={false}*/}
+      {/*  />*/}
+      {/*</mesh>*/}
+
+      <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
+        <planeGeometry args={[1.5, 1.5, 100, 100]} />
+        <shaderMaterial
+          fragmentShader={fragmentShader}
+          vertexShader={vertexShader}
+          uniforms={uniforms}
+          wireframe={false}
+        />
+      </mesh>
+
+    </>
   );
 };
 
@@ -75,14 +97,14 @@ const BackgroundCanvas = () => {
   useEffect(() => {
     const colors = require('nice-color-palettes');
     const ind = Math.floor(Math.random() * colors.length);
-    const palette = ['#5e9fa3', '#dcd1b4', '#fab87f', '#f87e7b', '#b05574'];
+    const palette = ['#0083A4FF', '#AA1851FF','#AA1851FF', '#0083A4FF'].reverse();
     setGradientColors(palette);
   }, []);
 
-  const gradient = `linear-gradient(${gradientColors.join(",")})`;
+  //const gradient = `radial-gradient(60deg, ${gradientColors.join(",")})`;
 
   return (
-    <div className={s.backgroundCanvas}  style={{background: gradient}}>
+    <div className={s.backgroundCanvas}>
       <Canvas camera={{ position: [0.0, 0.0, 0.2] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
