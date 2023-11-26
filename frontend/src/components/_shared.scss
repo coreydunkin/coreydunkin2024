@@ -1,5 +1,3 @@
-
-
 $color1: rgb(211 255 215);
 $color2: rgb(0 0 0);
 $color3: rgb(200 200 200);
@@ -19,10 +17,10 @@ $colorC: #fab87f;
 $colorD: #f87e7b;
 $colorE: #b05574;
 
-$colorF: #0083A4FF;
-$colorG: #AA1851FF;
-$colorC: #E37411FF;
-$colorD: #96312EFF;
+$colorF: #0083a4ff;
+$colorG: #aa1851ff;
+$colorC: #e37411ff;
+$colorD: #96312eff;
 
 $xsBreakpoint: 576px;
 $smBreakpoint: 768px;
@@ -31,31 +29,31 @@ $lgBreakpoint: 1290px;
 $xlBreakpoint: 1440px;
 
 @mixin xs-breakpoint {
-  @media only screen and (max-width: $xsBreakpoint){
-    @content
+  @media only screen and (max-width: $xsBreakpoint) {
+    @content;
   }
 }
 
 @mixin sm-breakpoint {
-  @media only screen and (min-width: $smBreakpoint){
-    @content
+  @media only screen and (min-width: $smBreakpoint) {
+    @content;
   }
 }
 
 @mixin md-breakpoint {
-  @media only screen and (min-width: $mdBreakpoint){
-    @content
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
   }
 }
 
 @mixin lg-breakpoint {
-  @media only screen and (min-width: $lgBreakpoint){
-    @content
+  @media only screen and (min-width: $lgBreakpoint) {
+    @content;
   }
 }
 
 @mixin xl-breakpoint {
-  @media only screen and (min-width: $xlBreakpoint){
-    @content
+  @media only screen and (min-width: $xlBreakpoint) {
+    @content;
   }
 }
