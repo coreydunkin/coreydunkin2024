@@ -1,4 +1,4 @@
-@import '../_shared.scss';
+@import "../_shared.scss";
 
 .backgroundCanvas {
   position: fixed;
@@ -21,14 +21,11 @@
   //        linear-gradient(60deg, $color11, $color12);
   //background-blend-mode: overlay, overlay, difference, difference, difference, multiply, normal;
   background: linear-gradient(115deg, $color7, $color4);
-  //background: black;
-  //background: $color7;
-  //z-index: -1;
   &:before {
     content: "";
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 1;
   }
