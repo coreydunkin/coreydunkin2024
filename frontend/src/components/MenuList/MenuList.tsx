@@ -1,90 +1,113 @@
 "use client";
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+import { Fragment, useState } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Example() {
-  return (
-    <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          Menu
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-        </Menu.Button>
-      </div>
+  const [isOpen, setIsOpen] = useState(false);
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
+  return (
+    // <nav className="border-b-white border-b-[1px]">
+    <nav
+      className={`${
+        isOpen && "bg-blend-multiply bg-gray-800 min-h-screen bg-opacity-50"
+      } fixed min-w-full z-10 md:bg-none md:bg-opacity-0 md:min-h-0 md:relative`}
+    >
+      <motion.div
+        className="flex flex-wrap items-center justify-between mx-auto pt-5 pb-6 pl-8 pr-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.2,
+          ease: [0.6, 0.01, 0.05, 0.9],
+        }}
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right bg-transparent shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Support
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  )
+        <Link
+          href="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse opacity-0"
+        >
+          <h1
+            className="
+            self-center
+            text-2xl
+            font-medium
+            font-playfairDisplay
+            font-black
+            text-3xl
+            whitespace-nowrap
+            text-gray-100
+            text-shadow-sm
+            "
+          >
+            Corey Dunkin.
+          </h1>
+        </Link>
+        <button
+          onClick={() => setIsOpen(!isOpen ? true : false)}
+          type="button"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden"
+          aria-controls="navbar-default"
+          aria-expanded="false"
+        >
+          <span className="sr-only">Open main menu</span>
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15"
+            />
+          </svg>
+        </button>
+        <div
+          className={`${
+            !isOpen && "hidden"
+          } text-right right-4 z-10 w-full md:block md:w-auto`}
+          id="navbar-default"
+        >
+          <ul className="font-playfairDisplay font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+            <li>
+              <Link
+                href="#"
+                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                aria-current="page"
+              >
+                About
+              </Link>
+            </li>
+            <li className="opacity-50 hidden md:block">&#x2022;</li>
+            <li>
+              <Link
+                href="#"
+                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                aria-current="page"
+              >
+                Portfolio
+              </Link>
+            </li>
+            <li className="opacity-50 hidden md:block">&#x2022;</li>
+            <li>
+              <Link
+                href="#"
+                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                aria-current="page"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </motion.div>
+    </nav>
+  );
 }

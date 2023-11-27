@@ -4,8 +4,8 @@ import Intro from "@/components/Intro/Intro";
 import MenuList from "@/components/MenuList/MenuList";
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between">
-      {/*<MenuList />*/}
+    <main>
+      <MenuList />
       <Container>
         <Intro />
       </Container>

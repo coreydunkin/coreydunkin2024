@@ -6,8 +6,10 @@ type ContainerProps = {
 
 const Container = ({ children }: ContainerProps) => {
   return (
-    <div className="relative flex min-h-screen flex-col justify-center overflow-hidden">
-      {children}
+    <div className="flex flex-col items-center justify-between">
+      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden">
+        {children}
+      </div>
     </div>
   );
 };
