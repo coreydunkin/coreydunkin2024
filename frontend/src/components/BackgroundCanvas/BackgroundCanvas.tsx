@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import s from "./BackgroundCanvas.module.scss";
 import { Vector2, Color } from "three";
@@ -49,7 +49,12 @@ const Gradient = () => {
     //const { clock } = state;
     if (mesh.current?.material) {
       const meshMaterial = mesh.current.material as THREE.ShaderMaterial;
-      meshMaterial.uniforms.u_time.value += 0.0002;
+      let storedTime = JSON.parse(sessionStorage.getItem("u_time") || "0");
+      meshMaterial.uniforms.u_time.value = storedTime + 0.0002;
+      sessionStorage.setItem(
+        "u_time",
+        JSON.stringify(meshMaterial.uniforms.u_time.value),
+      );
       meshMaterial.uniforms.u_mouse.value = new Vector2(
         mousePosition.current.x,
         mousePosition.current.y,
