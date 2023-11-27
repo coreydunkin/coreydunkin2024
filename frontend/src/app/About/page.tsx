@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <MenuList />
       <Container>
-        <Intro />
+        <h1>ABOUT</h1>
       </Container>
 
       <BackgroundCanvas />

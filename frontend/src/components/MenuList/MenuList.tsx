@@ -27,7 +27,7 @@ export default function Example() {
       >
         <Link
           href="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse opacity-0"
+          className="flex items-center space-x-3 rtl:space-x-reverse opacity-1"
         >
           <h1
             className="
@@ -35,7 +35,7 @@ export default function Example() {
             text-2xl
             font-medium
             font-playfairDisplay
-            font-black
+            font-extrabold
             text-3xl
             whitespace-nowrap
             text-gray-100
@@ -78,7 +78,7 @@ export default function Example() {
           <ul className="font-playfairDisplay font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
-                href="#"
+                href="About"
                 className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
                 aria-current="page"
               >
