@@ -1,13 +1,12 @@
 "use client";
-import { Fragment, useState } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const pathName = usePathname();
   return (
     // <nav className="border-b-white border-b-[1px]">
     <nav
@@ -27,7 +26,9 @@ export default function Example() {
       >
         <Link
           href="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse opacity-1"
+          className={`${
+            pathName !== "/" ? "opacity-1" : "opacity-0"
+          } flex items-center space-x-3 rtl:space-x-reverse`}
         >
           <h1
             className="
