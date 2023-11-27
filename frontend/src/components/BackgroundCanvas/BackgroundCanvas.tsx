@@ -64,8 +64,6 @@ const Gradient = () => {
    * 3. its larger but sits behind
    * 4. only has a gradient, doesn't warp
    */
-  const { viewport } = useThree();
-  console.log(viewport.width, viewport.height);
   return (
     <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
       <planeGeometry args={[1.5, 1.5, 100, 100]} />

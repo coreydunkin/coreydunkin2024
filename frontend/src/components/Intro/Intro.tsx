@@ -4,7 +4,7 @@ import s from "@/app/page.module.scss";
 
 const Intro = () => {
   return (
-    <article className="prose text-left">
+    <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
       <motion.h1
         className={`
         ${s.title}
