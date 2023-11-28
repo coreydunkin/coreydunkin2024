@@ -22,10 +22,11 @@ const getAnimationOutVariable = (
     routesHierarchy[pathname] < routesHierarchy[previousRoute]
   ) {
     return {
-      initial: { y: 0, x: 0 },
+      initial: { y: 0, x: 0, opacity: 1 },
       animate: {
-        y: "100%",
+        y: "50%",
         x: 0,
+        opacity: 0,
         transitionEnd: {
           display: "none",
         },
@@ -33,10 +34,11 @@ const getAnimationOutVariable = (
     };
   }
   return {
-    initial: { y: 0, x: 0 },
+    initial: { y: 0, x: 0, opacity: 1 },
     animate: {
-      y: "-100%",
+      y: "-50%",
       x: 0,
+      opacity: 0,
       transitionEnd: {
         display: "none",
       },
@@ -53,18 +55,20 @@ const getAnimationInVariable = (
     routesHierarchy[pathname] < routesHierarchy[previousRoute]
   ) {
     return {
-      initial: { y: "-100%", x: 0 },
+      initial: { y: "-50%", x: 0, opacity: 0 },
       animate: {
         y: 0,
         x: 0,
+        opacity: 1,
       },
     };
   }
   return {
-    initial: { y: "100%", x: 0 },
+    initial: { y: "50%", x: 0, opacity: 0 },
     animate: {
       y: 0,
       x: 0,
+      opacity: 1,
     },
   };
 };
