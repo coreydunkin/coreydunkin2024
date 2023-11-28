@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 
-const About = () => {
+const ContactContent = () => {
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
       <motion.h1
@@ -24,7 +24,7 @@ const About = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        About.
+        Contact.
       </motion.h1>
 
       <motion.h2
@@ -43,10 +43,10 @@ const About = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        This is a blurb all about me.
+        Call me.
       </motion.h2>
     </article>
   );
 };
 
-export default About;
+export default ContactContent;

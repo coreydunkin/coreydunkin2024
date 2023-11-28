@@ -5,12 +5,9 @@ import MenuList from "@/components/MenuList/MenuList";
 export default function Home() {
   return (
     <main>
-      <MenuList />
       <Container>
         <Intro />
       </Container>
-
-      <BackgroundCanvas />
     </main>
   );
 }

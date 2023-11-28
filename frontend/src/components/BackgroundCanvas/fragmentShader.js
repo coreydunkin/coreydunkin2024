@@ -1,3 +1,4 @@
+// language=GLSL
 const fragmentShader = `
     uniform float u_time;
     uniform float time;
