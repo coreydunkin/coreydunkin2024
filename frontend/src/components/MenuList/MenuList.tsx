@@ -24,8 +24,8 @@ export default function Example() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
-          duration: 1,
-          delay: 0.2,
+          duration: 2,
+          delay: 0.5,
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
@@ -86,7 +86,9 @@ export default function Example() {
               <Link
                 onClick={() => setIsOpen(false)}
                 href="/"
-                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                className={`${
+                  pathName === "/" && "border-b-white "
+                } transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >
                 Home
@@ -97,7 +99,9 @@ export default function Example() {
               <Link
                 onClick={() => setIsOpen(false)}
                 href="/about"
-                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                className={`${
+                  pathName === "/about" && "border-b-white "
+                } transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >
                 About
@@ -107,8 +111,10 @@ export default function Example() {
             <li>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="#"
-                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                href="/portfolio"
+                className={`${
+                  pathName === "/portfolio" && "border-b-white "
+                } transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >
                 Portfolio
@@ -118,8 +124,10 @@ export default function Example() {
             <li>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="#"
-                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                href="/contact"
+                className={`${
+                  pathName === "/contact" && "border-b-white "
+                } transition-all border-b-2 hover:border-b-white  border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >
                 Contact

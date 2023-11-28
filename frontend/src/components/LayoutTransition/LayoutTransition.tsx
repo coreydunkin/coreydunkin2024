@@ -1,11 +1,26 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-const getAnimationOutVariable = (pathname: string) => {
-  console.log({ pathname });
-  if (pathname === "/") {
+import usePreviousRoute from "@/utils/usePreviousRoute";
+
+// Change this to go inside a CONSTANTS or look into index?
+const routesHierarchy: Record<string, number> = {
+  "/": 0,
+  "/about": 1,
+  "/portfolio": 2,
+  "/contact": 3,
+};
+
+const getAnimationOutVariable = (
+  pathname: string,
+  previousRoute: string | null,
+) => {
+  if (
+    previousRoute !== null &&
+    routesHierarchy[pathname] < routesHierarchy[previousRoute]
+  ) {
     return {
       initial: { y: 0, x: 0 },
       animate: {
@@ -29,9 +44,14 @@ const getAnimationOutVariable = (pathname: string) => {
   };
 };
 
-const getAnimationInVariable = (pathname: string) => {
-  console.log({ pathname });
-  if (pathname === "/") {
+const getAnimationInVariable = (
+  pathname: string,
+  previousRoute: string | null,
+) => {
+  if (
+    previousRoute !== null &&
+    routesHierarchy[pathname] < routesHierarchy[previousRoute]
+  ) {
     return {
       initial: { y: "-100%", x: 0 },
       animate: {
@@ -53,6 +73,7 @@ export const LayoutTransition = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const previousRoute = usePreviousRoute();
   const pathname = usePathname();
   const lastPageRef = useRef<HTMLCollection | null>(null);
   const currentPageRef = useRef<HTMLDivElement>(null);
@@ -74,7 +95,7 @@ export const LayoutTransition = ({
       <div className="relative h-screen w-screen">
         <motion.div
           key={pathname + "exit-animation"}
-          {...getAnimationOutVariable(pathname)}
+          {...getAnimationOutVariable(pathname, previousRoute)}
           transition={{
             type: "ease-in-out",
             duration: 0.7,
@@ -86,7 +107,7 @@ export const LayoutTransition = ({
 
         <motion.div
           key={pathname}
-          {...getAnimationInVariable(pathname)}
+          {...getAnimationInVariable(pathname, previousRoute)}
           transition={{ type: "ease-in-out", duration: 0.7 }}
           className="w-screen h-screen"
         >
