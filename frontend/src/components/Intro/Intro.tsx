@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
+import Link from "next/link";
 
 const Intro = () => {
   return (
@@ -36,7 +37,7 @@ const Intro = () => {
         text-1xl
         text-shadow-sm
    "
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 1,
@@ -46,9 +47,9 @@ const Intro = () => {
       >
         Senior Software Engineer in Sydney, Australia.
       </motion.h2>
-
-      <motion.button
-        className="
+      <Link href="/about" passHref>
+        <motion.button
+          className="
           bg-opacity-0
           bg-gray-800
           text-gray-100
@@ -58,17 +59,18 @@ const Intro = () => {
           border
           border-gray-100
           mt-5
-        "
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 1,
-          delay: 1.2, // button starts after 1.0s
-          ease: [0.6, 0.01, 0.05, 0.9],
-        }}
-      >
-        View more
-      </motion.button>
+          "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 1,
+            delay: 1.2, // button starts after 1.0s
+            ease: [0.6, 0.01, 0.05, 0.9],
+          }}
+        >
+          View more
+        </motion.button>
+      </Link>
     </article>
   );
 };

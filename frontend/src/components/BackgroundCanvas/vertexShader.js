@@ -1,3 +1,4 @@
+// language=GLSL
 const vertexShader = `
     uniform float u_time;
     varying vec2 vUv;

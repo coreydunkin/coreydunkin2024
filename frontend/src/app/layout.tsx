@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import { Playfair_Display } from "next/font/google";
+import MenuList from "@/components/MenuList/MenuList";
+import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
+import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],
@@ -25,7 +28,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playFairDisplay.variable}`}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <MenuList />
+        <LayoutTransition>{children}</LayoutTransition>
+        <BackgroundCanvas />
+      </body>
     </html>
   );
 }

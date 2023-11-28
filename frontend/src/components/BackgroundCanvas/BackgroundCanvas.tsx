@@ -6,6 +6,7 @@ import { Vector2, Color } from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
 import { OrbitControls, Text } from "@react-three/drei";
+import { useRouter } from "next/navigation";
 
 const Gradient = () => {
   // let colors = require('nice-color-palettes');
@@ -49,12 +50,7 @@ const Gradient = () => {
     //const { clock } = state;
     if (mesh.current?.material) {
       const meshMaterial = mesh.current.material as THREE.ShaderMaterial;
-      let storedTime = JSON.parse(sessionStorage.getItem("u_time") || "0");
-      meshMaterial.uniforms.u_time.value = storedTime + 0.0002;
-      sessionStorage.setItem(
-        "u_time",
-        JSON.stringify(meshMaterial.uniforms.u_time.value),
-      );
+      meshMaterial.uniforms.u_time.value += 0.0002;
       meshMaterial.uniforms.u_mouse.value = new Vector2(
         mousePosition.current.x,
         mousePosition.current.y,
@@ -98,7 +94,7 @@ const BackgroundCanvas = () => {
 
   return (
     <div className={s.backgroundCanvas}>
-      <Canvas camera={{ position: [0.0, 0.0, 0.2] }}>
+      <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <OrbitControls />

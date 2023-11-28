@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -7,12 +7,17 @@ import { usePathname } from "next/navigation";
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
     // <nav className="border-b-white border-b-[1px]">
     <nav
       className={`${
         isOpen && "bg-blend-multiply bg-gray-800 min-h-screen bg-opacity-50"
-      } fixed min-w-full z-10 md:bg-none md:bg-opacity-0 md:min-h-0 md:relative`}
+      } fixed min-w-full z-10 md:bg-none md:bg-opacity-0 md:min-h-0`}
     >
       <motion.div
         className="flex flex-wrap items-center justify-between mx-auto pt-5 pb-6 pl-8 pr-8"
@@ -34,7 +39,7 @@ export default function Example() {
             className="
             self-center
             text-2xl
-            font-medium
+            font-bold
             font-playfairDisplay
             font-extrabold
             text-3xl
@@ -79,7 +84,19 @@ export default function Example() {
           <ul className="font-playfairDisplay font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
-                href="About"
+                onClick={() => setIsOpen(false)}
+                href="/"
+                className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
+                aria-current="page"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="opacity-50 hidden md:block">&#x2022;</li>
+            <li>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href="/about"
                 className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
                 aria-current="page"
               >
@@ -89,6 +106,7 @@ export default function Example() {
             <li className="opacity-50 hidden md:block">&#x2022;</li>
             <li>
               <Link
+                onClick={() => setIsOpen(false)}
                 href="#"
                 className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
                 aria-current="page"
@@ -99,6 +117,7 @@ export default function Example() {
             <li className="opacity-50 hidden md:block">&#x2022;</li>
             <li>
               <Link
+                onClick={() => setIsOpen(false)}
                 href="#"
                 className="transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0"
                 aria-current="page"

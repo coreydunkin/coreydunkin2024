@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 
-const About = () => {
+const AboutContent = () => {
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
       <motion.h1
@@ -49,4 +49,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutContent;
