@@ -6,7 +6,10 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-height: 1500px;
+  min-height: 100vh;
+  @include md-breakpoint {
+    min-height: 1500px;
+  }
   --x: calc(var(--posX, 0) * 1px);
   --y: calc(var(--posY, 0) * 1px);
   z-index: -1;
