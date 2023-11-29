@@ -26,7 +26,8 @@
     "p5": "^1.8.0",
     "prettier": "^3.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-use-scroll-direction": "^0.1.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

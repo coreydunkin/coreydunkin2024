@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 
@@ -12,6 +12,12 @@ const routesHierarchy: Record<string, number> = {
   "/portfolio": 2,
   "/contact": 3,
 };
+
+// This wil be used to increment/decrement the page route on mouse scroll and swipe
+const getRouteByValue = (value: number): string | undefined => {
+  return Object.keys(routesHierarchy).find(key => routesHierarchy[key] === value);
+};
+
 
 const getAnimationOutVariable = (
   pathname: string,
@@ -93,6 +99,8 @@ export const LayoutTransition = ({
     );
     lastPageRef.current = currentPageRef.current.children;
   }, [pathname]);
+
+
 
   return (
     <AnimatePresence initial={false}>
