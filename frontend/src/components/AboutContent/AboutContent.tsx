@@ -4,14 +4,15 @@ import s from "@/app/page.module.scss";
 
 const AboutContent = () => {
   return (
-    <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
-      <motion.h1
+    <article className="prose text-left pl-12 pr-12">
+      <motion.h2
         className={`
         ${s.title}
-        md:text-9xl 
-        lg:text-9xl 
+        md:text-7xl 
+        lg:text-7xl
+        text-4xl 
         mb-5 
-        text-gray-100 
+        text-gray-100
         text-outline--white
         font-playfairDisplay
         text-shadow-sm
@@ -24,8 +25,8 @@ const AboutContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        About.
-      </motion.h1>
+        A lil' bit about me.
+      </motion.h2>
 
       <motion.h2
         className="
@@ -43,7 +44,10 @@ const AboutContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        This is a blurb all about me.
+        I am a passionate and experienced Senior Software Engineer with over a decade of experience.
+        I've worked on high traffic, intricate websites for large-scale clients such as Qantas, Transport NSW, Macquarie Bank,
+        and many more.
+        I've created complex webapps .
       </motion.h2>
     </article>
   );
