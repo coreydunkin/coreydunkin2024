@@ -24,15 +24,35 @@
   //        linear-gradient(60deg, $color11, $color12);
   //background-blend-mode: overlay, overlay, difference, difference, difference, multiply, normal;
   background: linear-gradient(115deg, $color7, $color4);
-  &:before {
+
+  &::before {
     content: "";
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 1;
+    transition: background-color 1s ease;
   }
-  &:after {
+
+  &.aboutPage::before {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &.otherPage::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  //&::before {
+  //  content: "";
+  //  width: 100vw;
+  //  height: 100vh;
+  //  background: rgba(0, 0, 0, 0.3);
+  //  position: absolute;
+  //  z-index: 1;
+  //}
+  &::after {
     content: "";
     position: absolute;
     inset: 0 0 0 0;

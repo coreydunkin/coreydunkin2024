@@ -6,7 +6,8 @@ import { Vector2, Color } from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
 import { OrbitControls, Text } from "@react-three/drei";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const Gradient = () => {
   // let colors = require('nice-color-palettes');
@@ -91,9 +92,11 @@ const BackgroundCanvas = () => {
   //   const palette = ['#0083A4FF', '#AA1851FF','#AA1851FF', '#0083A4FF'].reverse();
   //   setGradientColors(palette);
   // }, []);
+  const pathname = usePathname();
+  const pageClass = pathname === "/about" ? "aboutPage" : "otherPage";
 
   return (
-    <div className={s.backgroundCanvas}>
+    <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
