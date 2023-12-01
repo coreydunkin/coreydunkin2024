@@ -16,8 +16,14 @@ const routesHierarchy: Record<string, number> = {
   "/": 0,
   "/about": 1,
   "/portfolio": 2,
-  "/contact": 3,
+  "/portfolio/test": 3,
+  "/portfolio/test2": 4,
+  "/portfolio/test3": 5,
+  "/contact": 6,
 };
+
+
+
 
 // This wil be used to increment/decrement the page route on mouse scroll and swipe
 const getRouteByValue = (value: number): string | undefined => {
@@ -29,7 +35,10 @@ const getRouteByValue = (value: number): string | undefined => {
 const getAnimationOutVariable = (
   pathname: string,
   previousRoute: string | null,
+  pathIsPortfolioItem: boolean,
+  previousPathIsPortfolio: boolean | undefined
 ) => {
+
   if (
     previousRoute !== null &&
     routesHierarchy[pathname] < routesHierarchy[previousRoute]
@@ -37,8 +46,8 @@ const getAnimationOutVariable = (
     return {
       initial: { y: 0, x: 0, opacity: 1 },
       animate: {
-        y: "50%",
-        x: 0,
+        y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
         opacity: 0,
         transitionEnd: {
           display: "none",
@@ -49,8 +58,8 @@ const getAnimationOutVariable = (
   return {
     initial: { y: 0, x: 0, opacity: 1 },
     animate: {
-      y: "-50%",
-      x: 0,
+      y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
       opacity: 0,
       transitionEnd: {
         display: "none",
@@ -62,13 +71,19 @@ const getAnimationOutVariable = (
 const getAnimationInVariable = (
   pathname: string,
   previousRoute: string | null,
+  pathIsPortfolioItem: boolean,
+  previousPathIsPortfolio: boolean | undefined
 ) => {
   if (
     previousRoute !== null &&
     routesHierarchy[pathname] < routesHierarchy[previousRoute]
   ) {
     return {
-      initial: { y: "-50%", x: 0, opacity: 0 },
+      initial: {
+        y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
+        opacity: 0
+      },
       animate: {
         y: 0,
         x: 0,
@@ -77,7 +92,11 @@ const getAnimationInVariable = (
     };
   }
   return {
-    initial: { y: "50%", x: 0, opacity: 0 },
+    initial: {
+      y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
+      opacity: 0
+    },
     animate: {
       y: 0,
       x: 0,
@@ -95,6 +114,8 @@ export const LayoutTransition = ({
   const lastPageRef = useRef<HTMLCollection | null>(null);
   const currentPageRef = useRef<HTMLDivElement>(null);
   const exitAnimationDivRef = useRef<HTMLDivElement>(null);
+  const pathIsPortfolioItem = pathname.includes("portfolio/");
+  const previousPathIsPortfolio = previousRoute?.includes("portfolio/");
 
   useEffect(() => {
     if (!currentPageRef.current) return;
@@ -112,7 +133,7 @@ export const LayoutTransition = ({
       <div className="relative h-screen w-screen">
         <motion.div
           key={pathname + "exit-animation"}
-          {...getAnimationOutVariable(pathname, previousRoute)}
+          {...getAnimationOutVariable(pathname, previousRoute, pathIsPortfolioItem, previousPathIsPortfolio)}
           transition={{
             type: "ease-in-out",
             duration: 0.7,
@@ -124,7 +145,7 @@ export const LayoutTransition = ({
 
         <motion.div
           key={pathname}
-          {...getAnimationInVariable(pathname, previousRoute)}
+          {...getAnimationInVariable(pathname, previousRoute, pathIsPortfolioItem, previousPathIsPortfolio)}
           transition={{ type: "ease-in-out", duration: 0.7 }}
           className="w-screen h-screen"
         >

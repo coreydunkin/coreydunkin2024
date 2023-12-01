@@ -111,9 +111,9 @@ export default function Example() {
             <li>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/portfolio"
+                href="/portfolio/test"
                 className={`${
-                  pathName === "/portfolio" && "border-b-white "
+                  pathName.includes("/portfolio") && "border-b-white "
                 } transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >
