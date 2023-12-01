@@ -47,7 +47,6 @@ const Gradient = () => {
     };
   }, [updateMousePosition]);
 
-
   useFrame((state) => {
     //const { clock } = state;
     if (mesh.current?.material) {
@@ -94,12 +93,10 @@ const BackgroundCanvas = () => {
   //   setGradientColors(palette);
   // }, []);
   const pathname = usePathname();
-  const pageClass = pathname === '/about' ? 'aboutPage' : 'otherPage';
-
+  const pageClass = pathname === "/about" ? "aboutPage" : "otherPage";
 
   return (
     <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>
-
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />

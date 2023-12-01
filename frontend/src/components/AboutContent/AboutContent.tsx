@@ -1,26 +1,23 @@
 "use client";
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
-import {FaJenkins, FaNodeJs, FaReact} from "react-icons/fa";
-import {TbBrandAzure, TbBrandNextjs, TbBrandTypescript} from "react-icons/tb";
-import {FaAngular} from "react-icons/fa6";
-import {SiAzuredevops} from "react-icons/si";
+import { FaJenkins, FaNodeJs, FaReact } from "react-icons/fa";
+import { TbBrandAzure, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
+import { FaAngular } from "react-icons/fa6";
+import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
 
 const AboutContent = () => {
   return (
     <div className="flex flex-col md:flex-row">
-
       <motion.div
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        transition={
-          {
-            duration: 1,
-            delay: 0.2,
-            ease: [0.6, 0.01, 0.05, 0.9],
-          }
-        }
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.2,
+          ease: [0.6, 0.01, 0.05, 0.9],
+        }}
         className="w-20 hidden md:flex flex-col justify-between items-center"
       >
         <FaReact className="m-2 pt-0 w-8 h-8" />
@@ -51,7 +48,7 @@ const AboutContent = () => {
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
           >
-            A lil' bit about me.
+            A lil` bit about me.
           </motion.h2>
 
           <motion.div
@@ -71,15 +68,30 @@ const AboutContent = () => {
             }}
           >
             <p>
-              I am a passionate and experienced Senior Software Engineer with over a decade of experience.
-              I've worked on high traffic, intricate websites for large-scale clients such as <Link className="text-white" href="#">Qantas</Link>, <Link className="text-white" href="#">Transport NSW</Link>, <Link className="text-white" href="#">Macquarie Bank</Link>,
-              and many more.
+              I am a passionate and experienced Senior Software Engineer with
+              over a decade of experience. I have worked on high traffic,
+              intricate websites for large-scale clients such as{" "}
+              <Link className="text-white" href="#">
+                Qantas
+              </Link>
+              ,{" "}
+              <Link className="text-white" href="#">
+                Transport NSW
+              </Link>
+              ,{" "}
+              <Link className="text-white" href="#">
+                Macquarie Bank
+              </Link>
+              , and many more.
             </p>
             <p className="hidden md:block">
-              I am a seasoned Senior Software Engineer with expertise in building complex web applications using React, Next.js, Angular, and Node.js. My proficiency in TypeScript contributes to developing robust and scalable solutions. Additionally, I have a strong background in implementing efficient CI/CD pipelines, enhancing deployment processes and code quality.
+              I am a seasoned Senior Software Engineer with expertise in
+              building complex web applications using React, Next.js, Angular,
+              and Node.js. My proficiency in TypeScript contributes to
+              developing robust and scalable solutions. Additionally, I have a
+              strong background in implementing efficient CI/CD pipelines,
+              enhancing deployment processes and code quality.
             </p>
-
-
           </motion.div>
 
           <Link href="/portfolio" passHref>
@@ -107,10 +119,8 @@ const AboutContent = () => {
             </motion.button>
           </Link>
         </article>
-
       </div>
     </div>
-
   );
 };
 
