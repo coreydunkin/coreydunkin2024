@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-type PortfolioItemType = {
+export type PortfolioItemType = {
   id: number;
   name: string;
   href: string;
 };
 
-type PortfolioItemProps = {
+export type PortfolioItemProps = {
   link: PortfolioItemType;
   pathname: string;
 };
