@@ -10,19 +10,21 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
+import {generateRouteHierarchy} from "@/utils/generateRouteHierarchy";
+import {MAIN_LINKS, PORTFOLIO_LINKS} from "@/utils/constants";
 
 // Change this to go inside a CONSTANTS or look into index?
-const routesHierarchy: Record<string, number> = {
-  "/": 0,
-  "/about": 1,
-  "/portfolio": 2,
-  "/portfolio/test": 3,
-  "/portfolio/test2": 4,
-  "/portfolio/test3": 5,
-  "/contact": 6,
-};
-
-
+// const routesHierarchy: Record<string, number> = {
+//   "/": 0,
+//   "/about": 1,
+//   "/portfolio": 2,
+//   "/portfolio/test": 3,
+//   "/portfolio/test2": 4,
+//   "/portfolio/test3": 5,
+//   "/contact": 6,
+// };
+const routesHierarchy = {...generateRouteHierarchy(MAIN_LINKS), ...generateRouteHierarchy(PORTFOLIO_LINKS)};
+console.log(routesHierarchy)
 
 
 // This wil be used to increment/decrement the page route on mouse scroll and swipe
