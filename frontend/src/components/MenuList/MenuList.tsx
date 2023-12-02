@@ -3,14 +3,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import usePreviousRoute from "@/utils/usePreviousRoute";
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
+  const [portfolioPath, setPortfolioPath] = useState<string | null>(null); // ["/portfolio/test", "/portfolio/test2", "/portfolio/test3"
   const pathName = usePathname();
+  const prevPathName = usePreviousRoute();
 
   useEffect(() => {
     setIsOpen(false);
-  }, []);
+    if(prevPathName?.includes("/portfolio/")) {
+      setPortfolioPath(prevPathName);
+    }
+  }, [pathName]);
 
   return (
     // <nav className="border-b-white border-b-[1px]">
@@ -111,9 +117,9 @@ export default function Example() {
             <li>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/portfolio"
+                href={portfolioPath || "/portfolio/test"}
                 className={`${
-                  pathName === "/portfolio" && "border-b-white "
+                  pathName.includes("/portfolio") && "border-b-white "
                 } transition-all border-b-2 hover:border-b-white border-b-[rgba(0,0,0,0)] block py-2 px-3 text-white md:bg-transparent md:p-0`}
                 aria-current="page"
               >

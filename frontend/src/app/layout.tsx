@@ -5,6 +5,7 @@ import { Playfair_Display } from "next/font/google";
 import MenuList from "@/components/MenuList/MenuList";
 import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
 import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
+import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <MenuList />
         <LayoutTransition>{children}</LayoutTransition>
+        <PortfolioNav />
         <BackgroundCanvas />
       </body>
     </html>
