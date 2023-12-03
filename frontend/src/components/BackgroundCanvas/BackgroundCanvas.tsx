@@ -9,6 +9,7 @@ import { OrbitControls, Text } from "@react-three/drei";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {useColorStore} from "@/stores/colorStore";
+import BackgroundGradient from "@/components/BackgroundCanvas/BackgroundGradient";
 
 
 
@@ -117,17 +118,19 @@ const BackgroundCanvas = () => {
   //   setGradientColors(palette);
   // }, []);
   const pathname = usePathname();
-  const pageClass = pathname === "/about" || pathname.startsWith("/portfolio") ? "darken" : "default";
+  const pageClass = pathname !== "/" ? "darken" : "default";
 
   return (
-    <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>
-      <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <OrbitControls />
-        <Gradient />
-      </Canvas>
-    </div>
+    <>
+      <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>
+        <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[10, 10, 5]} intensity={1} />
+          <OrbitControls />
+          <BackgroundGradient palette={["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"]} />
+        </Canvas>
+      </div>
+    </>
   );
 };
 

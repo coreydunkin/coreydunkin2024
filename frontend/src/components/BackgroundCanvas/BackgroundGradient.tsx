@@ -5,12 +5,16 @@ import {useFrame} from "@react-three/fiber";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
 
-const BackgroundGradient = () => {
-  let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
-  let paletteNew = useColorStore((state) => state.colorValues);
+type Palette = {
+  palette: string[]
+}
 
+const BackgroundGradient = ({palette}: Palette) => {
+  //let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
+  //let palette = useColorStore((state) => state.colorValues);
+  console.log(palette)
   let paletteColorObjects = palette.map((color: string) => new Color(color));
-  let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
+  //let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
 
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
