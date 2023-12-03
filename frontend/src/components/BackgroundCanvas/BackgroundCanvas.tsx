@@ -8,6 +8,9 @@ import vertexShader from "@/components/BackgroundCanvas/vertexShader";
 import { OrbitControls, Text } from "@react-three/drei";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import {useColorStore} from "@/stores/colorStore";
+
+
 
 const Gradient = () => {
   // let colors = require('nice-color-palettes');
@@ -17,9 +20,15 @@ const Gradient = () => {
   let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
   //palette = ['#5e9fa3', '#ffae00ff', '#fab87f', '#f87e7b', '#b05574'];
   //palette = ['#5e9fa3', '#ffea2f', '#fab87f', '#f87e7b', '#b05574'];
+  let paletteNew = useColorStore((state) => state.colorValues);
+
+  //palette = paletteNew.length > 0 ? paletteNew : palette;
+
+  //console.log(paletteNew)
 
   let paletteColorObjects = palette.map((color: string) => new Color(color));
-
+  let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
+  console.log(paletteColorObjectsNew)
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
@@ -39,6 +48,17 @@ const Gradient = () => {
     [],
   );
 
+  const uniformsTest = useMemo(
+    () => ({
+      u_time: {
+        value: 0.0,
+      },
+      u_Color: { value: paletteColorObjectsNew },
+      u_mouse: { value: new Vector2(0, 0) },
+    }),
+    [],
+  );
+
   useEffect(() => {
     window.addEventListener("mousemove", updateMousePosition, false);
 
@@ -49,8 +69,10 @@ const Gradient = () => {
 
   useFrame((state) => {
     //const { clock } = state;
+
     if (mesh.current?.material) {
       const meshMaterial = mesh.current.material as THREE.ShaderMaterial;
+
       meshMaterial.uniforms.u_time.value += 0.0002;
       meshMaterial.uniforms.u_mouse.value = new Vector2(
         mousePosition.current.x,
@@ -67,15 +89,17 @@ const Gradient = () => {
    * 4. only has a gradient, doesn't warp
    */
   return (
-    <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
-      <planeGeometry args={[1.5, 1.5, 100, 100]} />
-      <shaderMaterial
-        fragmentShader={fragmentShader}
-        vertexShader={vertexShader}
-        uniforms={uniforms}
-        wireframe={false}
-      />
-    </mesh>
+    <>
+      <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
+        <planeGeometry args={[1.5, 1.5, 100, 100]} />
+        <shaderMaterial
+          fragmentShader={fragmentShader}
+          vertexShader={vertexShader}
+          uniforms={uniforms}
+          wireframe={false}
+        />
+      </mesh>
+    </>
   );
 };
 
@@ -93,7 +117,7 @@ const BackgroundCanvas = () => {
   //   setGradientColors(palette);
   // }, []);
   const pathname = usePathname();
-  const pageClass = pathname === "/about" ? "aboutPage" : "otherPage";
+  const pageClass = pathname === "/about" || pathname.startsWith("/portfolio") ? "darken" : "default";
 
   return (
     <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>

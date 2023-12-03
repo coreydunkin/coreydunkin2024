@@ -16,14 +16,14 @@ const PortfolioCaret = ({ portfolioLinks, currentPath }: CaretNavigationProps) =
     <>
       <Link href={previousLink ? previousLink.href : "#"}>
         <button type="button" disabled={!previousLink}
-                className={`hidden md:inline fixed top-1/2 left-4 px-2 py-1 rounded-md ${!previousLink ? "opacity-50" : ""}`}>
+                className={`fixed md:min-h-screen bottom-1 left-4 px-2 py-1 rounded-md ${!previousLink ? "opacity-50" : ""}`}>
           <LiaCaretLeftSolid className="m-2 pt-0 w-8 h-8" />
         </button>
       </Link>
 
       <Link href={nextLink ? nextLink.href : "#"}>
         <button type="button" disabled={!nextLink}
-                className={`hidden md:inline fixed top-1/2 right-4 px-2 py-1 rounded-md ${!nextLink ? "opacity-50" : ""}`}>
+                className={`fixed md:min-h-screen bottom-1 right-4 px-2 py-1 rounded-md ${!nextLink ? "opacity-50" : ""}`}>
           <LiaCaretRightSolid className="m-2 pt-0 w-8 h-8" />
         </button>
       </Link>

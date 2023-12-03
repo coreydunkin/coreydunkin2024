@@ -19,8 +19,10 @@
     "@react-three/drei": "^9.88.17",
     "@react-three/fiber": "^8.15.11",
     "@types/three": "^0.158.3",
+    "extract-colors": "^4.0.2",
     "framer-motion": "^10.16.5",
     "heroicons": "^2.0.18",
+    "image-palette": "^2.1.0",
     "next": "14.0.3",
     "nice-color-palettes": "^3.0.0",
     "p5": "^1.8.0",
@@ -28,7 +30,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "react-use-scroll-direction": "^0.1.0"
+    "react-use-scroll-direction": "^0.1.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

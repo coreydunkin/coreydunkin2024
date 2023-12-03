@@ -1,11 +1,41 @@
 "use client";
 import { motion } from "framer-motion";
-import s from "@/app/page.module.scss";
 import Link from "next/link";
+import Image from "next/image";
+import { extractColors } from 'extract-colors'
+import { usePathname } from "next/navigation";
+import {useColorStore} from "@/stores/colorStore";
+import {useEffect} from "react";
+import s from "./PortfolioContent.module.scss";
 
 const PortfolioContent = () => {
+  const setColorValues = useColorStore((state) => state.setColorValues);
+
+  const pathName = usePathname();
+  const src = pathName === '/portfolio/test' ? '/work/qantas.png' : '/work/livetraffic.png';
+
+
+  useEffect(() => {
+    extractColors(src)
+      .then(colors => {
+        const hexColors = colors.map(color => color.hex);
+        setColorValues(hexColors);
+      })
+      .catch(console.error)
+  }, []);
+
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
+
+        <div style={{ position: 'relative', height: '400px', backgroundImage: `url(${src})`, backgroundSize: "100% auto" }}>
+
+
+        </div>
+
+
+
+
+
       <motion.h1
         className={`
         ${s.title}
