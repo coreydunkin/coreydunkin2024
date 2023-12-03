@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import s from "./BackgroundCanvas.module.scss";
 import { Vector2, Color } from "three";
@@ -10,8 +10,13 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {useColorStore} from "@/stores/colorStore";
 import BackgroundGradient from "@/components/BackgroundCanvas/BackgroundGradient";
+import {COLOR_GRADIENT} from "@/utils/constants";
 
-
+type BackgroundCanvasProps = {
+  palette: string[],
+  opacity: number,
+  pageClass: string
+}
 
 const Gradient = () => {
   // let colors = require('nice-color-palettes');
@@ -119,19 +124,29 @@ const BackgroundCanvas = () => {
   // }, []);
   const pathname = usePathname();
   const pageClass = pathname !== "/" ? "darken" : "default";
+  let palette = useColorStore((state) => state.colorValues);
 
   return (
     <>
-      <div className={`${s.backgroundCanvas} ${s[pageClass]}`}>
-        <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <OrbitControls />
-          <BackgroundGradient palette={["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"]} />
-        </Canvas>
-      </div>
+      <BackgroundCanvasContainer palette={pathname.startsWith("/portfolio") ? palette : COLOR_GRADIENT} opacity={100} pageClass={pageClass} />
     </>
   );
 };
+
+
+
+export const BackgroundCanvasContainer = ({palette, opacity, pageClass} : BackgroundCanvasProps) => {
+  return (
+    <div className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}>
+      <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <OrbitControls />
+        <BackgroundGradient palette={palette} />
+      </Canvas>
+    </div>
+  );
+
+}
 
 export default BackgroundCanvas;

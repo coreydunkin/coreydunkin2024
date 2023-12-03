@@ -12,10 +12,11 @@ type Palette = {
 const BackgroundGradient = ({palette}: Palette) => {
   //let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
   //let palette = useColorStore((state) => state.colorValues);
-  console.log(palette)
+  console.log("wowowow", palette)
   let paletteColorObjects = palette.map((color: string) => new Color(color));
-  //let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
 
+  //let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
+  const targetColors = useRef(paletteColorObjects);
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
@@ -23,6 +24,10 @@ const BackgroundGradient = ({palette}: Palette) => {
   const updateMousePosition = useCallback((e: MouseEvent) => {
     mousePosition.current = { x: e.pageX, y: e.pageY };
   }, []);
+
+  useEffect(() => {
+    targetColors.current = palette.map((color: string) => new Color(color));
+  }, [palette]);
 
   const uniforms = useMemo(
     () => ({
@@ -47,10 +52,16 @@ const BackgroundGradient = ({palette}: Palette) => {
     if (mesh.current?.material) {
       const meshMaterial = mesh.current.material as THREE.ShaderMaterial;
       meshMaterial.uniforms.u_time.value += 0.0002;
-      meshMaterial.uniforms.u_mouse.value = new Vector2(
-        mousePosition.current.x,
-        mousePosition.current.y,
-      );
+      meshMaterial.uniforms.u_Color.value = meshMaterial.uniforms.u_Color.value.map((color: THREE.Color, index: number) => {
+        if (color && targetColors.current[index]) {
+          return color.lerp(targetColors.current[index], 0.01);
+        }
+        return color // fallback
+      });
+      // meshMaterial.uniforms.u_mouse.value = new Vector2(
+      //   mousePosition.current.x,
+      //   mousePosition.current.y,
+      // );
     }
   });
 

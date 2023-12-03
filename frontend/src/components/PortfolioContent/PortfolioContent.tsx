@@ -7,21 +7,36 @@ import { usePathname } from "next/navigation";
 import {useColorStore} from "@/stores/colorStore";
 import {useEffect} from "react";
 import s from "./PortfolioContent.module.scss";
+import { darken, complement } from 'polished';
+//import {useColor, usePalette} from "color-thief-react";
+import {format} from "url";
+import {COLOR_GRADIENT} from "@/utils/constants";
+import getComplementaryColors from "@/utils/getComplimentaryColors";
+import getMonochromaticColors from "@/utils/getMonochromaticColors";
+
 
 const PortfolioContent = () => {
+
   const setColorValues = useColorStore((state) => state.setColorValues);
 
   const pathName = usePathname();
   const src = pathName === '/portfolio/test' ? '/work/qantas.png' : '/work/livetraffic.png';
-
+  //const { data, loading, error } = usePalette(src, 5,'hex', { crossOrigin: 'Anonymous' });
+  // while this is good, I think we need a manual process to get the colors
+  // they dont all work "well"
 
   useEffect(() => {
-    extractColors(src)
-      .then(colors => {
-        const hexColors = colors.map(color => color.hex);
-        setColorValues(hexColors);
-      })
-      .catch(console.error)
+    // extractColors(src)
+    //   .then(colors => {
+    //     const hexColors = colors.map(color => darken(0.3, color.hex));
+    //     setColorValues(hexColors);
+    //   })
+    //   .catch(console.error)
+
+    //setColorValues(data || COLOR_GRADIENT);
+
+    setColorValues(getMonochromaticColors("#e40200") || COLOR_GRADIENT);
+    console.log("comp colors: ", getMonochromaticColors("#e40200"));
   }, []);
 
   return (
