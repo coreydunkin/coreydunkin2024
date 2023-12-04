@@ -36,14 +36,13 @@
     transition: background-color 1s ease;
   }
 
-  &.aboutPage::before {
+  &.darken::before {
     background: rgba(0, 0, 0, 0.5);
   }
 
-  &.otherPage::before {
+  &.default::before {
     background: rgba(0, 0, 0, 0.3);
   }
-
   //&::before {
   //  content: "";
   //  width: 100vw;

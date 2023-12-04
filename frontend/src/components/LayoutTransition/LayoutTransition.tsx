@@ -119,7 +119,7 @@ export const LayoutTransition = ({
   const pathIsPortfolioItem = pathname.includes("portfolio/");
   const previousPathIsPortfolio = previousRoute?.includes("portfolio/");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!currentPageRef.current) return;
     if (!lastPageRef.current)
       lastPageRef.current = currentPageRef.current.children;
