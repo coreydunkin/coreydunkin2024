@@ -51,11 +51,11 @@ const PortfolioContent = () => {
 
 
 
-      <motion.h1
+      <motion.h3
         className={`
         ${s.title}
-        md:text-9xl 
-        lg:text-9xl 
+        md:text-6xl 
+        lg:text-6xl 
         mb-5 
         text-gray-100 
         text-outline--white
@@ -70,8 +70,8 @@ const PortfolioContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Portfolio.
-      </motion.h1>
+        Work item.
+      </motion.h3>
 
       <motion.h2
         className="
