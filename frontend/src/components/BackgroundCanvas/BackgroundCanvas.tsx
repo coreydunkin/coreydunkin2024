@@ -126,6 +126,7 @@ const BackgroundCanvas = () => {
   const pageClass = pathname !== "/" ? "darken" : "default";
   let palette = useColorStore((state) => state.colorValues);
 
+
   return (
     <>
       <BackgroundCanvasContainer palette={pathname.startsWith("/portfolio") ? palette : COLOR_GRADIENT} opacity={100} pageClass={pageClass} />
@@ -136,8 +137,9 @@ const BackgroundCanvas = () => {
 
 
 export const BackgroundCanvasContainer = ({palette, opacity, pageClass} : BackgroundCanvasProps) => {
+
   return (
-    <div className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}>
+    <div className={`${s.backgroundCanvas} ${s[pageClass]} ${s.backgroundGradient} bg-gradient-to-r from-[#000}] to-[${palette[4]}]  opacity-${opacity}`}>
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />

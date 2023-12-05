@@ -23,7 +23,6 @@
   //        radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), $color2, $color1),
   //        linear-gradient(60deg, $color11, $color12);
   //background-blend-mode: overlay, overlay, difference, difference, difference, multiply, normal;
-  background: linear-gradient(115deg, $color7, $color4);
 
   &::before {
     content: "";
@@ -61,4 +60,8 @@
     background-size: 200px 200px;
     background-image: url(/noise.svg);
   }
+}
+
+.backgroundGradient {
+  background: linear-gradient(115deg, $color7, $color4);
 }

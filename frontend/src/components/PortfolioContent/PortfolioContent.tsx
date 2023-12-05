@@ -5,19 +5,29 @@ import Image from "next/image";
 import { extractColors } from 'extract-colors'
 import { usePathname } from "next/navigation";
 import {useColorStore} from "@/stores/colorStore";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import s from "./PortfolioContent.module.scss";
-import { darken, complement } from 'polished';
+import {darken, complement, shade, rgba, invert, meetsContrastGuidelines, tint} from 'polished';
 //import {useColor, usePalette} from "color-thief-react";
 import {format} from "url";
 import {COLOR_GRADIENT} from "@/utils/constants";
 import getComplementaryColors from "@/utils/getComplimentaryColors";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
+import Button from "@/components/Button/Button";
 
 
 const PortfolioContent = () => {
+  // this will come from the data
+  const color = "#e40200";
+
+  const [textColor, setTextColor] = useState<string>('white');
+  const [bgColor, setBgColor] = useState<string>(color);
 
   const setColorValues = useColorStore((state) => state.setColorValues);
+
+
+
+
 
   const pathName = usePathname();
   const src = pathName === '/portfolio/test' ? '/work/qantas.png' : '/work/livetraffic.png';
@@ -35,24 +45,38 @@ const PortfolioContent = () => {
 
     //setColorValues(data || COLOR_GRADIENT);
 
-    setColorValues(getMonochromaticColors("#e40200") || COLOR_GRADIENT);
-    console.log("comp colors: ", getMonochromaticColors("#e40200"));
-  }, []);
+    setColorValues(getMonochromaticColors(color) || COLOR_GRADIENT);
+    console.log("comp colors: ", getMonochromaticColors(color));
+
+
+
+    setBgColor(shade(0.025, color));
+    setTextColor(invert(`${rgba(`${color}`, 1)}`));
+
+    // Check if the title colour is properly contrasted with the background
+    // If not, mix the colour with white
+    if(!meetsContrastGuidelines(bgColor, textColor).AA) {
+      setTextColor(`${tint(0.80, `${rgba(`${color}`, 1)}`)}`)
+    }
+
+    console.log(bgColor)
+
+  }, [bgColor]);
 
   return (
-    <section className="overflow-hidden bg-white bg-opacity-70 py-8 sm:py-16 rounded-md">
+    <section className="overflow-hidden py-8 sm:py-16 rounded-md backdrop-blur-md bg-white/70 shadow-2xl border border-gray-200 border-[1px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base font-semibold leading-7 text-red-600">Qantas</h2>
-              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">My Accounts Page.</p>
-              <p className="mt-6 text-lg leading-8 text-gray-600">We've built an API that allows you to scale your podcast
-                production workflow.
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">My Account.</p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">A complete rebuild of the Qantas My Account site. Built from the ground up with a modernised framework.
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 <div className="relative pl-9">
-                  <dt className="inline font-semibold text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                  <dt className="inline font-semibold text-gray-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                                       fill="currentColor" aria-hidden="true" className="absolute left-1 top-1 h-5 w-5 text-red-600">
                     <path
                       d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z">
@@ -63,10 +87,11 @@ const PortfolioContent = () => {
                     <path
                       d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z">
                     </path>
-                  </svg>Template driven
+                  </svg>
+                    Template driven
                   </dt>
                   <dd className="inline">
-                     Modern site
+                      Modern site
                   </dd>
                 </div>
                 <div className="relative pl-9">
@@ -97,9 +122,10 @@ const PortfolioContent = () => {
               </dl>
             </div>
             <div className="mt-10 flex items-center gap-x-6">
-              <a href="#"
-                 className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">View site
-              </a>
+              <Button href={'http://www.qantas.com'} text={'View site'} color={`bg-[${bgColor}]`} />
+              {/*<a href="#"*/}
+              {/*   className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">View site*/}
+              {/*</a>*/}
             </div>
           </div><Image src={src} alt="Product screenshot" className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442" />
         </div>

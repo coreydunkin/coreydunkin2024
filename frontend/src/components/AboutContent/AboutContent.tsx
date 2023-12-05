@@ -6,6 +6,7 @@ import { TbBrandAzure, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
 import { FaAngular } from "react-icons/fa6";
 import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 
 const AboutContent = () => {
   return (
@@ -94,30 +95,7 @@ const AboutContent = () => {
             </p>
           </motion.div>
 
-          <Link href="/portfolio/test" passHref>
-            <motion.button
-              className="
-          bg-opacity-0
-          bg-gray-800
-          text-gray-100
-          font-bold
-          py-2
-          px-4
-          border
-          border-gray-100
-          mt-5
-          "
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1,
-                delay: 1.2, // button starts after 1.0s
-                ease: [0.6, 0.01, 0.05, 0.9],
-              }}
-            >
-              See my portfolio
-            </motion.button>
-          </Link>
+          <Button href={'/portfolio/test'} text={'View my work'} animate={true} />
         </article>
       </div>
     </div>
