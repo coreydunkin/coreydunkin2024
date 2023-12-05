@@ -8,8 +8,6 @@ export default function Test() {
   return (
     <main>
       <Container>
-        Page 1
-
         <PortfolioContent />
       </Container>
     </main>

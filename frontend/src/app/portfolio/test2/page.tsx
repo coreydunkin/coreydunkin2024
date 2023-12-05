@@ -4,7 +4,6 @@ export default function Test2() {
   return (
     <main>
       <Container>
-        Page 2
         <PortfolioContent />
       </Container>
     </main>
