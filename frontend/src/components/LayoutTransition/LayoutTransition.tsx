@@ -49,7 +49,8 @@ const getAnimationOutVariable = (
       initial: { y: 0, x: 0, opacity: 1 },
       animate: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
+        ease: [0.6, 0.01, 0.05, 0.9],
         opacity: 0,
         transitionEnd: {
           display: "none",
@@ -61,7 +62,8 @@ const getAnimationOutVariable = (
     initial: { y: 0, x: 0, opacity: 1 },
     animate: {
       y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
+      ease: [0.6, 0.01, 0.05, 0.9],
       opacity: 0,
       transitionEnd: {
         display: "none",
@@ -83,7 +85,9 @@ const getAnimationInVariable = (
     return {
       initial: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
+        ease: [0.6, 0.01, 0.05, 0.9],
+
         opacity: 0
       },
       animate: {
@@ -96,7 +100,9 @@ const getAnimationInVariable = (
   return {
     initial: {
       y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
+      ease: [0.6, 0.01, 0.05, 0.9],
+
       opacity: 0
     },
     animate: {

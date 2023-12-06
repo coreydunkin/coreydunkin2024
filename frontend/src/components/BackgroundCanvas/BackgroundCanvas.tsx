@@ -136,8 +136,11 @@ const BackgroundCanvas = () => {
 
 
 export const BackgroundCanvasContainer = ({palette, opacity, pageClass} : BackgroundCanvasProps) => {
+  let gradient = `linear-gradient(${palette[0]}, ${palette[1]}, ${palette[2]}, ${palette[3]}, ${palette[4]})`;
+  let color = `${palette[0]}`;
+  console.log("gradient: ", gradient)
   return (
-    <div className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}>
+    <div className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`} style={{background: color}}>
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />

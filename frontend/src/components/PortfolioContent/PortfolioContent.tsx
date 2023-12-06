@@ -40,7 +40,7 @@ const PortfolioContent = () => {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-white bg-opacity-70 py-8 sm:py-16 rounded-md">
+    <section className="overflow-hidden bg-white bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
