@@ -63,3 +63,7 @@
     background-image: url(/noise.svg);
   }
 }
+
+.backgroundGradient {
+  background: linear-gradient(115deg, $color7, $color4);
+}

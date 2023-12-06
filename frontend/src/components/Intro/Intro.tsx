@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 
 const Intro = () => {
   return (
@@ -13,7 +14,7 @@ const Intro = () => {
         md:text-9xl 
         lg:text-9xl 
         mb-5 
-        text-gray-100 
+        text-gray-200 
         text-outline--white
         font-playfairDisplay
         text-shadow-sm
@@ -47,30 +48,7 @@ const Intro = () => {
       >
         Senior Software Engineer in Sydney, Australia.
       </motion.h2>
-      <Link href="/about" passHref>
-        <motion.button
-          className="
-          bg-opacity-0
-          bg-gray-800
-          text-gray-100
-          font-bold
-          py-2
-          px-4
-          border
-          border-gray-100
-          mt-5
-          "
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 1,
-            delay: 1.2, // button starts after 1.0s
-            ease: [0.6, 0.01, 0.05, 0.9],
-          }}
-        >
-          View more
-        </motion.button>
-      </Link>
+      <Button href={'/about'} text={'View more'} animate={true} />
     </article>
   );
 };
