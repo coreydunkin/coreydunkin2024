@@ -6,6 +6,7 @@ import { TbBrandAzure, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
 import { FaAngular } from "react-icons/fa6";
 import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 
 const AboutContent = () => {
   return (
@@ -48,7 +49,7 @@ const AboutContent = () => {
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
           >
-            A lil` bit about me.
+            A lil bit about me.
           </motion.h2>
 
           <motion.div
@@ -85,39 +86,19 @@ const AboutContent = () => {
               , and many more.
             </p>
             <p className="hidden md:block">
-              I am a seasoned Senior Software Engineer with expertise in
-              building complex web applications using React, Next.js, Angular,
-              and Node.js. My proficiency in TypeScript contributes to
-              developing robust and scalable solutions. Additionally, I have a
-              strong background in implementing efficient CI/CD pipelines,
-              enhancing deployment processes and code quality.
+              I have expertise in building complex web applications using React,
+              Next.js, Angular, and Node.js and my proficiency in TypeScript
+              contributes to developing robust and scalable solutions.
+              Additionally, I have a strong background in implementing efficient
+              CI/CD pipelines, enhancing deployment processes and code quality.
             </p>
           </motion.div>
 
-          <Link href="/portfolio/test" passHref>
-            <motion.button
-              className="
-          bg-opacity-0
-          bg-gray-800
-          text-gray-100
-          font-bold
-          py-2
-          px-4
-          border
-          border-gray-100
-          mt-5
-          "
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1,
-                delay: 1.2, // button starts after 1.0s
-                ease: [0.6, 0.01, 0.05, 0.9],
-              }}
-            >
-              See my portfolio
-            </motion.button>
-          </Link>
+          <Button
+            href={"/portfolio/test"}
+            text={"View my work"}
+            animate={true}
+          />
         </article>
       </div>
     </div>

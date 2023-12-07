@@ -24,6 +24,7 @@
   //        linear-gradient(60deg, $color11, $color12);
   //background-blend-mode: overlay, overlay, difference, difference, difference, multiply, normal;
   background: linear-gradient(115deg, $color7, $color4);
+  transition: background 0.5s ease-out;
 
   &::before {
     content: "";
@@ -61,4 +62,8 @@
     background-size: 200px 200px;
     background-image: url(/noise.svg);
   }
+}
+
+.backgroundGradient {
+  background: linear-gradient(115deg, $color7, $color4);
 }

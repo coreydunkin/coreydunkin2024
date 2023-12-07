@@ -10,8 +10,8 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
-import {generateRouteHierarchy} from "@/utils/generateRouteHierarchy";
-import {MAIN_LINKS, PORTFOLIO_LINKS} from "@/utils/constants";
+import { generateRouteHierarchy } from "@/utils/generateRouteHierarchy";
+import { MAIN_LINKS, PORTFOLIO_LINKS } from "@/utils/constants";
 
 // Change this to go inside a CONSTANTS or look into index?
 // const routesHierarchy: Record<string, number> = {
@@ -23,9 +23,11 @@ import {MAIN_LINKS, PORTFOLIO_LINKS} from "@/utils/constants";
 //   "/portfolio/test3": 5,
 //   "/contact": 6,
 // };
-const routesHierarchy = {...generateRouteHierarchy(MAIN_LINKS), ...generateRouteHierarchy(PORTFOLIO_LINKS)};
-console.log(routesHierarchy)
-
+const routesHierarchy = {
+  ...generateRouteHierarchy(MAIN_LINKS),
+  ...generateRouteHierarchy(PORTFOLIO_LINKS),
+};
+console.log(routesHierarchy);
 
 // This wil be used to increment/decrement the page route on mouse scroll and swipe
 const getRouteByValue = (value: number): string | undefined => {
@@ -38,9 +40,8 @@ const getAnimationOutVariable = (
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
-  previousPathIsPortfolio: boolean | undefined
+  previousPathIsPortfolio: boolean | undefined,
 ) => {
-
   if (
     previousRoute !== null &&
     routesHierarchy[pathname] < routesHierarchy[previousRoute]
@@ -49,7 +50,8 @@ const getAnimationOutVariable = (
       initial: { y: 0, x: 0, opacity: 1 },
       animate: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
+        ease: [0.6, 0.01, 0.05, 0.9],
         opacity: 0,
         transitionEnd: {
           display: "none",
@@ -61,7 +63,8 @@ const getAnimationOutVariable = (
     initial: { y: 0, x: 0, opacity: 1 },
     animate: {
       y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
+      ease: [0.6, 0.01, 0.05, 0.9],
       opacity: 0,
       transitionEnd: {
         display: "none",
@@ -74,7 +77,7 @@ const getAnimationInVariable = (
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
-  previousPathIsPortfolio: boolean | undefined
+  previousPathIsPortfolio: boolean | undefined,
 ) => {
   if (
     previousRoute !== null &&
@@ -83,8 +86,10 @@ const getAnimationInVariable = (
     return {
       initial: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-50%" : 0,
-        opacity: 0
+        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
+        ease: [0.6, 0.01, 0.05, 0.9],
+
+        opacity: 0,
       },
       animate: {
         y: 0,
@@ -96,8 +101,10 @@ const getAnimationInVariable = (
   return {
     initial: {
       y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "50%" : 0,
-      opacity: 0
+      x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
+      ease: [0.6, 0.01, 0.05, 0.9],
+
+      opacity: 0,
     },
     animate: {
       y: 0,
@@ -135,7 +142,12 @@ export const LayoutTransition = ({
       <div className="relative h-screen w-screen">
         <motion.div
           key={pathname + "exit-animation"}
-          {...getAnimationOutVariable(pathname, previousRoute, pathIsPortfolioItem, previousPathIsPortfolio)}
+          {...getAnimationOutVariable(
+            pathname,
+            previousRoute,
+            pathIsPortfolioItem,
+            previousPathIsPortfolio,
+          )}
           transition={{
             type: "ease-in-out",
             duration: 0.7,
@@ -147,7 +159,12 @@ export const LayoutTransition = ({
 
         <motion.div
           key={pathname}
-          {...getAnimationInVariable(pathname, previousRoute, pathIsPortfolioItem, previousPathIsPortfolio)}
+          {...getAnimationInVariable(
+            pathname,
+            previousRoute,
+            pathIsPortfolioItem,
+            previousPathIsPortfolio,
+          )}
           transition={{ type: "ease-in-out", duration: 0.7 }}
           className="w-screen h-screen"
         >

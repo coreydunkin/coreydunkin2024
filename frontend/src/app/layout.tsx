@@ -6,6 +6,7 @@ import MenuList from "@/components/MenuList/MenuList";
 import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
 import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
 import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
+import PrelineLoader from "@/components/PrelineLoader/PrelineLoader";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <LayoutTransition>{children}</LayoutTransition>
         <PortfolioNav />
         <BackgroundCanvas />
+        <PrelineLoader />
       </body>
     </html>
   );

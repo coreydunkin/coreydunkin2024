@@ -1,22 +1,20 @@
 "use client";
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import s from "./BackgroundCanvas.module.scss";
 import { Vector2, Color } from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
-import { OrbitControls, Text } from "@react-three/drei";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import {useColorStore} from "@/stores/colorStore";
+import { useColorStore } from "@/stores/colorStore";
 import BackgroundGradient from "@/components/BackgroundCanvas/BackgroundGradient";
-import {COLOR_GRADIENT} from "@/utils/constants";
+import { COLOR_GRADIENT } from "@/utils/constants";
 
 type BackgroundCanvasProps = {
-  palette: string[],
-  opacity: number,
-  pageClass: string
-}
+  palette: string[];
+  opacity: number;
+  pageClass: string;
+};
 
 const Gradient = () => {
   // let colors = require('nice-color-palettes');
@@ -33,8 +31,10 @@ const Gradient = () => {
   //console.log(paletteNew)
 
   let paletteColorObjects = palette.map((color: string) => new Color(color));
-  let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));
-  console.log(paletteColorObjectsNew)
+  let paletteColorObjectsNew = paletteNew.map(
+    (color: string) => new Color(color),
+  );
+  console.log(paletteColorObjectsNew);
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
@@ -128,25 +128,35 @@ const BackgroundCanvas = () => {
 
   return (
     <>
-      <BackgroundCanvasContainer palette={pathname.startsWith("/portfolio") ? palette : COLOR_GRADIENT} opacity={100} pageClass={pageClass} />
+      <BackgroundCanvasContainer
+        palette={pathname.startsWith("/portfolio") ? palette : COLOR_GRADIENT}
+        opacity={100}
+        pageClass={pageClass}
+      />
     </>
   );
 };
 
-
-
-export const BackgroundCanvasContainer = ({palette, opacity, pageClass} : BackgroundCanvasProps) => {
+export const BackgroundCanvasContainer = ({
+  palette,
+  opacity,
+  pageClass,
+}: BackgroundCanvasProps) => {
+  let gradient = `linear-gradient(${palette[0]}, ${palette[1]}, ${palette[2]}, ${palette[3]}, ${palette[4]})`;
+  let color = `${palette[0]}`;
+  console.log("gradient: ", gradient);
   return (
-    <div className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}>
+    <div
+      className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}
+      style={{ background: color }}
+    >
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        <OrbitControls />
         <BackgroundGradient palette={palette} />
       </Canvas>
     </div>
   );
-
-}
+};
 
 export default BackgroundCanvas;

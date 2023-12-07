@@ -1,4 +1,4 @@
-import {darken, shade} from "polished";
+import { darken, shade } from "polished";
 
 const getMonochromaticColors = (color: string) => {
   const colors: string[] = [];
@@ -7,7 +7,7 @@ const getMonochromaticColors = (color: string) => {
   colors.push(color);
 
   for (let i = 1; i <= 4; i++) {
-    const ratio = i * 0.05;  // 20%, 40%, 60%, 80%
+    const ratio = i * 0.05; // 20%, 40%, 60%, 80%
     colors.push(shade(ratio, color));
   }
 
