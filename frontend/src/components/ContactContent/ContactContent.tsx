@@ -21,11 +21,11 @@ const ContactContent = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 1,
-          delay: 0.2, //h1 starts after 0.2s
+          delay: 0.2,
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Here's my card.
+        Here`s my card.
       </motion.h3>
 
       <motion.h2
@@ -40,7 +40,7 @@ const ContactContent = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 1,
-          delay: 0.6, //h2 starts after 0.6s
+          delay: 0.6,
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >

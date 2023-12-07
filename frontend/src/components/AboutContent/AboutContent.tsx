@@ -49,7 +49,7 @@ const AboutContent = () => {
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
           >
-            A lil' bit about me.
+            A lil bit about me.
           </motion.h2>
 
           <motion.div
@@ -86,8 +86,7 @@ const AboutContent = () => {
               , and many more.
             </p>
             <p className="hidden md:block">
-              I have expertise in
-              building complex web applications using React, Next.js, Angular,
+              I have expertise in building complex web applications using React, Next.js, Angular,
               and Node.js and my proficiency in TypeScript contributes to
               developing robust and scalable solutions. Additionally, I have a
               strong background in implementing efficient CI/CD pipelines,

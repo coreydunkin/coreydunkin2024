@@ -5,9 +5,7 @@ import s from "./BackgroundCanvas.module.scss";
 import { Vector2, Color } from "three";
 import fragmentShader from "@/components/BackgroundCanvas/fragmentShader";
 import vertexShader from "@/components/BackgroundCanvas/vertexShader";
-import { OrbitControls, Text } from "@react-three/drei";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import {useColorStore} from "@/stores/colorStore";
 import BackgroundGradient from "@/components/BackgroundCanvas/BackgroundGradient";
 import {COLOR_GRADIENT} from "@/utils/constants";
@@ -144,7 +142,6 @@ export const BackgroundCanvasContainer = ({palette, opacity, pageClass} : Backgr
       <Canvas camera={{ position: [0.0, 0.0, 0.15] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        <OrbitControls />
         <BackgroundGradient palette={palette} />
       </Canvas>
     </div>
