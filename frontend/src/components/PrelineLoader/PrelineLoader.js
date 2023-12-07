@@ -12,7 +12,9 @@ export default function PrelineScript() {
 
   useEffect(() => {
     setTimeout(() => {
-      HSStaticMethods.autoInit();
+      if (typeof HSStaticMethods !== "undefined") {
+        HSStaticMethods.autoInit();
+      }
     }, 100);
   }, [path]);
 
