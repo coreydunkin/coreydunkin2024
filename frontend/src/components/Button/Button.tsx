@@ -1,14 +1,24 @@
-'use client';
+"use client";
 import Link from "next/link";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
-const Button = ({ href, text, color, animate }: { href: string; text: string; color?: string; animate?: boolean }) => {
+const Button = ({
+  href,
+  text,
+  color,
+  animate,
+}: {
+  href: string;
+  text: string;
+  color?: string;
+  animate?: boolean;
+}) => {
   return (
     <Link href={href} passHref>
       <motion.button
         className={`
-          ${color || 'bg-opacity-0 border-gray-100'}
-          ${color && 'border-0'}
+          ${color || "bg-opacity-0 border-gray-100"}
+          ${color && "border-0"}
           text-gray-100
           font-medium
           py-2
@@ -28,6 +38,6 @@ const Button = ({ href, text, color, animate }: { href: string; text: string; co
       </motion.button>
     </Link>
   );
-}
+};
 
 export default Button;

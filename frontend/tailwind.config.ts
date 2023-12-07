@@ -6,7 +6,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    'node_modules/preline/dist/*.js'
+    "node_modules/preline/dist/*.js",
   ],
   variants: {
     textShadow: ["responsive", "hover"], // responsive and hover are variants
@@ -25,7 +25,7 @@ const config: Config = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    require('preline/plugin'),
+    require("preline/plugin"),
     //require('@tailwindcss/aspect-ratio'),
     //require('@tailwindcss/forms'),
   ],

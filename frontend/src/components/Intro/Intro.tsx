@@ -48,7 +48,7 @@ const Intro = () => {
       >
         Senior Software Engineer in Sydney, Australia.
       </motion.h2>
-      <Button href={'/about'} text={'View more'} animate={true} />
+      <Button href={"/about"} text={"View more"} animate={true} />
     </article>
   );
 };

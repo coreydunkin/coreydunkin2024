@@ -86,15 +86,19 @@ const AboutContent = () => {
               , and many more.
             </p>
             <p className="hidden md:block">
-              I have expertise in building complex web applications using React, Next.js, Angular,
-              and Node.js and my proficiency in TypeScript contributes to
-              developing robust and scalable solutions. Additionally, I have a
-              strong background in implementing efficient CI/CD pipelines,
-              enhancing deployment processes and code quality.
+              I have expertise in building complex web applications using React,
+              Next.js, Angular, and Node.js and my proficiency in TypeScript
+              contributes to developing robust and scalable solutions.
+              Additionally, I have a strong background in implementing efficient
+              CI/CD pipelines, enhancing deployment processes and code quality.
             </p>
           </motion.div>
 
-          <Button href={'/portfolio/test'} text={'View my work'} animate={true} />
+          <Button
+            href={"/portfolio/test"}
+            text={"View my work"}
+            animate={true}
+          />
         </article>
       </div>
     </div>

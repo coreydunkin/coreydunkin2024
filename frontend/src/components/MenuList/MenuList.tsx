@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 import MenuItem from "@/components/MenuList/MenuItem";
-import {MAIN_LINKS} from "@/utils/constants";
+import { MAIN_LINKS } from "@/utils/constants";
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Example() {
 
   useEffect(() => {
     setIsOpen(false);
-    if(prevPathName?.includes("/portfolio/")) {
+    if (prevPathName?.includes("/portfolio/")) {
       setPortfolioPath(prevPathName);
     }
   }, [pathName]);

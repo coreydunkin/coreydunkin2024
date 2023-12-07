@@ -1,6 +1,8 @@
-export const generateRouteHierarchy = (links: {id: number, name: string, href: string}[]): Record<string, number> => {
+export const generateRouteHierarchy = (
+  links: { id: number; name: string; href: string }[],
+): Record<string, number> => {
   const routeHierarchy: Record<string, number> = {};
-  links.forEach(link => {
+  links.forEach((link) => {
     routeHierarchy[link.href] = link.id;
   });
   return routeHierarchy;
