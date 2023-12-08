@@ -18,9 +18,9 @@ import { MAIN_LINKS, PORTFOLIO_LINKS } from "@/utils/constants";
 //   "/": 0,
 //   "/about": 1,
 //   "/portfolio": 2,
-//   "/portfolio/test": 3,
-//   "/portfolio/test2": 4,
-//   "/portfolio/test3": 5,
+//   "/portfolio/qantas": 3,
+//   "/portfolio/livetraffic": 4,
+//   "/portfolio/etoll": 5,
 //   "/contact": 6,
 // };
 const routesHierarchy = {
@@ -138,7 +138,7 @@ export const LayoutTransition = ({
   }, [pathname]);
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial={routesHierarchy[pathname] > 1 ? false : true}>
       <div className="relative h-screen w-screen">
         <motion.div
           key={pathname + "exit-animation"}

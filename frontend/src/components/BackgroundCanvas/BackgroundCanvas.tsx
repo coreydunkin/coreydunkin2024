@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useColorStore } from "@/stores/colorStore";
 import BackgroundGradient from "@/components/BackgroundCanvas/BackgroundGradient";
 import { COLOR_GRADIENT } from "@/utils/constants";
+import { motion } from "framer-motion";
 
 type BackgroundCanvasProps = {
   palette: string[];
@@ -146,7 +147,14 @@ export const BackgroundCanvasContainer = ({
   let color = `${palette[0]}`;
   console.log("gradient: ", gradient);
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 2,
+        delay: 0,
+        ease: [0.6, 0.01, 0.05, 0.9],
+      }}
       className={`${s.backgroundCanvas} ${s[pageClass]} opacity-${opacity}`}
       style={{ background: color }}
     >
@@ -155,7 +163,7 @@ export const BackgroundCanvasContainer = ({
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <BackgroundGradient palette={palette} />
       </Canvas>
-    </div>
+    </motion.div>
   );
 };
 

@@ -13,7 +13,7 @@ export const MAIN_LINKS = [
   {
     id: 3,
     name: "Portfolio",
-    href: "/portfolio/test",
+    href: "/portfolio/qantas",
   },
   {
     id: 4,
@@ -25,18 +25,18 @@ export const MAIN_LINKS = [
 export const PORTFOLIO_LINKS = [
   {
     id: 3.1,
-    name: "Test",
-    href: "/portfolio/test",
+    name: "Qantas",
+    href: "/portfolio/qantas",
   },
   {
     id: 3.2,
-    name: "Test 2",
-    href: "/portfolio/test2",
+    name: "Livetraffic",
+    href: "/portfolio/livetraffic",
   },
   {
     id: 3.3,
-    name: "Test 3",
-    href: "/portfolio/test3",
+    name: "Etoll",
+    href: "/portfolio/etoll",
   },
 ];
 

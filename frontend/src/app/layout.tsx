@@ -7,6 +7,7 @@ import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
 import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
 import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
 import PrelineLoader from "@/components/PrelineLoader/PrelineLoader";
+import { AnimatePresence } from "framer-motion";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],

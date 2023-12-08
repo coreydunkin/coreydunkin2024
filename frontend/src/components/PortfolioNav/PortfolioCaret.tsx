@@ -27,7 +27,7 @@ const PortfolioCaret = ({
             !previousLink ? "opacity-50" : ""
           }`}
         >
-          <LiaCaretLeftSolid className="m-2 pt-0 w-8 h-8" />
+          <LiaCaretLeftSolid className="m-2 pt-0 w-8 h-8 text-white" />
         </button>
       </Link>
 
@@ -39,7 +39,7 @@ const PortfolioCaret = ({
             !nextLink ? "opacity-50" : ""
           }`}
         >
-          <LiaCaretRightSolid className="m-2 pt-0 w-8 h-8" />
+          <LiaCaretRightSolid className="m-2 pt-0 w-8 h-8 text-white" />
         </button>
       </Link>
     </>

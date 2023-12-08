@@ -21,6 +21,7 @@ const Button = ({
           ${color && "border-0"}
           text-gray-100
           font-medium
+          rounded-md
           py-2
           px-4
           border
