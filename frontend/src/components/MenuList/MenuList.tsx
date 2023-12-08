@@ -9,7 +9,7 @@ import { MAIN_LINKS } from "@/utils/constants";
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
-  const [portfolioPath, setPortfolioPath] = useState<string | null>(null); // ["/portfolio/test", "/portfolio/test2", "/portfolio/test3"
+  const [portfolioPath, setPortfolioPath] = useState<string | null>(null); // ["/portfolio/qantas", "/portfolio/livetraffic", "/portfolio/etoll"
   const pathName = usePathname();
   const prevPathName = usePreviousRoute();
 

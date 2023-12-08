@@ -95,7 +95,7 @@ const AboutContent = () => {
           </motion.div>
 
           <Button
-            href={"/portfolio/test"}
+            href={"/portfolio/qantas"}
             text={"View my work"}
             animate={true}
           />

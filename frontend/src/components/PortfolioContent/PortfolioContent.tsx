@@ -5,7 +5,7 @@ import Image from "next/image";
 import { extractColors } from "extract-colors";
 import { usePathname } from "next/navigation";
 import { useColorStore } from "@/stores/colorStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import s from "./PortfolioContent.module.scss";
 import { darken, complement } from "polished";
 //import {useColor, usePalette} from "color-thief-react";
@@ -13,15 +13,24 @@ import { format } from "url";
 import { COLOR_GRADIENT } from "@/utils/constants";
 import getComplementaryColors from "@/utils/getComplimentaryColors";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
+import { PiHandTap, PiHandTapLight } from "react-icons/pi";
 
 const PortfolioContent = () => {
   const setColorValues = useColorStore((state) => state.setColorValues);
+  const [isTapped, setIsTapped] = useState(false);
+  const [isHintVisible, setHintVisible] = useState(true);
+
+  const imageVariants = {
+    up: { y: -200 },
+    down: { y: 0 },
+  };
 
   const pathName = usePathname();
   const src =
-    pathName === "/portfolio/test"
-      ? "/work/qantas.png"
+    pathName === "/portfolio/qantas"
+      ? "/work/qantas-desktop-1.png"
       : "/work/livetraffic.png";
+  const srcMobile = "/work/qantas-mobile.png";
   //const { data, loading, error } = usePalette(src, 5,'hex', { crossOrigin: 'Anonymous' });
   // while this is good, I think we need a manual process to get the colors
   // they dont all work "well"
@@ -41,9 +50,9 @@ const PortfolioContent = () => {
   }, []);
   //max-h-[75vh]
   return (
-    <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-100">
+    <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-5 md:gap-y-0 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base font-semibold leading-7 text-red-600">
@@ -52,9 +61,11 @@ const PortfolioContent = () => {
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">
                 My Accounts Page.
               </p>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                We`ve built an API that allows you to scale your podcast
-                production workflow.
+              <p className="mt-3 md:mt-6 text-lg leading-8 text-gray-600">
+                A complete rebuild of the Qantas My Accounts page.{" "}
+                <span className="inline md:hidden">
+                  Built in Next.js, Typescript and Contentful.
+                </span>
               </p>
               <dl className="hidden md:block mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 <div className="relative pl-9">
@@ -121,81 +132,52 @@ const PortfolioContent = () => {
                 </div>
               </dl>
             </div>
-            <div className="mt-10 flex items-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-              >
+            <Link
+              href="#"
+              passHref
+              className="mt-4 md:mt-10 flex items-center gap-x-6"
+            >
+              <button className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
                 View site
-              </a>
-            </div>
+              </button>
+            </Link>
           </div>
           <Image
             src={src}
             alt="Product screenshot"
-            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+            className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
             width="2432"
             height="1442"
           />
+          <motion.div
+            className="relative"
+            animate={isTapped ? "up" : "down"}
+            variants={imageVariants}
+            onTap={() => {
+              setIsTapped(!isTapped);
+              setHintVisible(false);
+            }}
+          >
+            <Image
+              src={srcMobile}
+              alt="Product screenshot"
+              className="block md:hidden w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+              width="2432"
+              height="1442"
+            />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: !isTapped ? 1 : 0 }}
+              className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black px-4 py-2 rounded-md text-white text-sm bg-black bg-opacity-50 font-light"
+            >
+              Tap to view
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
-
-  // return (
-  //   <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
-  //
-  //       <div style={{ position: 'relative', height: '400px', backgroundImage: `url(${src})`, backgroundSize: "100% auto" }}>
-  //
-  //
-  //       </div>
-  //
-  //
-  //
-  //
-  //
-  //     <motion.h3
-  //       className={`
-  //       ${s.title}
-  //       md:text-6xl
-  //       lg:text-6xl
-  //       mb-5
-  //       text-gray-100
-  //       text-outline--white
-  //       font-playfairDisplay
-  //       text-shadow-sm
-  //   `}
-  //       initial={{ opacity: 0, y: 50 }}
-  //       animate={{ opacity: 1, y: 0 }}
-  //       transition={{
-  //         duration: 1,
-  //         delay: 0.2, //h1 starts after 0.2s
-  //         ease: [0.6, 0.01, 0.05, 0.9],
-  //       }}
-  //     >
-  //       Work item.
-  //     </motion.h3>
-  //
-  //     <motion.h2
-  //       className="
-  //       text-gray-100
-  //       font-thin
-  //       mt-0
-  //       text-1xl
-  //       text-shadow-sm
-  //  "
-  //       initial={{ opacity: 0, y: 50 }}
-  //       animate={{ opacity: 1, y: 0 }}
-  //       transition={{
-  //         duration: 1,
-  //         delay: 0.6, //h2 starts after 0.6s
-  //         ease: [0.6, 0.01, 0.05, 0.9],
-  //       }}
-  //     >
-  //       This is the portfolio page.
-  //     </motion.h2>
-  //   </article>
-  // );
 };
 
 export default PortfolioContent;
