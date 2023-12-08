@@ -66,14 +66,14 @@ const ContactContent = () => {
       >
         <div className="flex items-center gap-x-4">
           <Image
-            className="rounded-full w-20 h-20"
+            className="rounded-full w-20 h-20  mt-0 md:mt-5"
             width={80}
             height={80}
             src="/contact/coreydunkin.jpeg"
             alt="Image Description"
           />
-          <div className="grow">
-            <h3 className="font-bold font-playfairDisplay text-gray-800">
+          <div className="grow md:ml-4">
+            <h3 className="font-bold font-playfairDisplay text-gray-800 mt-0 md:mt-0">
               Corey Dunkin
             </h3>
             <p className="text-xs uppercase text-gray-500">
@@ -83,7 +83,7 @@ const ContactContent = () => {
           </div>
         </div>
 
-        <div className="mt-3 space-x-1">
+        <div className="mt-0 md:mt-3 space-x-1">
           <a
             className="inline-flex justify-center items-center w-8 h-8 text-sm font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
             href="#"

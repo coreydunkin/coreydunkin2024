@@ -6,8 +6,8 @@ type ContainerProps = {
 
 const Container = ({ children }: ContainerProps) => {
   return (
-    <div className="flex flex-col items-center justify-between">
-      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden">
+    <div className="flex flex-col items-center justify-between overflow-visible">
+      <div className="relative flex min-h-screen flex-col justify-center overflow-visible">
         {children}
       </div>
     </div>
