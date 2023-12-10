@@ -2,162 +2,117 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { extractColors } from "extract-colors";
-import { usePathname } from "next/navigation";
 import { useColorStore } from "@/stores/colorStore";
 import { useEffect, useState } from "react";
-import s from "./PortfolioContent.module.scss";
-import { darken, complement } from "polished";
-//import {useColor, usePalette} from "color-thief-react";
-import { format } from "url";
 import { COLOR_GRADIENT } from "@/utils/constants";
-import getComplementaryColors from "@/utils/getComplimentaryColors";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
-import { PiHandTap, PiHandTapLight } from "react-icons/pi";
 import { TbBrandNextjs } from "react-icons/tb";
 
-const PortfolioContent = () => {
+const PortfolioContent = ({ content }: any) => {
+  const {
+    color,
+    title,
+    subtitle,
+    blurb,
+    mobileBlurb,
+    listItems,
+    image,
+    imageMobile,
+    link,
+  } = content;
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
-
+  const colors = {
+    textColor: `text-[${color}]`,
+    bgColor: `bg-[${color}]`,
+  };
   const imageVariants = {
     up: { y: -200 },
     down: { y: 0 },
   };
 
-  const pathName = usePathname();
-
-  // remove this
-  const src =
-    pathName === "/portfolio/qantas"
-      ? "/work/qantas-desktop-1.png"
-      : "/work/livetraffic.png";
-  const srcMobile = "/work/qantas-mobile.png";
-
-  //const { data, loading, error } = usePalette(src, 5,'hex', { crossOrigin: 'Anonymous' });
-  // while this is good, I think we need a manual process to get the colors
-  // they dont all work "well"
-
   useEffect(() => {
-    // extractColors(src)
-    //   .then(colors => {
-    //     const hexColors = colors.map(color => darken(0.3, color.hex));
-    //     setColorValues(hexColors);
-    //   })
-    //   .catch(console.error)
+    setColorValues(getMonochromaticColors(color) || COLOR_GRADIENT);
+  }, [color]);
 
-    //setColorValues(data || COLOR_GRADIENT);
-
-    setColorValues(getMonochromaticColors("#e40200") || COLOR_GRADIENT);
-    //console.log("comp colors: ", getMonochromaticColors("#e40200"));
-  }, []);
-  //max-h-[75vh]
   return (
     <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-5 md:gap-y-0 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
-              <h2 className="text-base font-semibold leading-7 text-red-600">
-                Qantas
+              <h2
+                style={{ color: `${color}` }}
+                className={`text-base font-semibold leading-7 ${
+                  colors.textColor ? colors.textColor : "text-red-600"
+                }`}
+              >
+                {title}
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">
-                My Account.
+                {subtitle}
               </p>
               <p className="mt-3 md:mt-6 text-lg leading-8 text-gray-600">
-                A complete rebuild of the Qantas My Account hub.{" "}
-                <span className="inline md:hidden">
-                  Built in Next.js, Typescript and Contentful.
-                </span>
+                {blurb} <span className="inline md:hidden">{mobileBlurb}</span>
               </p>
-              <ul className="space-y-3 hidden md:block mt-10">
-                <li className="flex space-x-3 items-center">
-                  <div className="flex items-center justify-center">
-                    {/*The below icon will come from strapi*/}
-                    <TbBrandNextjs className="text-red-600 w-8 h-8 " />
-                  </div>
-                  <span className="text-gray-600 font-bold">
-                    Built in Next.js, Typescript and Contentful.
-                  </span>
-                </li>
+              <ul className="space-y-7 hidden md:block mt-10">
+                {/*<li className="flex space-x-3 items-center">*/}
+                {/*  <div className="flex items-center justify-center">*/}
+                {/*    <TbBrandNextjs className="text-red-600 w-8 h-8 " />*/}
+                {/*  </div>*/}
+                {/*  <span className="text-gray-600">*/}
+                {/*    <span className="font-bold">Next.js:</span> Enhanced our project with its efficient page loading and SEO benefits, providing a smooth user experience.*/}
+                {/*  </span>*/}
+                {/*</li>*/}
+                {/*<li className="flex space-x-3 items-center">*/}
+                {/*  <div className="flex items-center justify-center">*/}
+                {/*    <TbBrandTypescript className="text-red-600 w-7 h-7 " />*/}
+                {/*  </div>*/}
+                {/*  <span className="text-gray-600">*/}
+                {/*    <span className="font-bold">Typescript:</span> Ensured robust and reliable code, making the project easier to maintain and reducing errors.*/}
+                {/*  </span>*/}
+                {/*</li>*/}
+                {/*<li className="flex space-x-3 items-center">*/}
+                {/*  <div className="flex items-center justify-center">*/}
+                {/*    <SiContentful className="text-red-600 w-7 h-7 " />*/}
+                {/*  </div>*/}
+                {/*  <span className="text-gray-600">*/}
+                {/*    <span className="font-bold">Contentful:</span> Facilitated seamless content management, empowering our content editors to update and distribute content with ease.*/}
+                {/*  </span>*/}
+                {/*</li>*/}
+                {listItems.map((item: any) => (
+                  <li className="flex space-x-3 items-center">
+                    <div className="flex items-center justify-center">
+                      <TbBrandNextjs
+                        style={{ color: `${color}` }}
+                        className={`w-8 h-8`}
+                      />
+                    </div>
+                    <span className="text-gray-600">
+                      <span className="font-bold">{item.name}:</span>{" "}
+                      {item.description}
+                    </span>
+                  </li>
+                ))}
               </ul>
-              {/*<dl className="hidden md:block mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">*/}
-              {/*  <div className="relative pl-9">*/}
-              {/*    <dt className="inline font-semibold text-gray-900">*/}
-              {/*      <svg*/}
-              {/*        xmlns="http://www.w3.org/2000/svg"*/}
-              {/*        viewBox="0 0 20 20"*/}
-              {/*        fill="currentColor"*/}
-              {/*        aria-hidden="true"*/}
-              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
-              {/*      >*/}
-              {/*        <path d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z"></path>*/}
-              {/*        <path d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 8.87z"></path>*/}
-              {/*        <path d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z"></path>*/}
-              {/*      </svg>*/}
-              {/*      Built with Next.js*/}
-              {/*    </dt>*/}
-              {/*    <dd className="inline">Modern site</dd>*/}
-              {/*  </div>*/}
-              {/*  <div className="relative pl-9">*/}
-              {/*    <dt className="inline font-semibold text-gray-900">*/}
-              {/*      <svg*/}
-              {/*        xmlns="http://www.w3.org/2000/svg"*/}
-              {/*        viewBox="0 0 20 20"*/}
-              {/*        fill="currentColor"*/}
-              {/*        aria-hidden="true"*/}
-              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
-              {/*      >*/}
-              {/*        <path*/}
-              {/*          fill-rule="evenodd"*/}
-              {/*          d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z"*/}
-              {/*          clip-rule="evenodd"*/}
-              {/*        ></path>*/}
-              {/*      </svg>*/}
-              {/*      Utilising Typescript*/}
-              {/*    </dt>*/}
-              {/*    <dd className="inline">*/}
-              {/*      A simple REST API that allows you to create, generate, and*/}
-              {/*      manage your content.*/}
-              {/*    </dd>*/}
-              {/*  </div>*/}
-              {/*  <div className="relative pl-9">*/}
-              {/*    <dt className="inline font-semibold text-gray-900">*/}
-              {/*      <svg*/}
-              {/*        xmlns="http://www.w3.org/2000/svg"*/}
-              {/*        viewBox="0 0 20 20"*/}
-              {/*        fill="currentColor"*/}
-              {/*        aria-hidden="true"*/}
-              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
-              {/*      >*/}
-              {/*        <path*/}
-              {/*          fill-rule="evenodd"*/}
-              {/*          d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.11 3.01 3.01 0 01-1.618-1.616.455.455 0 01.11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 103.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z"*/}
-              {/*          clip-rule="evenodd"*/}
-              {/*        ></path>*/}
-              {/*        <path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 01-3.536 3.536l-4.41-4.41 2.172-2.607c.052-.063.147-.138.342-.196.202-.06.469-.087.777-.067.128.008.257.012.387.012zM6 4.586l2.33 2.33a.452.452 0 01-.08.09L6.8 8.214 4.586 6H3.309a.5.5 0 01-.447-.276l-1.7-3.402a.5.5 0 01.093-.577l.49-.49a.5.5 0 01.577-.094l3.402 1.7A.5.5 0 016 3.31v1.277z"></path>*/}
-              {/*      </svg>*/}
-              {/*      With Contentful as the headless CMS*/}
-              {/*    </dt>*/}
-              {/*    <dd className="inline">*/}
-              {/*      Documented and easy to use, we make it easy to integrate*/}
-              {/*      with your existing workflow.*/}
-              {/*    </dd>*/}
-              {/*  </div>*/}
-              {/*</dl>*/}
             </div>
             <Link
-              href="#"
+              href={link}
               passHref
               className="mt-4 md:mt-10 flex items-center gap-x-6"
             >
-              <button className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+              <button
+                style={{ backgroundColor: `${color}` }}
+                className={`rounded-md ${
+                  colors.bgColor ? colors.bgColor : "bg-red-600"
+                } px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}
+              >
                 View site
               </button>
             </Link>
           </div>
           <Image
-            src={src}
+            src={image}
             alt="Product screenshot"
             className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
             width="2432"
@@ -172,7 +127,7 @@ const PortfolioContent = () => {
             }}
           >
             <Image
-              src={srcMobile}
+              src={imageMobile}
               alt="Product screenshot"
               className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
               width="2432"
