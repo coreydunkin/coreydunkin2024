@@ -40,6 +40,8 @@ export const PORTFOLIO_LINKS = [
   },
 ];
 
+export const SWIPE_THRESHOLD = 5;
+
 export const COLOR_GRADIENT = [
   "#5e9fa3",
   "#dcd1b4",

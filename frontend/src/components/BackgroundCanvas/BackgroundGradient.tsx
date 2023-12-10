@@ -12,7 +12,7 @@ type Palette = {
 const BackgroundGradient = ({ palette }: Palette) => {
   //let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
   //let palette = useColorStore((state) => state.colorValues);
-  console.log("wowowow", palette);
+  //console.log("wowowow", palette);
   let paletteColorObjects = palette.map((color: string) => new Color(color));
 
   //let paletteColorObjectsNew = paletteNew.map((color: string) => new Color(color));

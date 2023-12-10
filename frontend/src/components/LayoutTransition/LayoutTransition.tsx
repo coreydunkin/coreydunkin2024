@@ -1,118 +1,15 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { usePathname } from "next/navigation";
+import { useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
-import { generateRouteHierarchy } from "@/utils/generateRouteHierarchy";
-import { MAIN_LINKS, PORTFOLIO_LINKS } from "@/utils/constants";
+import {
+  getAnimationInVariable,
+  getAnimationOutVariable,
+  routesHierarchy,
+} from "@/components/LayoutTransition/utils";
 
-// Change this to go inside a CONSTANTS or look into index?
-// const routesHierarchy: Record<string, number> = {
-//   "/": 0,
-//   "/about": 1,
-//   "/portfolio": 2,
-//   "/portfolio/qantas": 3,
-//   "/portfolio/livetraffic": 4,
-//   "/portfolio/etoll": 5,
-//   "/contact": 6,
-// };
-const routesHierarchy = {
-  ...generateRouteHierarchy(MAIN_LINKS),
-  ...generateRouteHierarchy(PORTFOLIO_LINKS),
-};
-console.log(routesHierarchy);
-
-// This wil be used to increment/decrement the page route on mouse scroll and swipe
-const getRouteByValue = (value: number): string | undefined => {
-  return Object.keys(routesHierarchy).find(
-    (key) => routesHierarchy[key] === value,
-  );
-};
-
-const getAnimationOutVariable = (
-  pathname: string,
-  previousRoute: string | null,
-  pathIsPortfolioItem: boolean,
-  previousPathIsPortfolio: boolean | undefined,
-) => {
-  if (
-    previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
-  ) {
-    return {
-      initial: { y: 0, x: 0, opacity: 1 },
-      animate: {
-        y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
-        ease: [0.6, 0.01, 0.05, 0.9],
-        opacity: 0,
-        transitionEnd: {
-          display: "none",
-        },
-      },
-    };
-  }
-  return {
-    initial: { y: 0, x: 0, opacity: 1 },
-    animate: {
-      y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
-      ease: [0.6, 0.01, 0.05, 0.9],
-      opacity: 0,
-      transitionEnd: {
-        display: "none",
-      },
-    },
-  };
-};
-
-const getAnimationInVariable = (
-  pathname: string,
-  previousRoute: string | null,
-  pathIsPortfolioItem: boolean,
-  previousPathIsPortfolio: boolean | undefined,
-) => {
-  if (
-    previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
-  ) {
-    return {
-      initial: {
-        y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
-        x: pathIsPortfolioItem && previousPathIsPortfolio ? "-80%" : 0,
-        ease: [0.6, 0.01, 0.05, 0.9],
-
-        opacity: 0,
-      },
-      animate: {
-        y: 0,
-        x: 0,
-        opacity: 1,
-      },
-    };
-  }
-  return {
-    initial: {
-      y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "50%",
-      x: pathIsPortfolioItem && previousPathIsPortfolio ? "80%" : 0,
-      ease: [0.6, 0.01, 0.05, 0.9],
-
-      opacity: 0,
-    },
-    animate: {
-      y: 0,
-      x: 0,
-      opacity: 1,
-    },
-  };
-};
 export const LayoutTransition = ({
   children,
 }: {

@@ -14,11 +14,11 @@ import { COLOR_GRADIENT } from "@/utils/constants";
 import getComplementaryColors from "@/utils/getComplimentaryColors";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { PiHandTap, PiHandTapLight } from "react-icons/pi";
+import { TbBrandNextjs } from "react-icons/tb";
 
 const PortfolioContent = () => {
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
-  const [isHintVisible, setHintVisible] = useState(true);
 
   const imageVariants = {
     up: { y: -200 },
@@ -26,11 +26,14 @@ const PortfolioContent = () => {
   };
 
   const pathName = usePathname();
+
+  // remove this
   const src =
     pathName === "/portfolio/qantas"
       ? "/work/qantas-desktop-1.png"
       : "/work/livetraffic.png";
   const srcMobile = "/work/qantas-mobile.png";
+
   //const { data, loading, error } = usePalette(src, 5,'hex', { crossOrigin: 'Anonymous' });
   // while this is good, I think we need a manual process to get the colors
   // they dont all work "well"
@@ -46,7 +49,7 @@ const PortfolioContent = () => {
     //setColorValues(data || COLOR_GRADIENT);
 
     setColorValues(getMonochromaticColors("#e40200") || COLOR_GRADIENT);
-    console.log("comp colors: ", getMonochromaticColors("#e40200"));
+    //console.log("comp colors: ", getMonochromaticColors("#e40200"));
   }, []);
   //max-h-[75vh]
   return (
@@ -59,78 +62,89 @@ const PortfolioContent = () => {
                 Qantas
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">
-                My Accounts Page.
+                My Account.
               </p>
               <p className="mt-3 md:mt-6 text-lg leading-8 text-gray-600">
-                A complete rebuild of the Qantas My Accounts page.{" "}
+                A complete rebuild of the Qantas My Account hub.{" "}
                 <span className="inline md:hidden">
                   Built in Next.js, Typescript and Contentful.
                 </span>
               </p>
-              <dl className="hidden md:block mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                <div className="relative pl-9">
-                  <dt className="inline font-semibold text-gray-900">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="absolute left-1 top-1 h-5 w-5 text-red-600"
-                    >
-                      <path d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z"></path>
-                      <path d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 8.87z"></path>
-                      <path d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z"></path>
-                    </svg>
-                    Template driven
-                  </dt>
-                  <dd className="inline">Modern site</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-semibold text-gray-900">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="absolute left-1 top-1 h-5 w-5 text-red-600"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    Simple, REST
-                  </dt>
-                  <dd className="inline">
-                    A simple REST API that allows you to create, generate, and
-                    manage your content.
-                  </dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-semibold text-gray-900">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      className="absolute left-1 top-1 h-5 w-5 text-red-600"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.11 3.01 3.01 0 01-1.618-1.616.455.455 0 01.11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 103.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                      <path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 01-3.536 3.536l-4.41-4.41 2.172-2.607c.052-.063.147-.138.342-.196.202-.06.469-.087.777-.067.128.008.257.012.387.012zM6 4.586l2.33 2.33a.452.452 0 01-.08.09L6.8 8.214 4.586 6H3.309a.5.5 0 01-.447-.276l-1.7-3.402a.5.5 0 01.093-.577l.49-.49a.5.5 0 01.577-.094l3.402 1.7A.5.5 0 016 3.31v1.277z"></path>
-                    </svg>
-                    Developer friendly{" "}
-                  </dt>
-                  <dd className="inline">
-                    Documented and easy to use, we make it easy to integrate
-                    with your existing workflow.
-                  </dd>
-                </div>
-              </dl>
+              <ul className="space-y-3 hidden md:block mt-10">
+                <li className="flex space-x-3 items-center">
+                  <div className="flex items-center justify-center">
+                    {/*The below icon will come from strapi*/}
+                    <TbBrandNextjs className="text-red-600 w-8 h-8 " />
+                  </div>
+                  <span className="text-gray-600 font-bold">
+                    Built in Next.js, Typescript and Contentful.
+                  </span>
+                </li>
+              </ul>
+              {/*<dl className="hidden md:block mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">*/}
+              {/*  <div className="relative pl-9">*/}
+              {/*    <dt className="inline font-semibold text-gray-900">*/}
+              {/*      <svg*/}
+              {/*        xmlns="http://www.w3.org/2000/svg"*/}
+              {/*        viewBox="0 0 20 20"*/}
+              {/*        fill="currentColor"*/}
+              {/*        aria-hidden="true"*/}
+              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
+              {/*      >*/}
+              {/*        <path d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z"></path>*/}
+              {/*        <path d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 8.87z"></path>*/}
+              {/*        <path d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z"></path>*/}
+              {/*      </svg>*/}
+              {/*      Built with Next.js*/}
+              {/*    </dt>*/}
+              {/*    <dd className="inline">Modern site</dd>*/}
+              {/*  </div>*/}
+              {/*  <div className="relative pl-9">*/}
+              {/*    <dt className="inline font-semibold text-gray-900">*/}
+              {/*      <svg*/}
+              {/*        xmlns="http://www.w3.org/2000/svg"*/}
+              {/*        viewBox="0 0 20 20"*/}
+              {/*        fill="currentColor"*/}
+              {/*        aria-hidden="true"*/}
+              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
+              {/*      >*/}
+              {/*        <path*/}
+              {/*          fill-rule="evenodd"*/}
+              {/*          d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z"*/}
+              {/*          clip-rule="evenodd"*/}
+              {/*        ></path>*/}
+              {/*      </svg>*/}
+              {/*      Utilising Typescript*/}
+              {/*    </dt>*/}
+              {/*    <dd className="inline">*/}
+              {/*      A simple REST API that allows you to create, generate, and*/}
+              {/*      manage your content.*/}
+              {/*    </dd>*/}
+              {/*  </div>*/}
+              {/*  <div className="relative pl-9">*/}
+              {/*    <dt className="inline font-semibold text-gray-900">*/}
+              {/*      <svg*/}
+              {/*        xmlns="http://www.w3.org/2000/svg"*/}
+              {/*        viewBox="0 0 20 20"*/}
+              {/*        fill="currentColor"*/}
+              {/*        aria-hidden="true"*/}
+              {/*        className="absolute left-1 top-1 h-5 w-5 text-red-600"*/}
+              {/*      >*/}
+              {/*        <path*/}
+              {/*          fill-rule="evenodd"*/}
+              {/*          d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.11 3.01 3.01 0 01-1.618-1.616.455.455 0 01.11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 103.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z"*/}
+              {/*          clip-rule="evenodd"*/}
+              {/*        ></path>*/}
+              {/*        <path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 01-3.536 3.536l-4.41-4.41 2.172-2.607c.052-.063.147-.138.342-.196.202-.06.469-.087.777-.067.128.008.257.012.387.012zM6 4.586l2.33 2.33a.452.452 0 01-.08.09L6.8 8.214 4.586 6H3.309a.5.5 0 01-.447-.276l-1.7-3.402a.5.5 0 01.093-.577l.49-.49a.5.5 0 01.577-.094l3.402 1.7A.5.5 0 016 3.31v1.277z"></path>*/}
+              {/*      </svg>*/}
+              {/*      With Contentful as the headless CMS*/}
+              {/*    </dt>*/}
+              {/*    <dd className="inline">*/}
+              {/*      Documented and easy to use, we make it easy to integrate*/}
+              {/*      with your existing workflow.*/}
+              {/*    </dd>*/}
+              {/*  </div>*/}
+              {/*</dl>*/}
             </div>
             <Link
               href="#"
@@ -150,18 +164,17 @@ const PortfolioContent = () => {
             height="1442"
           />
           <motion.div
-            className="relative"
+            className="relative md:hidden"
             animate={isTapped ? "up" : "down"}
             variants={imageVariants}
             onTap={() => {
               setIsTapped(!isTapped);
-              setHintVisible(false);
             }}
           >
             <Image
               src={srcMobile}
               alt="Product screenshot"
-              className="block md:hidden w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+              className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
               width="2432"
               height="1442"
             />
