@@ -9,30 +9,30 @@ import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { TbBrandNextjs } from "react-icons/tb";
 
 const PortfolioContent = ({ content }: any) => {
-  const {
-    mainColor,
-    title,
-    subtitle,
-    blurb,
-    mobileBlurb,
-    listItems,
-    image,
-    imageMobile,
-    link,
-  } = content;
+  // const {
+  //   mainColor,
+  //   title,
+  //   subtitle,
+  //   blurb,
+  //   mobileBlurb,
+  //   listItems,
+  //   image,
+  //   imageMobile,
+  //   link,
+  // } = content;
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
-  const colors = {
-    textColor: `text-[${mainColor || COLOR_GRADIENT[0]}]`,
-    bgColor: `bg-[${mainColor || COLOR_GRADIENT[0]}]`,
-  };
+
   const imageVariants = {
     up: { y: -200 },
     down: { y: 0 },
   };
 
   useEffect(() => {
-    setColorValues(getMonochromaticColors(mainColor) || COLOR_GRADIENT);
+    setColorValues(
+      (content?.mainColor && getMonochromaticColors(content.mainColor)) ||
+        COLOR_GRADIENT,
+    );
   }, []);
   if (!content) return null;
   return (
@@ -42,18 +42,17 @@ const PortfolioContent = ({ content }: any) => {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2
-                style={{ color: `${mainColor}` }}
-                className={`text-base font-semibold leading-7 ${
-                  colors.textColor ? colors.textColor : "text-red-600"
-                }`}
+                style={{ color: `${content.mainColor}` }}
+                className={`text-base font-semibold leading-7 text-red-600`}
               >
-                {title}
+                {content.title}
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-playfairDisplay">
-                {subtitle}
+                {content.subtitle}
               </p>
               <p className="mt-3 md:mt-6 text-lg leading-8 text-gray-600">
-                {blurb} <span className="inline md:hidden">{mobileBlurb}</span>
+                {content.blurb}{" "}
+                <span className="inline md:hidden">{content.mobileBlurb}</span>
               </p>
               <ul className="space-y-7 hidden md:block mt-10">
                 {/*<li className="flex space-x-3 items-center">*/}
@@ -80,11 +79,11 @@ const PortfolioContent = ({ content }: any) => {
                 {/*    <span className="font-bold">Contentful:</span> Facilitated seamless content management, empowering our content editors to update and distribute content with ease.*/}
                 {/*  </span>*/}
                 {/*</li>*/}
-                {listItems.map((item: any, key: number) => (
+                {content.listItems.map((item: any, key: number) => (
                   <li key={key} className="flex space-x-3 items-center">
                     <div className="flex items-center justify-center">
                       <TbBrandNextjs
-                        style={{ color: `${mainColor}` }}
+                        style={{ color: `${content.mainColor}` }}
                         className={`w-8 h-8`}
                       />
                     </div>
@@ -97,22 +96,20 @@ const PortfolioContent = ({ content }: any) => {
               </ul>
             </div>
             <Link
-              href={link}
+              href={content.link}
               passHref
               className="mt-4 md:mt-10 flex items-center gap-x-6"
             >
               <button
-                style={{ backgroundColor: `${mainColor}` }}
-                className={`rounded-md ${
-                  colors.bgColor ? colors.bgColor : "bg-red-600"
-                } px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}
+                style={{ backgroundColor: `${content.mainColor}` }}
+                className={`rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}
               >
                 View site
               </button>
             </Link>
           </div>
           <Image
-            src={image}
+            src={content.image}
             alt="Product screenshot"
             className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
             width="2432"
@@ -127,7 +124,7 @@ const PortfolioContent = ({ content }: any) => {
             }}
           >
             <Image
-              src={imageMobile}
+              src={content.imageMobile}
               alt="Product screenshot"
               className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
               width="2432"
