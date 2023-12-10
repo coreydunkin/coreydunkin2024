@@ -35,7 +35,7 @@ const Gradient = () => {
   let paletteColorObjectsNew = paletteNew.map(
     (color: string) => new Color(color),
   );
-  console.log(paletteColorObjectsNew);
+  //console.log(paletteColorObjectsNew);
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
@@ -145,7 +145,7 @@ export const BackgroundCanvasContainer = ({
 }: BackgroundCanvasProps) => {
   let gradient = `linear-gradient(${palette[0]}, ${palette[1]}, ${palette[2]}, ${palette[3]}, ${palette[4]})`;
   let color = `${palette[0]}`;
-  console.log("gradient: ", gradient);
+  //console.log("gradient: ", gradient);
   return (
     <motion.div
       initial={{ opacity: 0 }}

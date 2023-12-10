@@ -8,6 +8,7 @@ import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
 import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
 import PrelineLoader from "@/components/PrelineLoader/PrelineLoader";
 import { AnimatePresence } from "framer-motion";
+import DirectionRoute from "@/components/DirectionRoute/DirectionRoute";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],
@@ -33,7 +34,9 @@ export default function RootLayout({
     <html lang="en" className={`${playFairDisplay.variable}`}>
       <body className={inter.className}>
         <MenuList />
-        <LayoutTransition>{children}</LayoutTransition>
+        <DirectionRoute>
+          <LayoutTransition>{children}</LayoutTransition>
+        </DirectionRoute>
         <PortfolioNav />
         <BackgroundCanvas />
         <PrelineLoader />
