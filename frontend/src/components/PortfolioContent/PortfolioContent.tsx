@@ -80,8 +80,8 @@ const PortfolioContent = ({ content }: any) => {
                 {/*    <span className="font-bold">Contentful:</span> Facilitated seamless content management, empowering our content editors to update and distribute content with ease.*/}
                 {/*  </span>*/}
                 {/*</li>*/}
-                {listItems.map((item: any) => (
-                  <li className="flex space-x-3 items-center">
+                {listItems.map((item: any, key: number) => (
+                  <li key={key} className="flex space-x-3 items-center">
                     <div className="flex items-center justify-center">
                       <TbBrandNextjs
                         style={{ color: `${color}` }}
