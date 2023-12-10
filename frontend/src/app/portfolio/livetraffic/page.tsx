@@ -1,6 +1,6 @@
 import Container from "@/components/Container/Container";
 import PortfolioContent from "@/components/PortfolioContent/PortfolioContent";
-export default function TransportNSW() {
+export default function Livetraffic() {
   const content = {
     mainColor: "#1B80D3FF",
     title: "Transport NSW",

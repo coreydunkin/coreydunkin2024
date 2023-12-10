@@ -10,15 +10,15 @@ import { TbBrandNextjs } from "react-icons/tb";
 
 const PortfolioContent = ({ content }: any) => {
   const {
-    mainColor,
-    title,
-    subtitle,
-    blurb,
-    mobileBlurb,
-    listItems,
-    image,
-    imageMobile,
-    link,
+    mainColor = "",
+    title = "",
+    subtitle = "",
+    blurb = "",
+    mobileBlurb = "",
+    listItems = [],
+    image = "",
+    imageMobile = "",
+    link = "",
   } = content;
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
