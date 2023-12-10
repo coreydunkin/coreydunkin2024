@@ -70,9 +70,9 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
       info: PanInfo,
     ) => {
       if (pathname.startsWith("/portfolio")) {
-        checkOffset(info.offset.x, -100, 100, "left", "right");
+        checkOffset(info.offset.x, -50, 50, "left", "right");
       }
-      checkOffset(info.offset.y, -100, 100, "up", "down");
+      checkOffset(info.offset.y, -50, 50, "up", "down");
     },
   });
 
@@ -81,10 +81,10 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
     const scrollDirection = dy > 0 ? "down" : "up";
     if (scrollDirection === "up") {
       console.log("down");
-      checkOffset(101, -100, 100, "up", "down");
+      checkOffset(51, -50, 50, "up", "down");
     } else {
       console.log("up");
-      checkOffset(-101, -100, 100, "up", "down");
+      checkOffset(-51, -50, 50, "up", "down");
     }
   }, 200);
 
