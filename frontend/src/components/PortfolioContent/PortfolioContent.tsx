@@ -23,8 +23,8 @@ const PortfolioContent = ({ content }: any) => {
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
   const colors = {
-    textColor: `text-[${color}]`,
-    bgColor: `bg-[${color}]`,
+    textColor: `text-[${color || COLOR_GRADIENT[0]}]`,
+    bgColor: `bg-[${color || COLOR_GRADIENT[0]}]`,
   };
   const imageVariants = {
     up: { y: -200 },
@@ -33,8 +33,8 @@ const PortfolioContent = ({ content }: any) => {
 
   useEffect(() => {
     setColorValues(getMonochromaticColors(color) || COLOR_GRADIENT);
-  }, [color]);
-
+  }, []);
+  if (!content) return null;
   return (
     <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
