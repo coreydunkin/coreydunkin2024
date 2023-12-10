@@ -30,9 +30,7 @@ export default function Etoll() {
   };
   return (
     <main>
-      <Container>
-        <PortfolioContent content={content} />
-      </Container>
+      <Container>{content && <PortfolioContent content={content} />}</Container>
     </main>
   );
 }
