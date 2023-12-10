@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Qantas() {
   const content = {
-    color: "#e40200",
+    mainColor: "#e40200",
     title: "Qantas",
     subtitle: "My Account.",
     blurb: "A complete rebuild of the Qantas My Account hub.",

@@ -10,7 +10,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 
 const PortfolioContent = ({ content }: any) => {
   const {
-    color,
+    mainColor,
     title,
     subtitle,
     blurb,
@@ -23,8 +23,8 @@ const PortfolioContent = ({ content }: any) => {
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
   const colors = {
-    textColor: `text-[${color || COLOR_GRADIENT[0]}]`,
-    bgColor: `bg-[${color || COLOR_GRADIENT[0]}]`,
+    textColor: `text-[${mainColor || COLOR_GRADIENT[0]}]`,
+    bgColor: `bg-[${mainColor || COLOR_GRADIENT[0]}]`,
   };
   const imageVariants = {
     up: { y: -200 },
@@ -32,7 +32,7 @@ const PortfolioContent = ({ content }: any) => {
   };
 
   useEffect(() => {
-    setColorValues(getMonochromaticColors(color) || COLOR_GRADIENT);
+    setColorValues(getMonochromaticColors(mainColor) || COLOR_GRADIENT);
   }, []);
   if (!content) return null;
   return (
@@ -42,7 +42,7 @@ const PortfolioContent = ({ content }: any) => {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2
-                style={{ color: `${color}` }}
+                style={{ color: `${mainColor}` }}
                 className={`text-base font-semibold leading-7 ${
                   colors.textColor ? colors.textColor : "text-red-600"
                 }`}
@@ -84,7 +84,7 @@ const PortfolioContent = ({ content }: any) => {
                   <li key={key} className="flex space-x-3 items-center">
                     <div className="flex items-center justify-center">
                       <TbBrandNextjs
-                        style={{ color: `${color}` }}
+                        style={{ color: `${mainColor}` }}
                         className={`w-8 h-8`}
                       />
                     </div>
@@ -102,7 +102,7 @@ const PortfolioContent = ({ content }: any) => {
               className="mt-4 md:mt-10 flex items-center gap-x-6"
             >
               <button
-                style={{ backgroundColor: `${color}` }}
+                style={{ backgroundColor: `${mainColor}` }}
                 className={`rounded-md ${
                   colors.bgColor ? colors.bgColor : "bg-red-600"
                 } px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}

@@ -2,7 +2,7 @@ import Container from "@/components/Container/Container";
 import PortfolioContent from "@/components/PortfolioContent/PortfolioContent";
 export default function TransportNSW() {
   const content = {
-    color: "#1B80D3FF",
+    mainColor: "#1B80D3FF",
     title: "Transport NSW",
     subtitle: "Live Traffic.",
     blurb: "A complete rebuild of the Qantas My Account hub.",
