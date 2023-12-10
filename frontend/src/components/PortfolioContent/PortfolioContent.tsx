@@ -112,8 +112,8 @@ const PortfolioContent = ({ content }: any) => {
             src={content.image}
             alt="Product screenshot"
             className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
-            width="2432"
-            height="1442"
+            width="768"
+            height="641"
           />
           <motion.div
             className="relative md:hidden"
@@ -127,8 +127,8 @@ const PortfolioContent = ({ content }: any) => {
               src={content.imageMobile}
               alt="Product screenshot"
               className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
-              width="2432"
-              height="1442"
+              width="245"
+              height="533"
             />
 
             <motion.div
