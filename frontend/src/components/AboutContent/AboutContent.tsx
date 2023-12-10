@@ -72,15 +72,15 @@ const AboutContent = () => {
               I am a passionate and experienced Senior Software Engineer with
               over a decade of experience. I have worked on high traffic,
               intricate websites for large-scale clients such as{" "}
-              <Link className="text-white" href="/portfolio/test">
+              <Link className="text-white" href="/portfolio/qantas">
                 Qantas
               </Link>
               ,{" "}
-              <Link className="text-white" href="/portfolio/test2">
+              <Link className="text-white" href="/portfolio/livetraffic">
                 Transport NSW
               </Link>
               ,{" "}
-              <Link className="text-white" href="/portfolio/test3">
+              <Link className="text-white" href="/portfolio/etoll">
                 Macquarie Bank
               </Link>
               , and many more.

@@ -36,7 +36,7 @@ export const LayoutTransition = ({
 
   return (
     <AnimatePresence initial={routesHierarchy[pathname] > 1 ? false : true}>
-      <div className="relative h-screen w-screen">
+      <div className="relative h-screen w-screen hover:cursor-grab active:cursor-grabbing">
         <motion.div
           key={pathname + "exit-animation"}
           {...getAnimationOutVariable(
