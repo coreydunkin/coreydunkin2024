@@ -2,31 +2,41 @@ import Container from "@/components/Container/Container";
 import PortfolioContent from "@/components/PortfolioContent/PortfolioContent";
 export default function Livetraffic() {
   const content = {
-    mainColor: "#1B80D3FF",
+    mainColor: "#1096ec",
     title: "Transport NSW",
     subtitle: "Live Traffic.",
-    blurb: "A complete rebuild of the Qantas My Account hub.",
-    mobileBlurb: "Built in Next.js, Typescript and Contentful.",
-    image: "/work/qantas-desktop-1.png",
-    imageMobile: "/work/qantas-mobile.png",
+    blurb:
+      "A feature complete live traffic website that provides real-time traffic data.",
+    mobileBlurb: "Built in Angular, Typescript and Node.",
+    image: "/work/livetraffic-desktop.png",
+    imageMobile: "/work/livetraffic-mobile.png",
     listItems: [
       {
-        name: "Next.js",
+        name: "Angular",
+        icon: "angular",
         description:
-          "Enhanced our project with its efficient page loading and SEO benefits, providing a smooth user experience.",
+          "Improved scalability and user experience in large-scale projects using Angular's architecture and Google Maps integration.",
       },
       {
         name: "Typescript",
+        icon: "typescript",
         description:
           "Ensured robust and reliable code, making the project easier to maintain and reducing errors.",
       },
       {
-        name: "Contentful",
+        name: "Node.js",
+        icon: "nodejs",
         description:
-          "Facilitated seamless content management, empowering our content editors to update and distribute content with ease",
+          "Leveraged Node.js and Express to efficiently manage, merge and handle numerous fetch requests from multiple councils for the backend system.",
+      },
+      {
+        name: "Azure",
+        icon: "azure",
+        description:
+          "Leveraged Azure cloud services to efficiently manage, deploy, and scale applications, enhancing performance and accommodating evolving business demands.",
       },
     ],
-    link: "#",
+    link: "https://www.livetraffic.com/",
   };
   return (
     <main>

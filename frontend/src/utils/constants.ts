@@ -38,6 +38,11 @@ export const PORTFOLIO_LINKS = [
     name: "Etoll",
     href: "/portfolio/etoll",
   },
+  {
+    id: 3.4,
+    name: "Macquarie",
+    href: "/portfolio/macquarie",
+  },
 ];
 
 export const SWIPE_THRESHOLD = 5;
