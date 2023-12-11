@@ -18,6 +18,26 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        tall: {
+          raw: `only screen and (max-height: 960px) and (max-width: 480px)`,
+        },
+        wide: {
+          raw: `only screen and (max-height: 480px) and (max-width: 960px)`,
+        },
+        short: {
+          raw: `only screen and (max-height: 953px)`,
+        },
+        veryshort: {
+          raw: `only screen and (max-height: 505px)`,
+        },
+        portrait: {
+          raw: "(orientation: portrait)",
+        },
+        landscape: {
+          raw: "(orientation: landscape)",
+        },
+      },
     },
     fontFamily: {
       playfairDisplay: ["var(--font-playfair-display)", ...fontFamily.serif],
