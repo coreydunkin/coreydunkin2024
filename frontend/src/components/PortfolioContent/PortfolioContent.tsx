@@ -29,7 +29,7 @@ const PortfolioContent = ({ content }: any) => {
   }, []);
   if (!content) return null;
   return (
-    <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 sm:py-16 rounded-md border-[1px] border-gray-300">
+    <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 veryshort:px-0  rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-5 md:gap-y-0 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -45,9 +45,11 @@ const PortfolioContent = ({ content }: any) => {
               </p>
               <p className="mt-3 md:mt-6 text-lg leading-8 text-gray-600">
                 {content.blurb}{" "}
-                <span className="inline md:hidden">{content.mobileBlurb}</span>
+                <span className="inline md:hidden short:inline">
+                  {content.mobileBlurb}
+                </span>
               </p>
-              <ul className="space-y-7 hidden md:block mt-10">
+              <ul className="space-y-7 hidden md:block short:hidden mt-10">
                 {/*<li className="flex space-x-3 items-center">*/}
                 {/*  <div className="flex items-center justify-center">*/}
                 {/*    <TbBrandNextjs className="text-red-600 w-8 h-8 " />*/}
@@ -88,7 +90,7 @@ const PortfolioContent = ({ content }: any) => {
             <Link
               href={content.link}
               passHref
-              className="mt-4 md:mt-10 flex items-center gap-x-6"
+              className="mt-4 md:mt-10 flex items-center gap-x-6 portrait:mb-5 sm:mb-5"
             >
               <button
                 style={{ backgroundColor: `${contrastColor}` }}
