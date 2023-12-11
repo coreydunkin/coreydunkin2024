@@ -6,8 +6,31 @@ import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaPhone } from "react-icons/fa";
+import {PageFields} from "@/lib/contentful/createService";
 
-const ContactContent = () => {
+type ContactContentProps = {
+  data: PageFields;
+}
+
+const ContactContent = ({data}: ContactContentProps) => {
+  if(!data) return null;
+  console.log('contact: ', data)
+  const { title,subtitle, contactCard } = data;
+  const {
+    email,
+    emailUrl,
+    jobTitle,
+    name,
+    phoneNumber,
+    phoneUrl,
+    profileImage,
+    socials
+  } = contactCard.fields;
+  const {
+    description,
+    file
+  } = profileImage.fields;
+  console.log('socials: ', socials);
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16 overflow-visible">
       <motion.h3
@@ -30,7 +53,7 @@ const ContactContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        {`Here's my card.`}
+        {title}
       </motion.h3>
 
       <motion.h2
@@ -49,7 +72,7 @@ const ContactContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Call me.
+        {subtitle}
       </motion.h2>
 
       <motion.div

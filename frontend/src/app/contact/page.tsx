@@ -1,11 +1,16 @@
 import Container from "@/components/Container/Container";
 import ContactContent from "@/components/ContactContent/ContactContent";
-export default function About() {
+import {getPage} from "@/lib/contentful/createService";
+async function Contact() {
+  const pageData = await getPage('contact');
+
   return (
     <main>
       <Container>
-        <ContactContent />
+        <ContactContent data={pageData?.fields} />
       </Container>
     </main>
   );
 }
+
+export default Contact;

@@ -1,4 +1,4 @@
-// fill in the MAIN_LINKS for me with an id and a name
+
 export const MAIN_LINKS = [
   {
     id: 1,
