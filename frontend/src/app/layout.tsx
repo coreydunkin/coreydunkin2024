@@ -7,8 +7,9 @@ import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
 import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
 import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
 import PrelineLoader from "@/components/PrelineLoader/PrelineLoader";
-import { AnimatePresence } from "framer-motion";
 import DirectionRoute from "@/components/DirectionRoute/DirectionRoute";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const playFairDisplay = Playfair_Display({
   weight: ["400", "700", "900"],
@@ -40,6 +41,8 @@ export default function RootLayout({
         <PortfolioNav />
         <BackgroundCanvas />
         <PrelineLoader />
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
