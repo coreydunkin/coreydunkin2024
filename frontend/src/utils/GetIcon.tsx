@@ -25,70 +25,70 @@ const GetIcon = (iconColor: string, icon: string) => {
       return (
         <SiTypescript
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "contentful":
       return (
         <SiContentful
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "drupal":
       return (
         <SiDrupal
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "react":
       return (
         <SiReact
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "angular":
       return (
         <SiAngular
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "nodejs":
       return (
         <FaNodeJs
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "azure":
       return (
         <SiAzuredevops
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "aem":
       return (
         <SiAdobe
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     case "jenkins":
       return (
         <FaJenkins
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
     default:
       return (
         <FaCheck
           style={{ color: iconColor }}
-          className="text-red-600 w-7 h-7"
+          className="text-red-600 w-8 h-8"
         />
       );
   }

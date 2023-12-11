@@ -10,7 +10,7 @@ import Button from "@/components/Button/Button";
 
 const AboutContent = () => {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row pt-28 md:pt-0">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
