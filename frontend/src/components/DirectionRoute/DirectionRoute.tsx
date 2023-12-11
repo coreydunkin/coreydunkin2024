@@ -100,6 +100,7 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
       drag={pathname.startsWith("/portfolio") ? true : "y"}
       dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
       dragDirectionLock={true}
+      dragSnapToOrigin={true}
       {...bind()}
       {...wheelBind()}
     >
