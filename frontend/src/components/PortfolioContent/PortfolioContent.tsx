@@ -6,7 +6,6 @@ import { useColorStore } from "@/stores/colorStore";
 import { useEffect, useState } from "react";
 import { COLOR_GRADIENT } from "@/utils/constants";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
-import { TbBrandNextjs } from "react-icons/tb";
 import { shade } from "polished";
 import GetIcon from "@/utils/GetIcon";
 
@@ -29,7 +28,7 @@ const PortfolioContent = ({ content }: any) => {
   }, []);
   if (!content) return null;
   return (
-    <section className="overflow-hidden m-10 mt-0 mb-20 md:m-20 bg-white max-h-[calc(75dvh)] bg-opacity-70 py-8 veryshort:px-0  rounded-md border-[1px] border-gray-300">
+    <section className="overflow-hidden my-20 mx-10 md:m-20 bg-white max-h-[75dvh] bg-opacity-70 py-8 veryshort:px-0  rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-5 md:gap-y-0 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -50,30 +49,6 @@ const PortfolioContent = ({ content }: any) => {
                 </span>
               </p>
               <ul className="space-y-7 hidden md:block short:hidden mt-10">
-                {/*<li className="flex space-x-3 items-center">*/}
-                {/*  <div className="flex items-center justify-center">*/}
-                {/*    <TbBrandNextjs className="text-red-600 w-8 h-8 " />*/}
-                {/*  </div>*/}
-                {/*  <span className="text-gray-600">*/}
-                {/*    <span className="font-bold">Next.js:</span> Enhanced our project with its efficient page loading and SEO benefits, providing a smooth user experience.*/}
-                {/*  </span>*/}
-                {/*</li>*/}
-                {/*<li className="flex space-x-3 items-center">*/}
-                {/*  <div className="flex items-center justify-center">*/}
-                {/*    <TbBrandTypescript className="text-red-600 w-7 h-7 " />*/}
-                {/*  </div>*/}
-                {/*  <span className="text-gray-600">*/}
-                {/*    <span className="font-bold">Typescript:</span> Ensured robust and reliable code, making the project easier to maintain and reducing errors.*/}
-                {/*  </span>*/}
-                {/*</li>*/}
-                {/*<li className="flex space-x-3 items-center">*/}
-                {/*  <div className="flex items-center justify-center">*/}
-                {/*    <SiContentful className="text-red-600 w-7 h-7 " />*/}
-                {/*  </div>*/}
-                {/*  <span className="text-gray-600">*/}
-                {/*    <span className="font-bold">Contentful:</span> Facilitated seamless content management, empowering our content editors to update and distribute content with ease.*/}
-                {/*  </span>*/}
-                {/*</li>*/}
                 {content.listItems.map((item: any, key: number) => (
                   <li key={key} className="flex space-x-3 items-center">
                     <div className="flex items-center justify-center">

@@ -22,6 +22,7 @@
     "@vercel/speed-insights": "^1.0.1",
     "color-thief-react": "^2.1.0",
     "colorthief": "^2.4.0",
+    "detect-inapp": "^1.4.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "extract-colors": "^4.0.2",
     "framer-motion": "^10.16.5",

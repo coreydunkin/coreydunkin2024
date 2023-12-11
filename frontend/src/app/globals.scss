@@ -19,7 +19,10 @@
 
 html,
 body {
-  height: 100%;
+  height: 100vh; /* standard definition (as fallback) */
+  height: 100dvh; /* dynamic vh will make the trick on iOS */
+  padding: 0;
+  margin: 0;
 }
 
 html {

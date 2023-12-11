@@ -6,7 +6,7 @@ import Button from "@/components/Button/Button";
 
 const Intro = () => {
   return (
-    <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16">
+    <article className="prose text-left px-12 md:px-16 pt-28 md:pt-0">
       <motion.h1
         className={`
         ${s.title}
