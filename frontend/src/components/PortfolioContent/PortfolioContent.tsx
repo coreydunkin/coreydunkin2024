@@ -7,21 +7,13 @@ import { useEffect, useState } from "react";
 import { COLOR_GRADIENT } from "@/utils/constants";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { TbBrandNextjs } from "react-icons/tb";
+import { shade } from "polished";
+import GetIcon from "@/utils/GetIcon";
 
 const PortfolioContent = ({ content }: any) => {
-  // const {
-  //   mainColor,
-  //   title,
-  //   subtitle,
-  //   blurb,
-  //   mobileBlurb,
-  //   listItems,
-  //   image,
-  //   imageMobile,
-  //   link,
-  // } = content;
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
+  const [contrastColor, setContrastColor] = useState("#000000");
 
   const imageVariants = {
     up: { y: -200 },
@@ -33,6 +25,7 @@ const PortfolioContent = ({ content }: any) => {
       (content?.mainColor && getMonochromaticColors(content.mainColor)) ||
         COLOR_GRADIENT,
     );
+    setContrastColor(shade(0.2, content?.mainColor || "#000000"));
   }, []);
   if (!content) return null;
   return (
@@ -42,7 +35,7 @@ const PortfolioContent = ({ content }: any) => {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2
-                style={{ color: `${content.mainColor}` }}
+                style={{ color: `${contrastColor}` }}
                 className={`text-base font-semibold leading-7 text-red-600`}
               >
                 {content.title}
@@ -82,10 +75,7 @@ const PortfolioContent = ({ content }: any) => {
                 {content.listItems.map((item: any, key: number) => (
                   <li key={key} className="flex space-x-3 items-center">
                     <div className="flex items-center justify-center">
-                      <TbBrandNextjs
-                        style={{ color: `${content.mainColor}` }}
-                        className={`w-8 h-8`}
-                      />
+                      {GetIcon(contrastColor, item.icon)}
                     </div>
                     <span className="text-gray-600">
                       <span className="font-bold">{item.name}:</span>{" "}
@@ -101,7 +91,7 @@ const PortfolioContent = ({ content }: any) => {
               className="mt-4 md:mt-10 flex items-center gap-x-6"
             >
               <button
-                style={{ backgroundColor: `${content.mainColor}` }}
+                style={{ backgroundColor: `${contrastColor}` }}
                 className={`rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}
               >
                 View site
