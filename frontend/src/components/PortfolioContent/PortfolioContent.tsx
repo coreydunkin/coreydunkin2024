@@ -8,8 +8,15 @@ import { COLOR_GRADIENT } from "@/utils/constants";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { shade } from "polished";
 import GetIcon from "@/utils/GetIcon";
+import {PortfolioFields} from "@/lib/contentful/createService";
+
+type PortfolioContentProps = {
+  data: PortfolioFields;
+}
 
 const PortfolioContent = ({ content }: any) => {
+
+
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
   const [contrastColor, setContrastColor] = useState("#000000");
