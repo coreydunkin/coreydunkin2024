@@ -47,7 +47,7 @@ async function Qantas() {
 
   return (
     <main>
-      <Container>{content && <PortfolioContent content={content} />}</Container>
+      <Container>{content && <PortfolioContent data={portfolioData?.fields} />}</Container>
     </main>
   );
 }

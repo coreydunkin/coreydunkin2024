@@ -21,7 +21,7 @@ export type PortfolioFields = {
   project: string;
   blurb: any;
   mobileBlurb: any;
-  porfolioList: any[];
+  portfolioList: any[];
   image: any;
   mobileImage: any;
   cta: any;
