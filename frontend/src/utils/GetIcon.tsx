@@ -10,7 +10,9 @@ import {
   SiAzuredevops,
   SiAdobe,
 } from "react-icons/si";
-import { FaNodeJs, FaCheck, FaJenkins } from "react-icons/fa";
+import { FaNodeJs, FaCheck, FaJenkins, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+
 
 const GetIcon = (iconColor: string, icon: string) => {
   switch (icon) {
@@ -83,6 +85,22 @@ const GetIcon = (iconColor: string, icon: string) => {
           style={{ color: iconColor }}
           className="text-red-600 w-8 h-8"
         />
+      );
+    case "github":
+      return (
+        <FaGithub />
+      );
+    case "linkedin":
+      return (
+        <FaLinkedin />
+      );
+    case "email":
+      return (
+        <HiOutlineMail />
+      );
+    case "phone":
+      return (
+        <FaPhone />
       );
     default:
       return (

@@ -1,8 +1,13 @@
 import Container from "@/components/Container/Container";
 import PortfolioContent from "@/components/PortfolioContent/PortfolioContent";
 import Image from "next/image";
+import {getPage, getPortfolio} from "@/lib/contentful/createService";
 
-export default function Qantas() {
+async function Qantas() {
+  const portfolioData = await getPortfolio('qantas');
+  console.log('portfolio: ', portfolioData);
+
+
   const content = {
     mainColor: "#ff2400",
     title: "Qantas",
@@ -46,3 +51,5 @@ export default function Qantas() {
     </main>
   );
 }
+
+export default Qantas;
