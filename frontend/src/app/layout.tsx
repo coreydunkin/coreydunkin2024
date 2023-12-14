@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import { Playfair_Display } from "next/font/google";
-import MenuList from "@/components/MenuList/MenuList";
+import MenuListContainer from "@/components/MenuList/MenuListContainer";
 import BackgroundCanvas from "@/components/BackgroundCanvas/BackgroundCanvas";
 import LayoutTransition from "@/components/LayoutTransition/LayoutTransition";
-import PortfolioNav from "@/components/PortfolioNav/PortfolioNav";
+import PortfolioNavContainer from "@/components/PortfolioNav/PortfolioNavContainer";
 import PrelineLoader from "@/components/PrelineLoader/PrelineLoader";
 import DirectionRoute from "@/components/DirectionRoute/DirectionRoute";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -34,11 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playFairDisplay.variable}`}>
       <body className={inter.className}>
-        <MenuList />
+        <MenuListContainer />
         <DirectionRoute>
           <LayoutTransition>{children}</LayoutTransition>
         </DirectionRoute>
-        <PortfolioNav />
+        <PortfolioNavContainer />
         <BackgroundCanvas />
         <PrelineLoader />
         <SpeedInsights />

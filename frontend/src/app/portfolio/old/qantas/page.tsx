@@ -5,7 +5,6 @@ import {getPage, getPortfolio} from "@/lib/contentful/createService";
 
 async function Qantas() {
   const portfolioData = await getPortfolio('qantas');
-  console.log('portfolio: ', portfolioData);
 
 
   const content = {
@@ -47,7 +46,7 @@ async function Qantas() {
 
   return (
     <main>
-      <Container>{content && <PortfolioContent data={portfolioData?.fields} />}</Container>
+      <Container>{portfolioData && <PortfolioContent data={portfolioData?.fields} />}</Container>
     </main>
   );
 }

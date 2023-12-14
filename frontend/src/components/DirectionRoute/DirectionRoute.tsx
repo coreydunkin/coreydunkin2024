@@ -20,7 +20,6 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
     rightOrDown: string,
   ) {
     if (offset < minVal) {
-      console.log(`We moved ${leftOrUp}`);
       if (leftOrUp === "up") {
         const currentPosition = sortedPrimaryRoutes.indexOf(pathname);
         if (pathname.startsWith("/portfolio")) {
@@ -41,7 +40,6 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
         }
       }
     } else if (offset > maxVal) {
-      console.log(`We moved ${rightOrDown}`);
       if (rightOrDown === "down") {
         const currentPosition = sortedPrimaryRoutes.indexOf(pathname);
         if (pathname.startsWith("/portfolio")) {
@@ -80,10 +78,8 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
     const [dx, dy] = direction;
     const scrollDirection = dy > 0 ? "down" : "up";
     if (scrollDirection === "up") {
-      console.log("down");
       checkOffset(51, -50, 50, "up", "down");
     } else {
-      console.log("up");
       checkOffset(-51, -50, 50, "up", "down");
     }
   }, 200);

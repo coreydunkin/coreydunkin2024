@@ -1,4 +1,5 @@
 import { createClient, ContentfulClientApi, Entry } from 'contentful';
+import {notFound} from "next/navigation";
 
 const client: ContentfulClientApi = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -34,7 +35,6 @@ export const getPage = async (slug: string): Promise<Entry<PageFields> | null> =
     'fields.slug': slug,
     limit: 1,
   });
-  console.log(JSON.stringify(entries));
   return entries.items[0] || null;
 }
 
@@ -45,4 +45,18 @@ export const getPortfolio = async (slug: string): Promise<Entry<PortfolioFields>
     limit: 1,
   });
   return entries.items[0] || null;
+}
+
+export const getPages = async (): Promise<any[]> => {
+  const entries = await client.getEntries<PageFields>({
+    content_type: 'page',
+  });
+  return entries.items;
+}
+
+export const getPortfolios = async (): Promise<any[]> => {
+  const entries = await client.getEntries<PortfolioFields>({
+    content_type: 'portfolio',
+  });
+  return entries.items;
 }

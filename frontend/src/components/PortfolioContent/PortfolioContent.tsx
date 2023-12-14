@@ -14,8 +14,7 @@ type PortfolioContentProps = {
   data: PortfolioFields;
 }
 
-const PortfolioContent = ({data}: PortfolioContentProps) => {
-
+const PortfolioContent = ({data}: PortfolioContentProps | any) => {
   const { color, company, project, blurb, mobileBlurb, portfolioList, image, mobileImage, cta } = data;
   const portfolioListItems = portfolioList.map((item: any) => {
     const { icon, listBlurb, type } = item.fields;
@@ -26,10 +25,6 @@ const PortfolioContent = ({data}: PortfolioContentProps) => {
     }
   });
   const {linkText, linkUrl} = cta.fields;
-
-  console.log(image)
-  console.log(mobileImage)
-
 
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
@@ -46,9 +41,9 @@ const PortfolioContent = ({data}: PortfolioContentProps) => {
         COLOR_GRADIENT,
     );
     setContrastColor(shade(0.2, color || "#000000"));
+
   }, []);
   if(!data) return null;
-
   return (
     <section className="overflow-hidden my-20 mx-10 md:m-20 bg-white max-h-[75dvh] bg-opacity-70 py-8 veryshort:px-0  rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

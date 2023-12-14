@@ -13,9 +13,8 @@ type ContactContentProps = {
   data: PageFields;
 }
 
-const ContactContent = ({data}: ContactContentProps) => {
+const ContactContent = ({data}: ContactContentProps | any) => {
   if(!data) return null;
-  console.log('contact: ', data)
   const { title,subtitle, contactCard, socials } = data;
   const {
     email,

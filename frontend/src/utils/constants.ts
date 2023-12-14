@@ -1,4 +1,4 @@
-
+// links are just for backup purposes
 export const MAIN_LINKS = [
   {
     id: 1,
@@ -44,8 +44,6 @@ export const PORTFOLIO_LINKS = [
     href: "/portfolio/macquarie",
   },
 ];
-
-export const SWIPE_THRESHOLD = 5;
 
 export const COLOR_GRADIENT = [
   "#5e9fa3",

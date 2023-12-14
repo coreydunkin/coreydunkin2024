@@ -16,6 +16,8 @@ export const routesHierarchy = {
   ...generateRouteHierarchy(PORTFOLIO_LINKS),
 };
 
+
+
 export const primaryRoutesHeirarchy = generateRouteHierarchy(MAIN_LINKS);
 export const portfolioRoutesHeirarchy = generateRouteHierarchy(PORTFOLIO_LINKS);
 export const sortedRoutes = sortRoutes(routesHierarchy);
@@ -29,15 +31,15 @@ export function sortRoutes(routes: any) {
 }
 
 export const getAnimationOutVariable = (
+  routes: any,
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
-  //console.log(JSON.stringify(routesHierarchy))
   if (
     previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
+    routes[pathname] < routes[previousRoute]
   ) {
     return {
       initial: { y: 0, x: 0, opacity: 1 },
@@ -67,6 +69,7 @@ export const getAnimationOutVariable = (
 };
 
 export const getAnimationInVariable = (
+  routes: any,
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
@@ -74,7 +77,7 @@ export const getAnimationInVariable = (
 ) => {
   if (
     previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
+    routes[pathname] < routes[previousRoute]
   ) {
     return {
       initial: {

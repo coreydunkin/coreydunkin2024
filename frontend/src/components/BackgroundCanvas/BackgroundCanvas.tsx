@@ -21,7 +21,6 @@ const Gradient = () => {
   // let colors = require('nice-color-palettes');
   // let ind = Math.floor(Math.random() * colors.length);
   // let palette = colors[ind];
-  // console.log(colors[ind])
   let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
   //palette = ['#5e9fa3', '#ffae00ff', '#fab87f', '#f87e7b', '#b05574'];
   //palette = ['#5e9fa3', '#ffea2f', '#fab87f', '#f87e7b', '#b05574'];
@@ -29,7 +28,6 @@ const Gradient = () => {
 
   //palette = paletteNew.length > 0 ? paletteNew : palette;
 
-  //console.log(paletteNew)
 
   let paletteColorObjects = palette.map((color: string) => new Color(color));
   let paletteColorObjectsNew = paletteNew.map(

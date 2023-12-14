@@ -3,7 +3,6 @@ import AboutContent from "@/components/AboutContent/AboutContent";
 import {getPage} from "@/lib/contentful/createService";
 async function About() {
   const pageData = await getPage('about');
-  console.log(pageData);
   return (
     <main>
       <Container>

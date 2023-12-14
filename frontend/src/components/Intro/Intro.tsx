@@ -9,9 +9,8 @@ type HomeContentProps = {
   data: PageFields;
 }
 
-const Intro = ({data}: HomeContentProps) => {
+const Intro = ({data}: HomeContentProps | any) => {
   if(!data) return null;
-  console.log("home", data)
   const { title, subtitle, cta } = data;
   const link = cta.fields;
   return (

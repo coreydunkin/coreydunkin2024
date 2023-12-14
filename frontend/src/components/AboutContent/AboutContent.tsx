@@ -13,10 +13,9 @@ type AboutContentProps = {
   data: PageFields;
 }
 
-const AboutContent = ({data}: AboutContentProps) => {
+const AboutContent = ({data}: AboutContentProps | any) => {
   if(!data) return null;
   const { title, content, cta } = data;
-  console.log("ABOUT PAGE: ", cta);
   const copy = content.content[0].content[0].value ?? '';
   const link = cta.fields;
   return (
