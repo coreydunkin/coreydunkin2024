@@ -6,16 +6,16 @@ import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaPhone } from "react-icons/fa";
-import {PageFields} from "@/lib/contentful/createService";
+import { PageFields } from "@/lib/contentful/createService";
 import GetIcon from "@/utils/GetIcon";
 
 type ContactContentProps = {
   data: PageFields;
-}
+};
 
-const ContactContent = ({data}: ContactContentProps | any) => {
-  if(!data) return null;
-  const { title,subtitle, contactCard, socials } = data;
+const ContactContent = ({ data }: ContactContentProps | any) => {
+  if (!data) return null;
+  const { title, subtitle, contactCard, socials } = data;
   const {
     email,
     emailUrl,
@@ -23,20 +23,17 @@ const ContactContent = ({data}: ContactContentProps | any) => {
     name,
     phoneNumber,
     phoneUrl,
-    profileImage
+    profileImage,
   } = contactCard.fields;
-  const {
-    description,
-    file
-  } = profileImage.fields;
+  const { description, file } = profileImage.fields;
 
   const sociallinks = socials.map((social: any) => {
     const { linkText, linkUrl, newTab } = social.fields;
     return {
       linkText,
       linkUrl,
-      newTab
-    }
+      newTab,
+    };
   });
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16 overflow-visible">
@@ -142,8 +139,11 @@ const ContactContent = ({data}: ContactContentProps | any) => {
         </div>
 
         <div className="mt-0 md:mt-3 space-x-2 md:space-x-4 ml-[5.8rem] md:ml-28">
-          {
-            sociallinks.map((social: {linkText: string, linkUrl: string, newTab: boolean}, index: number) => {
+          {sociallinks.map(
+            (
+              social: { linkText: string; linkUrl: string; newTab: boolean },
+              index: number,
+            ) => {
               const { linkText, linkUrl, newTab } = social;
 
               return (
@@ -153,11 +153,11 @@ const ContactContent = ({data}: ContactContentProps | any) => {
                   href={linkUrl}
                   target={newTab ? "_blank" : "_self"}
                 >
-                  { GetIcon("#cccccc", linkText) }
+                  {GetIcon("#cccccc", linkText)}
                 </a>
               );
-            })
-          }
+            },
+          )}
         </div>
       </motion.div>
     </article>

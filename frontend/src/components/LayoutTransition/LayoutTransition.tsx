@@ -10,7 +10,7 @@ import {
   getAnimationOutVariable,
   routesHierarchy,
 } from "@/components/LayoutTransition/utils";
-import {useRouteStore} from "@/stores/routeStore";
+import { useRouteStore } from "@/stores/routeStore";
 
 export const LayoutTransition = ({
   children,
@@ -24,7 +24,9 @@ export const LayoutTransition = ({
   const exitAnimationDivRef = useRef<HTMLDivElement>(null);
   const pathIsPortfolioItem = pathname.includes("portfolio/");
   const previousPathIsPortfolio = previousRoute?.includes("portfolio/");
-  const routes = generateRouteHierarchy(useRouteStore((state) => state.routeValues));
+  const routes = generateRouteHierarchy(
+    useRouteStore((state) => state.routeValues),
+  );
 
   useLayoutEffect(() => {
     if (!currentPageRef.current) return;

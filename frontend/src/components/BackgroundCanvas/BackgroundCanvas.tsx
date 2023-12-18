@@ -28,7 +28,6 @@ const Gradient = () => {
 
   //palette = paletteNew.length > 0 ? paletteNew : palette;
 
-
   let paletteColorObjects = palette.map((color: string) => new Color(color));
   let paletteColorObjectsNew = paletteNew.map(
     (color: string) => new Color(color),

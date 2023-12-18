@@ -8,23 +8,33 @@ import { COLOR_GRADIENT } from "@/utils/constants";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { shade } from "polished";
 import GetIcon from "@/utils/GetIcon";
-import {PortfolioFields} from "@/lib/contentful/createService";
+import { PortfolioFields } from "@/lib/contentful/createService";
 
 type PortfolioContentProps = {
   data: PortfolioFields;
-}
+};
 
-const PortfolioContent = ({data}: PortfolioContentProps | any) => {
-  const { color, company, project, blurb, mobileBlurb, portfolioList, image, mobileImage, cta } = data;
+const PortfolioContent = ({ data }: PortfolioContentProps | any) => {
+  const {
+    color,
+    company,
+    project,
+    blurb,
+    mobileBlurb,
+    portfolioList,
+    image,
+    mobileImage,
+    cta,
+  } = data;
   const portfolioListItems = portfolioList.map((item: any) => {
     const { icon, listBlurb, type } = item.fields;
     return {
       icon,
       listBlurb,
-      type
-    }
+      type,
+    };
   });
-  const {linkText, linkUrl} = cta.fields;
+  const { linkText, linkUrl } = cta.fields;
 
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
@@ -36,14 +46,10 @@ const PortfolioContent = ({data}: PortfolioContentProps | any) => {
   };
 
   useEffect(() => {
-    setColorValues(
-      (color && getMonochromaticColors(color)) ||
-        COLOR_GRADIENT,
-    );
+    setColorValues((color && getMonochromaticColors(color)) || COLOR_GRADIENT);
     setContrastColor(shade(0.2, color || "#000000"));
-
   }, []);
-  if(!data) return null;
+  if (!data) return null;
   return (
     <section className="overflow-hidden my-20 mx-10 md:m-20 bg-white max-h-[75dvh] bg-opacity-70 py-8 veryshort:px-0  rounded-md border-[1px] border-gray-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -97,7 +103,10 @@ const PortfolioContent = ({data}: PortfolioContentProps | any) => {
             src={`https:${image.fields.file.url}`}
             alt={image.fields.title}
             className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0 pointer-events-none"
-            style={{ backgroundImage: `url(${image.fields.file.url})`, backgroundSize: 'cover' }}
+            style={{
+              backgroundImage: `url(${image.fields.file.url})`,
+              backgroundSize: "cover",
+            }}
             width="768"
             height="641"
             priority
@@ -116,7 +125,10 @@ const PortfolioContent = ({data}: PortfolioContentProps | any) => {
               src={`https:${mobileImage.fields.file.url}`}
               alt={mobileImage.fields.title}
               className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 pointer-events-none"
-              style={{ backgroundImage: `url(${mobileImage.fields.file.url})`, backgroundSize: 'cover' }}
+              style={{
+                backgroundImage: `url(${mobileImage.fields.file.url})`,
+                backgroundSize: "cover",
+              }}
               width="245"
               height="533"
               priority

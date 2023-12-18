@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
-import {PageFields} from "@/lib/contentful/createService";
+import { PageFields } from "@/lib/contentful/createService";
 
 type HomeContentProps = {
   data: PageFields;
-}
+};
 
-const Intro = ({data}: HomeContentProps | any) => {
-  if(!data) return null;
+const Intro = ({ data }: HomeContentProps | any) => {
+  if (!data) return null;
   const { title, subtitle, cta } = data;
   const link = cta.fields;
   return (
@@ -56,11 +56,7 @@ const Intro = ({data}: HomeContentProps | any) => {
       >
         {subtitle}
       </motion.h2>
-      <Button
-        href={link.linkUrl}
-        text={link.linkText}
-        animate={true}
-      />
+      <Button href={link.linkUrl} text={link.linkText} animate={true} />
     </article>
   );
 };

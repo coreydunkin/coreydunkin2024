@@ -16,8 +16,6 @@ export const routesHierarchy = {
   ...generateRouteHierarchy(PORTFOLIO_LINKS),
 };
 
-
-
 export const primaryRoutesHeirarchy = generateRouteHierarchy(MAIN_LINKS);
 export const portfolioRoutesHeirarchy = generateRouteHierarchy(PORTFOLIO_LINKS);
 export const sortedRoutes = sortRoutes(routesHierarchy);
@@ -37,10 +35,7 @@ export const getAnimationOutVariable = (
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
-  if (
-    previousRoute !== null &&
-    routes[pathname] < routes[previousRoute]
-  ) {
+  if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: { y: 0, x: 0, opacity: 1 },
       animate: {
@@ -75,10 +70,7 @@ export const getAnimationInVariable = (
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
-  if (
-    previousRoute !== null &&
-    routes[pathname] < routes[previousRoute]
-  ) {
+  if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import {domToReact, HTMLReactParserOptions} from "html-react-parser";
-import {ReactNode} from "react";
+import { domToReact, HTMLReactParserOptions } from "html-react-parser";
 
 interface ConvertOptions extends HTMLReactParserOptions {
-  replace: (domNode: any) => ReactNode | string | boolean | void | object | Element | null;
+  replace: (domNode: any) => string | boolean | void | object | Element | null;
 }
 
 const ConvertLinks: ConvertOptions = {
@@ -11,7 +10,11 @@ const ConvertLinks: ConvertOptions = {
     if (!attribs) return;
 
     if (attribs.href) {
-      return <Link href={attribs.href} className={attribs.class}>{domToReact(children, ConvertLinks)}</Link>;
+      return (
+        <Link href={attribs.href} className={attribs.class}>
+          {domToReact(children, ConvertLinks)}
+        </Link>
+      );
     }
   },
 };

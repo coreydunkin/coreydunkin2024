@@ -7,18 +7,18 @@ import { FaAngular } from "react-icons/fa6";
 import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
-import {PageFields} from "@/lib/contentful/createService";
-import parse from 'html-react-parser';
+import { PageFields } from "@/lib/contentful/createService";
+import parse from "html-react-parser";
 import ConvertLinks from "@/utils/convertLinks";
 
 type AboutContentProps = {
   data: PageFields;
-}
+};
 
-const AboutContent = ({data}: AboutContentProps | any) => {
-  if(!data) return null;
+const AboutContent = ({ data }: AboutContentProps | any) => {
+  if (!data) return null;
   const { title, content, cta } = data;
-  const copy = content.content[0].content[0].value ?? '';
+  const copy = content.content[0].content[0].value ?? "";
   const link = cta.fields;
   return (
     <div className="flex flex-col md:flex-row pt-16 md:pt-0">
@@ -64,12 +64,11 @@ const AboutContent = ({data}: AboutContentProps | any) => {
           </motion.h2>
           <motion.div
             className="
-        text-gray-100
-        font-thin
-        mt-0
-        text-xl
-        text-shadow-sm
-   "
+            text-gray-100
+            font-thin
+            mt-0
+            text-xl
+            text-shadow-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -81,11 +80,7 @@ const AboutContent = ({data}: AboutContentProps | any) => {
             {parse(copy, ConvertLinks)}
           </motion.div>
 
-          <Button
-            href={link.linkUrl}
-            text={link.linkText}
-            animate={true}
-          />
+          <Button href={link.linkUrl} text={link.linkText} animate={true} />
         </article>
       </div>
     </div>

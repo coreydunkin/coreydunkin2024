@@ -2,9 +2,10 @@
 import PortfolioItem from "@/components/PortfolioNav/PortfolioItem";
 import { usePathname } from "next/navigation";
 import PortfolioCaret from "@/components/PortfolioNav/PortfolioCaret";
-// build the nav out of the routes
-export default function PortfolioNav({links}: any) {
-  const portfolioLinks = links.filter(link => link.name === 'portfolio');
+import { MenuListProps } from "@/components/MenuList/MenuList";
+
+export default function PortfolioNav({ links }: MenuListProps) {
+  const portfolioLinks = links.filter((link) => link.name === "portfolio");
   const pathname = usePathname();
   if (!pathname.includes("portfolio")) {
     return null;

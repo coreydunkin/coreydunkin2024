@@ -5,11 +5,21 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 import MenuItem from "@/components/MenuList/MenuItem";
-import {useRouteStore} from "@/stores/routeStore";
+import { useRouteStore } from "@/stores/routeStore";
 
-export default function MenuList({links}: any) {
-  const setRouteValues = useRouteStore(state => state.setRouteValues);
-  const mainLinks = links.filter(link => Number.isInteger(link.id));
+export interface Link {
+  id: number;
+  name: string;
+  href: string;
+}
+
+export interface MenuListProps {
+  links: Link[];
+}
+
+export default function MenuList({ links }: MenuListProps) {
+  const setRouteValues = useRouteStore((state) => state.setRouteValues);
+  const mainLinks = links.filter((link) => Number.isInteger(link.id));
   const [isOpen, setIsOpen] = useState(false);
   const [portfolioPath, setPortfolioPath] = useState<string | null>(null); // ["/portfolio/qantas", "/portfolio/livetraffic", "/portfolio/etoll"
   const pathName = usePathname();

@@ -10,9 +10,15 @@ import {
   SiAzuredevops,
   SiAdobe,
 } from "react-icons/si";
-import { FaNodeJs, FaCheck, FaJenkins, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
+import {
+  FaNodeJs,
+  FaCheck,
+  FaJenkins,
+  FaGithub,
+  FaLinkedin,
+  FaPhone,
+} from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-
 
 const GetIcon = (iconColor: string, icon: string) => {
   switch (icon) {
@@ -87,21 +93,13 @@ const GetIcon = (iconColor: string, icon: string) => {
         />
       );
     case "github":
-      return (
-        <FaGithub />
-      );
+      return <FaGithub />;
     case "linkedin":
-      return (
-        <FaLinkedin />
-      );
+      return <FaLinkedin />;
     case "email":
-      return (
-        <HiOutlineMail />
-      );
+      return <HiOutlineMail />;
     case "phone":
-      return (
-        <FaPhone />
-      );
+      return <FaPhone />;
     default:
       return (
         <FaCheck

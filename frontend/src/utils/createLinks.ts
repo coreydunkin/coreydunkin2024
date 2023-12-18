@@ -1,4 +1,4 @@
-import {getPages, getPortfolios} from "@/lib/contentful/createService";
+import { getPages, getPortfolios } from "@/lib/contentful/createService";
 
 const createLinks = async () => {
   const pages = await getPages();
@@ -16,6 +16,6 @@ const createLinks = async () => {
   }));
 
   return [...pageLinks, ...portfolioLinks].sort((a, b) => a.id - b.id);
-}
+};
 
 export default createLinks;
