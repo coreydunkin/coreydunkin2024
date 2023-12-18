@@ -35,6 +35,7 @@ export const getAnimationOutVariable = (
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
+  if (pathname === previousRoute) return;
   if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: { y: 0, x: 0, opacity: 1 },
@@ -70,6 +71,7 @@ export const getAnimationInVariable = (
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
+  if (pathname === previousRoute) return;
   if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: {
