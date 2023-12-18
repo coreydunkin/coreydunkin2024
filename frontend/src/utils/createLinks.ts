@@ -3,6 +3,7 @@ import { getPages, getPortfolios } from "@/lib/contentful/createService";
 const createLinks = async () => {
   const pages = await getPages();
   const portfolios = await getPortfolios();
+
   const pageLinks = pages.map((page, index) => ({
     id: page.fields.id,
     name: page.fields.slug,

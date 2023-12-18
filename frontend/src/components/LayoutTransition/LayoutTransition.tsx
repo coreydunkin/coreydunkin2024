@@ -29,7 +29,7 @@ export const LayoutTransition = ({
   );
 
   useLayoutEffect(() => {
-    if (!currentPageRef.current) return;
+    if (!currentPageRef.current || pathname === previousRoute) return;
     if (!lastPageRef.current)
       lastPageRef.current = currentPageRef.current.children;
 
@@ -37,7 +37,7 @@ export const LayoutTransition = ({
       lastPageRef.current![0].cloneNode(true),
     );
     lastPageRef.current = currentPageRef.current.children;
-  }, [pathname]);
+  }, [routes]);
 
   return (
     <AnimatePresence initial={routes[pathname] > 1 ? false : true}>

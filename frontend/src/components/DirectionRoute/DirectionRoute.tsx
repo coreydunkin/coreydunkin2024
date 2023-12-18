@@ -11,7 +11,6 @@ import debounce from "lodash.debounce";
 const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const router = useRouter();
-
   function checkOffset(
     offset: number,
     minVal: number,
