@@ -8,6 +8,8 @@ import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import {PageFields} from "@/lib/contentful/createService";
+import parse from 'html-react-parser';
+import ConvertLinks from "@/utils/convertLinks";
 
 type AboutContentProps = {
   data: PageFields;
@@ -60,7 +62,6 @@ const AboutContent = ({data}: AboutContentProps | any) => {
           >
             {title}
           </motion.h2>
-
           <motion.div
             className="
         text-gray-100
@@ -76,32 +77,8 @@ const AboutContent = ({data}: AboutContentProps | any) => {
               delay: 0.6, //h2 starts after 0.6s
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
-            dangerouslySetInnerHTML={{ __html: copy }}
           >
-            {/*<p>*/}
-            {/*  I am a passionate and experienced Senior Software Engineer with*/}
-            {/*  over a decade of experience. I have worked on high traffic,*/}
-            {/*  intricate websites for large-scale clients such as{" "}*/}
-            {/*  <Link className="text-white" href="/portfolio/qantas">*/}
-            {/*    Qantas*/}
-            {/*  </Link>*/}
-            {/*  ,{" "}*/}
-            {/*  <Link className="text-white" href="/portfolio/livetraffic">*/}
-            {/*    Transport NSW*/}
-            {/*  </Link>*/}
-            {/*  ,{" "}*/}
-            {/*  <Link className="text-white" href="/portfolio/macquarie">*/}
-            {/*    Macquarie Bank*/}
-            {/*  </Link>*/}
-            {/*  , and many more.*/}
-            {/*</p>*/}
-            {/*<p className="hidden md:block">*/}
-            {/*  I have expertise in building complex web applications using React,*/}
-            {/*  Next.js, Angular, and Node.js and my proficiency in TypeScript*/}
-            {/*  contributes to developing robust and scalable solutions.*/}
-            {/*  Additionally, I have a strong background in implementing efficient*/}
-            {/*  CI/CD pipelines, enhancing deployment processes and code quality.*/}
-            {/*</p>*/}
+            {parse(copy, ConvertLinks)}
           </motion.div>
 
           <Button

@@ -92,12 +92,17 @@ const PortfolioContent = ({data}: PortfolioContentProps | any) => {
               </button>
             </Link>
           </div>
+
           <Image
             src={`https:${image.fields.file.url}`}
             alt={image.fields.title}
-            className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
+            className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0 pointer-events-none"
+            style={{ backgroundImage: `url(${image.fields.file.url})`, backgroundSize: 'cover' }}
             width="768"
             height="641"
+            priority
+            blurDataURL={`https:${image.fields.file.url}-blur.png`}
+            placeholder={"blur"}
           />
           <motion.div
             className="relative md:hidden"
@@ -110,9 +115,13 @@ const PortfolioContent = ({data}: PortfolioContentProps | any) => {
             <Image
               src={`https:${mobileImage.fields.file.url}`}
               alt={mobileImage.fields.title}
-              className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+              className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 pointer-events-none"
+              style={{ backgroundImage: `url(${mobileImage.fields.file.url})`, backgroundSize: 'cover' }}
               width="245"
               height="533"
+              priority
+              blurDataURL={`https:${mobileImage.fields.file.url}-blur.png`}
+              placeholder={"blur"}
             />
 
             <motion.div
