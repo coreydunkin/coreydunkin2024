@@ -6,8 +6,35 @@ import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaPhone } from "react-icons/fa";
+import { PageFields } from "@/lib/contentful/createService";
+import GetIcon from "@/utils/GetIcon";
 
-const ContactContent = () => {
+type ContactContentProps = {
+  data: PageFields;
+};
+
+const ContactContent = ({ data }: ContactContentProps | any) => {
+  if (!data) return null;
+  const { title, subtitle, contactCard, socials } = data;
+  const {
+    email,
+    emailUrl,
+    jobTitle,
+    name,
+    phoneNumber,
+    phoneUrl,
+    profileImage,
+  } = contactCard.fields;
+  const { description, file } = profileImage.fields;
+
+  const sociallinks = socials.map((social: any) => {
+    const { linkText, linkUrl, newTab } = social.fields;
+    return {
+      linkText,
+      linkUrl,
+      newTab,
+    };
+  });
   return (
     <article className="prose text-left pl-12 pr-12 md:pl-16 md:pr-16 overflow-visible">
       <motion.h3
@@ -30,7 +57,7 @@ const ContactContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        {`Here's my card.`}
+        {title}
       </motion.h3>
 
       <motion.h2
@@ -49,7 +76,7 @@ const ContactContent = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Call me.
+        {subtitle}
       </motion.h2>
 
       <motion.div
@@ -87,22 +114,22 @@ const ContactContent = () => {
           />
           <div className="grow md:ml-4">
             <h3 className="font-bold font-playfairDisplay text-gray-800 mt-0 md:mt-0">
-              Corey Dunkin
+              {name}
             </h3>
             <p className="text-xs uppercase text-gray-500 hidden md:block">
-              Senior Software Engineer
+              {jobTitle}
             </p>
             <p className="text-xs text-gray-500 text-decoration-none">
               <a
-                href="tel:+61434090596"
+                href={phoneUrl}
                 className="text-xs text-gray-500 text-decoration-none"
               >
-                0434 090 596
+                {phoneNumber}
               </a>
             </p>
             <p className="text-xs text-gray-500 text-decoration-none">
               <a
-                href="mailto:corey.dunkin@gmail.com"
+                href={emailUrl}
                 className="text-xs text-gray-500 text-decoration-none"
               >
                 corey.dunkin@gmail.com
@@ -112,32 +139,25 @@ const ContactContent = () => {
         </div>
 
         <div className="mt-0 md:mt-3 space-x-2 md:space-x-4 ml-[5.8rem] md:ml-28">
-          <a
-            className="inline-flex justify-center items-center w-8 h-8 text-lg font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-            href="https://github.com/coreydunkin"
-            target="_blank"
-          >
-            <FaGithub />
-          </a>
-          <a
-            className="inline-flex justify-center items-center w-8 h-8 text-lg font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-            href="https://www.linkedin.com/in/coreydunkin/"
-            target="_blank"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            className="inline-flex justify-center items-center w-8 h-8 text-lg font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-            href="mailto:corey.dunkin@gmail.com"
-          >
-            <HiOutlineMail />
-          </a>
-          <a
-            className="inline-flex justify-center items-center w-8 h-8 text-lg font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-            href="tel:+61434090596"
-          >
-            <FaPhone />
-          </a>
+          {sociallinks.map(
+            (
+              social: { linkText: string; linkUrl: string; newTab: boolean },
+              index: number,
+            ) => {
+              const { linkText, linkUrl, newTab } = social;
+
+              return (
+                <a
+                  key={index}
+                  className="inline-flex justify-center items-center w-8 h-8 text-lg font-semibold rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                  href={linkUrl}
+                  target={newTab ? "_blank" : "_self"}
+                >
+                  {GetIcon("#cccccc", linkText)}
+                </a>
+              );
+            },
+          )}
         </div>
       </motion.div>
     </article>

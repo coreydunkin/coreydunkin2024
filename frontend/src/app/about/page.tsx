@@ -1,11 +1,15 @@
 import Container from "@/components/Container/Container";
 import AboutContent from "@/components/AboutContent/AboutContent";
-export default function About() {
+import { getPage } from "@/lib/contentful/createService";
+async function About() {
+  const pageData = await getPage("about");
   return (
     <main>
       <Container>
-        <AboutContent />
+        <AboutContent data={pageData?.fields} />
       </Container>
     </main>
   );
 }
+
+export default About;

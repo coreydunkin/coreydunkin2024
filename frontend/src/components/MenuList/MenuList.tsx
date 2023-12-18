@@ -5,9 +5,21 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 import MenuItem from "@/components/MenuList/MenuItem";
-import { MAIN_LINKS } from "@/utils/constants";
+import { useRouteStore } from "@/stores/routeStore";
 
-export default function Example() {
+export interface Link {
+  id: number;
+  name: string;
+  href: string;
+}
+
+export interface MenuListProps {
+  links: Link[];
+}
+
+export default function MenuList({ links }: MenuListProps) {
+  const setRouteValues = useRouteStore((state) => state.setRouteValues);
+  const mainLinks = links.filter((link) => Number.isInteger(link.id));
   const [isOpen, setIsOpen] = useState(false);
   const [portfolioPath, setPortfolioPath] = useState<string | null>(null); // ["/portfolio/qantas", "/portfolio/livetraffic", "/portfolio/etoll"
   const pathName = usePathname();
@@ -18,10 +30,10 @@ export default function Example() {
     if (prevPathName?.includes("/portfolio/")) {
       setPortfolioPath(prevPathName);
     }
+    setRouteValues(links);
   }, [pathName]);
 
   return (
-    // <nav className="border-b-white border-b-[1px]">
     <nav
       className={`${
         isOpen && "bg-blend-multiply bg-gray-800 min-h-screen bg-opacity-50"
@@ -90,13 +102,13 @@ export default function Example() {
           id="navbar-default"
         >
           <ul className="font-playfairDisplay font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-            {MAIN_LINKS.map((link, index) => (
+            {mainLinks.map((link, index) => (
               <MenuItem
                 key={link.id}
                 link={link}
                 pathName={pathName}
                 setIsOpen={setIsOpen}
-                isLast={index === MAIN_LINKS.length - 1}
+                isLast={index === mainLinks.length - 1}
               />
             ))}
           </ul>

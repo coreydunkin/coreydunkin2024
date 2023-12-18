@@ -18,7 +18,7 @@ const MenuItem = ({ link, pathName, setIsOpen, isLast }: MenuItemProps) => (
       <Link
         onClick={() => setIsOpen(false)}
         href={link.href}
-        className={`${
+        className={`capitalize ${
           (link.href !== "/" && pathName.startsWith(link.href)) ||
           (link.href === "/" && pathName === "/")
             ? "border-b-white"

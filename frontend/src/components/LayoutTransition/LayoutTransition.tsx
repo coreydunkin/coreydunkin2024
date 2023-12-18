@@ -5,10 +5,12 @@ import { useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 import {
+  generateRouteHierarchy,
   getAnimationInVariable,
   getAnimationOutVariable,
   routesHierarchy,
 } from "@/components/LayoutTransition/utils";
+import { useRouteStore } from "@/stores/routeStore";
 
 export const LayoutTransition = ({
   children,
@@ -22,6 +24,9 @@ export const LayoutTransition = ({
   const exitAnimationDivRef = useRef<HTMLDivElement>(null);
   const pathIsPortfolioItem = pathname.includes("portfolio/");
   const previousPathIsPortfolio = previousRoute?.includes("portfolio/");
+  const routes = generateRouteHierarchy(
+    useRouteStore((state) => state.routeValues),
+  );
 
   useLayoutEffect(() => {
     if (!currentPageRef.current) return;
@@ -35,11 +40,12 @@ export const LayoutTransition = ({
   }, [pathname]);
 
   return (
-    <AnimatePresence initial={routesHierarchy[pathname] > 1 ? false : true}>
+    <AnimatePresence initial={routes[pathname] > 1 ? false : true}>
       <div className="relative h-screen w-screen hover:cursor-grab active:cursor-grabbing">
         <motion.div
           key={pathname + "exit-animation"}
           {...getAnimationOutVariable(
+            routes,
             pathname,
             previousRoute,
             pathIsPortfolioItem,
@@ -57,6 +63,7 @@ export const LayoutTransition = ({
         <motion.div
           key={pathname}
           {...getAnimationInVariable(
+            routes,
             pathname,
             previousRoute,
             pathIsPortfolioItem,

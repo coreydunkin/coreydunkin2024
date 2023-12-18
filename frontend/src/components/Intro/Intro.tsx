@@ -3,8 +3,16 @@ import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
+import { PageFields } from "@/lib/contentful/createService";
 
-const Intro = () => {
+type HomeContentProps = {
+  data: PageFields;
+};
+
+const Intro = ({ data }: HomeContentProps | any) => {
+  if (!data) return null;
+  const { title, subtitle, cta } = data;
+  const link = cta.fields;
   return (
     <article className="prose text-left px-12 md:px-16 pt-28 md:pt-0">
       <motion.h1
@@ -27,7 +35,7 @@ const Intro = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Corey Dunkin.
+        {title}
       </motion.h1>
 
       <motion.h2
@@ -46,9 +54,9 @@ const Intro = () => {
           ease: [0.6, 0.01, 0.05, 0.9],
         }}
       >
-        Senior Software Engineer in Sydney, Australia.
+        {subtitle}
       </motion.h2>
-      <Button href={"/about"} text={"View more"} animate={true} />
+      <Button href={link.linkUrl} text={link.linkText} animate={true} />
     </article>
   );
 };

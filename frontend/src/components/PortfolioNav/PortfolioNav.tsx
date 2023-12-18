@@ -1,10 +1,11 @@
 "use client";
 import PortfolioItem from "@/components/PortfolioNav/PortfolioItem";
 import { usePathname } from "next/navigation";
-import { PORTFOLIO_LINKS } from "@/utils/constants";
 import PortfolioCaret from "@/components/PortfolioNav/PortfolioCaret";
-// build the nav out of the routes
-export default function PortfolioNav() {
+import { MenuListProps } from "@/components/MenuList/MenuList";
+
+export default function PortfolioNav({ links }: MenuListProps) {
+  const portfolioLinks = links.filter((link) => link.name === "portfolio");
   const pathname = usePathname();
   if (!pathname.includes("portfolio")) {
     return null;
@@ -12,7 +13,7 @@ export default function PortfolioNav() {
   return (
     <>
       <div className="fixed z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        {PORTFOLIO_LINKS.map((portfolioLink) => (
+        {portfolioLinks.map((portfolioLink: any) => (
           <PortfolioItem
             key={portfolioLink.id}
             link={portfolioLink}
@@ -20,7 +21,7 @@ export default function PortfolioNav() {
           />
         ))}
       </div>
-      <PortfolioCaret portfolioLinks={PORTFOLIO_LINKS} currentPath={pathname} />
+      <PortfolioCaret portfolioLinks={portfolioLinks} currentPath={pathname} />
     </>
   );
 }

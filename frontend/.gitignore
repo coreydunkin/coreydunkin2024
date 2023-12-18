@@ -55,3 +55,6 @@ next-env.d.ts
 *.iml
 *.ipr
 .idea
+
+.env.local
+.env.prod

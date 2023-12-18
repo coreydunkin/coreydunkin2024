@@ -7,8 +7,19 @@ import { FaAngular } from "react-icons/fa6";
 import { SiAzuredevops } from "react-icons/si";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
+import { PageFields } from "@/lib/contentful/createService";
+import parse from "html-react-parser";
+import ConvertLinks from "@/utils/convertLinks";
 
-const AboutContent = () => {
+type AboutContentProps = {
+  data: PageFields;
+};
+
+const AboutContent = ({ data }: AboutContentProps | any) => {
+  if (!data) return null;
+  const { title, content, cta } = data;
+  const copy = content.content[0].content[0].value ?? "";
+  const link = cta.fields;
   return (
     <div className="flex flex-col md:flex-row pt-16 md:pt-0">
       <motion.div
@@ -49,17 +60,15 @@ const AboutContent = () => {
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
           >
-            A lil bit about me.
+            {title}
           </motion.h2>
-
           <motion.div
             className="
-        text-gray-100
-        font-thin
-        mt-0
-        text-xl
-        text-shadow-sm
-   "
+            text-gray-100
+            font-thin
+            mt-0
+            text-xl
+            text-shadow-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -68,37 +77,10 @@ const AboutContent = () => {
               ease: [0.6, 0.01, 0.05, 0.9],
             }}
           >
-            <p>
-              I am a passionate and experienced Senior Software Engineer with
-              over a decade of experience. I have worked on high traffic,
-              intricate websites for large-scale clients such as{" "}
-              <Link className="text-white" href="/portfolio/qantas">
-                Qantas
-              </Link>
-              ,{" "}
-              <Link className="text-white" href="/portfolio/livetraffic">
-                Transport NSW
-              </Link>
-              ,{" "}
-              <Link className="text-white" href="/portfolio/macquarie">
-                Macquarie Bank
-              </Link>
-              , and many more.
-            </p>
-            <p className="hidden md:block">
-              I have expertise in building complex web applications using React,
-              Next.js, Angular, and Node.js and my proficiency in TypeScript
-              contributes to developing robust and scalable solutions.
-              Additionally, I have a strong background in implementing efficient
-              CI/CD pipelines, enhancing deployment processes and code quality.
-            </p>
+            {parse(copy, ConvertLinks)}
           </motion.div>
 
-          <Button
-            href={"/portfolio/qantas"}
-            text={"View my work"}
-            animate={true}
-          />
+          <Button href={link.linkUrl} text={link.linkText} animate={true} />
         </article>
       </div>
     </div>

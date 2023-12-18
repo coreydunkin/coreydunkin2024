@@ -29,16 +29,13 @@ export function sortRoutes(routes: any) {
 }
 
 export const getAnimationOutVariable = (
+  routes: any,
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
-  //console.log(JSON.stringify(routesHierarchy))
-  if (
-    previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
-  ) {
+  if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: { y: 0, x: 0, opacity: 1 },
       animate: {
@@ -67,15 +64,13 @@ export const getAnimationOutVariable = (
 };
 
 export const getAnimationInVariable = (
+  routes: any,
   pathname: string,
   previousRoute: string | null,
   pathIsPortfolioItem: boolean,
   previousPathIsPortfolio: boolean | undefined,
 ) => {
-  if (
-    previousRoute !== null &&
-    routesHierarchy[pathname] < routesHierarchy[previousRoute]
-  ) {
+  if (previousRoute !== null && routes[pathname] < routes[previousRoute]) {
     return {
       initial: {
         y: pathIsPortfolioItem && previousPathIsPortfolio ? 0 : "-50%",
