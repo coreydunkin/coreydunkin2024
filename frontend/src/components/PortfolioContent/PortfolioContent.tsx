@@ -8,7 +8,7 @@ import { COLOR_GRADIENT } from "@/utils/constants";
 import getMonochromaticColors from "@/utils/getMonochromaticColors";
 import { shade } from "polished";
 import GetIcon from "@/utils/GetIcon";
-import { PortfolioFields } from "@/lib/contentful/createService";
+import { PortfolioFields } from "@/lib/contentful/utils";
 
 type PortfolioContentProps = {
   data: PortfolioFields;
@@ -25,16 +25,17 @@ const PortfolioContent = ({ data }: PortfolioContentProps | any) => {
     image,
     mobileImage,
     cta,
-  } = data;
+  } = data.fields;
+
   const portfolioListItems = portfolioList.map((item: any) => {
-    const { icon, listBlurb, type } = item.fields;
+    const { icon, listBlurb, type } = item;
     return {
       icon,
       listBlurb,
       type,
     };
   });
-  const { linkText, linkUrl } = cta.fields;
+  const { linkText, linkUrl } = cta;
 
   const setColorValues = useColorStore((state) => state.setColorValues);
   const [isTapped, setIsTapped] = useState(false);
@@ -100,17 +101,17 @@ const PortfolioContent = ({ data }: PortfolioContentProps | any) => {
           </div>
 
           <Image
-            src={`https:${image.fields.file.url}`}
-            alt={image.fields.title}
+            src={`https:${image.file.url}`}
+            alt={image.title}
             className="hidden md:block w-full md:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0 pointer-events-none"
             style={{
-              backgroundImage: `url(${image.fields.file.url})`,
+              backgroundImage: `url(${image.file.url})`,
               backgroundSize: "cover",
             }}
             width="768"
             height="641"
             priority
-            blurDataURL={`https:${image.fields.file.url}-blur.png`}
+            blurDataURL={`https:${image.file.url}-blur.png`}
             placeholder={"blur"}
           />
           <motion.div
@@ -122,17 +123,17 @@ const PortfolioContent = ({ data }: PortfolioContentProps | any) => {
             }}
           >
             <Image
-              src={`https:${mobileImage.fields.file.url}`}
-              alt={mobileImage.fields.title}
+              src={`https:${mobileImage.file.url}`}
+              alt={mobileImage.title}
               className="block w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 pointer-events-none"
               style={{
-                backgroundImage: `url(${mobileImage.fields.file.url})`,
+                backgroundImage: `url(${mobileImage.file.url})`,
                 backgroundSize: "cover",
               }}
               width="245"
               height="533"
               priority
-              blurDataURL={`https:${mobileImage.fields.file.url}-blur.png`}
+              blurDataURL={`https:${mobileImage.file.url}-blur.png`}
               placeholder={"blur"}
             />
 

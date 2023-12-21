@@ -18,22 +18,15 @@ type BackgroundCanvasProps = {
 };
 
 const Gradient = () => {
-  // let colors = require('nice-color-palettes');
-  // let ind = Math.floor(Math.random() * colors.length);
-  // let palette = colors[ind];
   let palette = ["#5e9fa3", "#dcd1b4", "#fab87f", "#f87e7b", "#b05574"];
-  //palette = ['#5e9fa3', '#ffae00ff', '#fab87f', '#f87e7b', '#b05574'];
-  //palette = ['#5e9fa3', '#ffea2f', '#fab87f', '#f87e7b', '#b05574'];
+
   let paletteNew = useColorStore((state) => state.colorValues);
 
-  //palette = paletteNew.length > 0 ? paletteNew : palette;
 
   let paletteColorObjects = palette.map((color: string) => new Color(color));
   let paletteColorObjectsNew = paletteNew.map(
     (color: string) => new Color(color),
   );
-  //console.log(paletteColorObjectsNew);
-  // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh | null>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
 
@@ -72,11 +65,8 @@ const Gradient = () => {
   }, [updateMousePosition]);
 
   useFrame((state) => {
-    //const { clock } = state;
-
     if (mesh.current?.material) {
       const meshMaterial = mesh.current.material as THREE.ShaderMaterial;
-
       meshMaterial.uniforms.u_time.value += 0.0002;
       meshMaterial.uniforms.u_mouse.value = new Vector2(
         mousePosition.current.x,
@@ -84,14 +74,6 @@ const Gradient = () => {
       );
     }
   });
-
-  // TODO:
-  /*
-   * 1. Create a NEW canvas, that sits in the background
-   * 2. This canvas has different shaders/vertexes
-   * 3. its larger but sits behind
-   * 4. only has a gradient, doesn't warp
-   */
   return (
     <>
       <mesh ref={mesh} position={[0, 0, 0]} scale={1.5}>
@@ -108,18 +90,6 @@ const Gradient = () => {
 };
 
 const BackgroundCanvas = () => {
-  // TODO:
-  // 1. Gradient will control the background on different pages
-  // 2. Client page etc
-
-  // const [gradientColors, setGradientColors] = useState([]);
-  //
-  // useEffect(() => {
-  //   const colors = require('nice-color-palettes');
-  //   const ind = Math.floor(Math.random() * colors.length);
-  //   const palette = ['#0083A4FF', '#AA1851FF','#AA1851FF', '#0083A4FF'].reverse();
-  //   setGradientColors(palette);
-  // }, []);
   const pathname = usePathname();
   const pageClass = pathname !== "/" ? "darken" : "default";
   let palette = useColorStore((state) => state.colorValues);
@@ -142,7 +112,6 @@ export const BackgroundCanvasContainer = ({
 }: BackgroundCanvasProps) => {
   let gradient = `linear-gradient(${palette[0]}, ${palette[1]}, ${palette[2]}, ${palette[3]}, ${palette[4]})`;
   let color = `${palette[0]}`;
-  //console.log("gradient: ", gradient);
   return (
     <motion.div
       initial={{ opacity: 0 }}

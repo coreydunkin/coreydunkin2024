@@ -1,9 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
-import Link from "next/link";
 import Button from "@/components/Button/Button";
-import { PageFields } from "@/lib/contentful/createService";
+import { PageFields } from "@/lib/contentful/utils";
 
 type HomeContentProps = {
   data: PageFields;
@@ -11,8 +10,7 @@ type HomeContentProps = {
 
 const Intro = ({ data }: HomeContentProps | any) => {
   if (!data) return null;
-  const { title, subtitle, cta } = data;
-  const link = cta.fields;
+  const { title, subtitle, cta } = data;;
   return (
     <article className="prose text-left px-12 md:px-16 pt-28 md:pt-0">
       <motion.h1
@@ -56,7 +54,7 @@ const Intro = ({ data }: HomeContentProps | any) => {
       >
         {subtitle}
       </motion.h2>
-      <Button href={link.linkUrl} text={link.linkText} animate={true} />
+      <Button href={cta.linkUrl} text={cta.linkText} animate={true} />
     </article>
   );
 };

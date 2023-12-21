@@ -2,11 +2,7 @@
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
 import Image from "next/image";
-import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { HiOutlineMail } from "react-icons/hi";
-import { FaPhone } from "react-icons/fa";
-import { PageFields } from "@/lib/contentful/createService";
+import { PageFields } from "@/lib/contentful/utils";
 import GetIcon from "@/utils/GetIcon";
 
 type ContactContentProps = {
@@ -24,11 +20,11 @@ const ContactContent = ({ data }: ContactContentProps | any) => {
     phoneNumber,
     phoneUrl,
     profileImage,
-  } = contactCard.fields;
-  const { description, file } = profileImage.fields;
+  } = contactCard;
+  const { description, file } = profileImage;
 
   const sociallinks = socials.map((social: any) => {
-    const { linkText, linkUrl, newTab } = social.fields;
+    const { linkText, linkUrl, newTab } = social;
     return {
       linkText,
       linkUrl,
