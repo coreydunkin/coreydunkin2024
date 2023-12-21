@@ -1,13 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import s from "@/app/page.module.scss";
-import { FaJenkins, FaNodeJs, FaReact } from "react-icons/fa";
-import { TbBrandAzure, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
+import { FaNodeJs, FaReact } from "react-icons/fa";
+import { TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
 import { FaAngular } from "react-icons/fa6";
-import { SiAzuredevops } from "react-icons/si";
-import Link from "next/link";
 import Button from "@/components/Button/Button";
-import { PageFields } from "@/lib/contentful/createService";
+import { PageFields } from "@/lib/contentful/utils";
 import parse from "html-react-parser";
 import ConvertLinks from "@/utils/convertLinks";
 
@@ -19,7 +17,6 @@ const AboutContent = ({ data }: AboutContentProps | any) => {
   if (!data) return null;
   const { title, content, cta } = data;
   const copy = content.content[0].content[0].value ?? "";
-  const link = cta.fields;
   return (
     <div className="flex flex-col md:flex-row pt-16 md:pt-0">
       <motion.div
@@ -80,7 +77,7 @@ const AboutContent = ({ data }: AboutContentProps | any) => {
             {parse(copy, ConvertLinks)}
           </motion.div>
 
-          <Button href={link.linkUrl} text={link.linkText} animate={true} />
+          <Button href={cta.linkUrl} text={cta.linkText} animate={true} />
         </article>
       </div>
     </div>

@@ -1,10 +1,10 @@
-import { getPortfolio } from "@/lib/contentful/createService";
+import { getPage } from "@/lib/contentful/createService";
 import Container from "@/components/Container/Container";
 import PortfolioContent from "@/components/PortfolioContent/PortfolioContent";
 import { notFound } from "next/navigation";
 
 async function Page({ params }: { params: { slug: string } }) {
-  const portfolioData = await getPortfolio(params.slug);
+  const portfolioData = await getPage("portfolio", params.slug);
   if (!portfolioData) {
     return (
       <main>
@@ -15,7 +15,7 @@ async function Page({ params }: { params: { slug: string } }) {
   return (
     <main>
       <Container>
-        <PortfolioContent data={portfolioData?.fields} />
+        <PortfolioContent data={portfolioData} />
       </Container>
     </main>
   );
