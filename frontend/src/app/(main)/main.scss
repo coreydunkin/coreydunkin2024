@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "../../components/_shared.scss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html,
+body {
+  height: 100vh; /* standard definition (as fallback) */
+  height: 100dvh; /* dynamic vh will make the trick on iOS */
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(#b05574, #5e9fa3);
+}
+

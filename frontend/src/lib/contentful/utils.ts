@@ -45,6 +45,23 @@ export type PortfolioFields = {
   contentTypeId: string;
 };
 
+export type ResumeFields = {
+  fields: {
+    slug: string;
+    name: string;
+    avatar: string;
+    jobTitle: string;
+    website: string;
+    about: string;
+    tech: string[];
+    apis: string[];
+    tools: string[];
+    workHistory: EntryField[];
+    education: EntryField[];
+  };
+  contentTypeId: string;
+}
+
 export type Entry<T> = {
   fields: T;
 };
