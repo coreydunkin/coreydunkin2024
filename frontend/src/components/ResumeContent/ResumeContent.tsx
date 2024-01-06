@@ -5,6 +5,7 @@ import RichText from "@/components/ResumeContent/RichText";
 import TechList from "@/components/ResumeContent/TechList";
 import Content from "@/components/ResumeContent/Content";
 import PrintButton from "@/components/ResumeContent/PrintButton";
+import Link from "next/link";
 
 type ResumeContentProps = {
   data: ResumeFields;
@@ -44,9 +45,11 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
             className="rounded-full object-cover"
           />
           <div className="ml-4">
-            <h1 className="mb-0.5 mt-1 text-2xl text-slate-900 font-playfairDisplay font-bold">
-              {name}
-            </h1>
+            <Link href="/">
+              <h1 className="mb-0.5 mt-1 text-2xl text-slate-900 font-playfairDisplay font-bold">
+                {name}
+              </h1>
+            </Link>
             <p className="text-slate-700">
               {jobTitle}
             </p>
