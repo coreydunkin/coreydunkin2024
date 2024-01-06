@@ -122,8 +122,6 @@ export const getResume = async (): Promise<Entry<PageFields>> => {
     mainEntry.fields.resumeContacts = mainEntry.fields.resumeContacts.map((contactItem: any) => mergeLinkedEntryFields(contactItem, data.includes));
   }
 
-  console.log('mainEntry', mainEntry);
-
   return mainEntry;
 };
 
