@@ -1,65 +1,14 @@
 
 import {EntryField, ResumeFields} from "@/lib/contentful/utils";
 import Image from "next/image";
+import RichText from "@/components/ResumeContent/RichText";
+import TechList from "@/components/ResumeContent/TechList";
+import Content from "@/components/ResumeContent/Content";
+import PrintButton from "@/components/ResumeContent/PrintButton";
+import Link from "next/link";
 
 type ResumeContentProps = {
   data: ResumeFields;
-};
-
-type RichTextProps = {
-  text: string;
-}
-
-const RichText = ({ text }: RichTextProps) => {
-  const textArray = text.split('\n').filter(paragraph => paragraph);
-  const paragraphs = textArray.map((text, index) => {
-    const htmlText = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
-    return (
-      <p key={index} className={`text-slate-600 ${index < textArray.length - 1 ? 'mb-5' : ''}`} dangerouslySetInnerHTML={{ __html: htmlText }} />
-    );
-  });
-
-  return <>{paragraphs}</>;
-}
-
-const TechList: React.FC<{ items: string[] }> = ({ items }) => {
-  return (
-    <ul className="flex flex-col gap-4">
-      {items.map((item, index) => {
-        return (
-          <li
-            className={`text-slate-600 ${index === 0 ? 'font-bold' : ''}`}
-            key={`${item}-${index}`}
-          >
-            {item}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-const Content = ({ title, subTitle, date, description }: any) => {
-  return (
-    <div className="flex flex-col gap-6 mb-6">
-      <div className="flex flex-col sm:flex-row">
-        <div className="md:mb-4 sm:mr-8 sm:mb-0 md:max-w-[100px] w-full text-slate-600 font-semibold">
-          {date}
-        </div>
-        <div className="flex flex-col flex-1">
-          <h4 className="text-slate-700 font-semibold">{title}</h4>
-          <p className="text-slate-700">
-            {subTitle}
-          </p>
-          {description ? (
-            <div className="text-slate-700 mt-2">
-              <RichText text={description} />
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
 };
 
 const ResumeContent = ({ data }: ResumeContentProps | any) => {
@@ -81,6 +30,12 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
 
   return (
     <main className="max-w-xl mx-auto px-6 py-10 relative min-h-screen font-light">
+        {/*Print button section*/}
+        <section className="flex justify-end mb-6 print:hidden hidden md:flex">
+          <PrintButton />
+        </section>
+
+        {/*Header section*/}
         <section className="flex items-center">
           <Image
             alt="Author"
@@ -90,9 +45,11 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
             className="rounded-full object-cover"
           />
           <div className="ml-4">
-            <h1 className="mb-0.5 mt-1 text-2xl text-slate-900 font-playfairDisplay font-bold">
-              {name}
-            </h1>
+            <Link href="/">
+              <h1 className="mb-0.5 mt-1 text-2xl text-slate-900 font-playfairDisplay font-bold">
+                {name}
+              </h1>
+            </Link>
             <p className="text-slate-700">
               {jobTitle}
             </p>
@@ -117,11 +74,14 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
             ) : null}
           </div>
         </section>
+
+        {/*About section*/}
         <section className="my-9 text-sm">
           <h3 className="mb-1 text-slate-700 font-semibold text-lg">About</h3>
           <RichText text={about} />
         </section>
 
+        {/*Skills section*/}
         <section className="my-9 text-sm">
           <h3 className="mb-3 text-slate-700 font-semibold text-lg">Knowledge and Skills</h3>
           <div className="flex flex-row justify-between">
@@ -131,13 +91,15 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
           </div>
         </section>
 
-        <section className="my-9 text-sm">
+        {/*Job history section*/}
+        <section className="my-9 text-sm print:break-before-page">
           <h3 className="mb-3 text-slate-700 font-semibold text-lg">Work Experience</h3>
           {workHistory.map((content: EntryField, index: number) => {
             return <Content {...content} key={index} />;
           })}
         </section>
 
+        {/*Education history section*/}
         <section className="my-9 text-sm">
           <h3 className="mb-3 text-slate-700 font-semibold text-lg">Education</h3>
           {education.map((content: EntryField, index: number) => {
@@ -145,7 +107,8 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
           })}
         </section>
 
-        <section className="my-9 text-sm">
+        {/*Contact section*/}
+        <section className="my-9 text-sm print:break-before-page">
           <h3 className="mb-6 text-slate-700 font-semibold text-lg">Contact</h3>
           <div className="flex flex-col gap-6">
             {resumeContacts.length > 0 && resumeContacts.map((contact: EntryField, index: number) => {
