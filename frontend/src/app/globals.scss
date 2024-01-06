@@ -19,20 +19,12 @@
 
 html,
 body {
-  height: 100vh; /* standard definition (as fallback) */
-  height: 100dvh; /* dynamic vh will make the trick on iOS */
   padding: 0;
   margin: 0;
 }
 
-html {
-  overflow: hidden;
-}
-
 body {
-  overflow: hidden;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(#b05574, #5e9fa3);
 }
 
 // Define a set of classes for text shadow
