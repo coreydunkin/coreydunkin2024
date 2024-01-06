@@ -37,7 +37,7 @@ const Content = ({ title, subTitle, date, description }: any) => {
             {subTitle}
           </p>
           {description ? (
-            <p className="text-slate-600 dark:text-gray-400 mt-2" dangerouslySetInnerHTML={{__html: description}} />
+            <div className="text-slate-600 dark:text-gray-400 mt-2" dangerouslySetInnerHTML={{__html: description}} />
           ) : null}
         </div>
       </div>
@@ -155,7 +155,7 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
             })}
           </div>
         </section>
-      </main>
+    </main>
   );
 }
 
