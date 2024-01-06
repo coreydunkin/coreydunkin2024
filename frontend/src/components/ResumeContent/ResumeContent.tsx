@@ -59,17 +59,18 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
     workHistory,
     resumeContacts
   } = data;
+  const avatarFile = avatar?.file?.url || "";
 
   return (
     <main className="max-w-xl mx-auto px-6 py-10 relative min-h-screen font-light">
         <section className="flex items-center">
-          {/*<Image*/}
-          {/*  alt="Author"*/}
-          {/*  src={`https:${avatar}`}*/}
-          {/*  width={80}*/}
-          {/*  height={80}*/}
-          {/*  className="rounded-full object-cover"*/}
-          {/*/>*/}
+          <Image
+            alt="Author"
+            src={`https:${avatarFile}`}
+            width={80}
+            height={80}
+            className="rounded-full object-cover"
+          />
           <div className="ml-4">
             <h1 className="mb-0.5 text-xl text-slate-900 dark:text-slate-100">
               {name}
