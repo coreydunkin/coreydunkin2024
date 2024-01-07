@@ -1,8 +1,19 @@
 import RichText from "@/components/ResumeContent/RichText";
 
-const Content = ({ title, subTitle, date, description }: any) => {
+const Content = ({ title, subTitle, date, description, pageBreak }: any) => {
+  const breakPage = pageBreak === true
+    ? "print:break-before-page"
+    : (pageBreak === false
+      ? "print:break-after-page"
+      : "");
   return (
-    <div className="flex flex-col gap-6 mb-6">
+    <div className={`
+      ${breakPage}
+      flex 
+      flex-col 
+      gap-6 mb-6 
+      `}
+    >
       <div className="flex flex-col sm:flex-row">
         <div className="md:mb-4 sm:mr-8 sm:mb-0 md:max-w-[100px] print:max-w-[100px] w-full text-slate-600 font-semibold">
           {date}

@@ -108,7 +108,7 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
         </section>
 
         {/*Contact section*/}
-        <section className="my-9 text-sm print:break-before-page">
+        <section className="my-9 text-sm">
           <h3 className="mb-6 text-slate-700 font-semibold text-lg">Contact</h3>
           <div className="flex flex-col gap-6">
             {resumeContacts.length > 0 && resumeContacts.map((contact: EntryField, index: number) => {
