@@ -101,7 +101,7 @@ export default function MenuList({ links }: MenuListProps) {
           } text-right right-4 z-10 w-full md:block md:w-auto`}
           id="navbar-default"
         >
-          <ul className="font-playfairDisplay font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+          <ul className="font-playfairDisplay text-white font-light text-2xl text-shadow-sm flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             {mainLinks.map((link, index) => (
               <MenuItem
                 key={link.id}

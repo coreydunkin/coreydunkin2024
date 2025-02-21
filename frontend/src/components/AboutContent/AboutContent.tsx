@@ -18,7 +18,7 @@ const AboutContent = ({ data }: AboutContentProps | any) => {
   const { title, content, cta } = data;
   const copy = content.content[0].content[0].value ?? "";
   return (
-    <div className="flex flex-col md:flex-row pt-16 md:pt-0">
+    <div className="flex flex-col md:flex-row pt-16 md:pt-0 text-white">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
