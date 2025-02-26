@@ -41,7 +41,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      playfairDisplay: ["var(--font-playfair-display)", ...fontFamily.serif],
+      playfairDisplay: ["var(--font-playfair-display)", "Playfair Display", "serif"],
     },
   },
   plugins: [
