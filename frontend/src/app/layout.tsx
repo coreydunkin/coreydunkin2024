@@ -11,6 +11,8 @@ const playFairDisplay = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-playfair-display",
+  preload: true,
+  fallback: ['serif'],
 });
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,7 +29,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playFairDisplay.variable}`}>
-      <body className={inter.className}>
+      <head>
+        <link 
+          rel="stylesheet" 
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" 
+        />
+      </head>
+      <body className={`${inter.className} font-sans`}>
         {children}
         <SpeedInsights />
         <Analytics />
