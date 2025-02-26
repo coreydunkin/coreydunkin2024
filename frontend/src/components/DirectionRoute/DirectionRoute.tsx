@@ -98,6 +98,9 @@ const DirectionRoute = ({ children }: { children: React.ReactNode }) => {
       dragSnapToOrigin={true}
       {...bind()}
       {...wheelBind()}
+      style={{ 
+        willChange: "transform",
+      }}
     >
       {children}
     </motion.div>

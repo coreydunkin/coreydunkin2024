@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useLayoutEffect, useRef, useEffect } from "react";
+import { motion, AnimatePresence, usePresence } from "framer-motion";
 import usePreviousRoute from "@/utils/usePreviousRoute";
 import {
   generateRouteHierarchy,
@@ -27,6 +27,11 @@ export const LayoutTransition = ({
   const routes = generateRouteHierarchy(
     useRouteStore((state) => state.routeValues),
   );
+  const [isPresent, safeToRemove] = usePresence();
+
+  useEffect(() => {
+    if (!isPresent) setTimeout(safeToRemove, 1000);
+  }, [isPresent, safeToRemove]);
 
   useLayoutEffect(() => {
     if (!currentPageRef.current || pathname === previousRoute) return;
@@ -56,11 +61,16 @@ export const LayoutTransition = ({
             duration: 0.7,
           }}
           className="fixed w-full h-full"
+          style={{ 
+            willChange: "transform",
+            backfaceVisibility: "hidden" 
+          }}
         >
           <div ref={exitAnimationDivRef} />
         </motion.div>
 
         <motion.div
+          layoutId="page-container"
           key={pathname}
           {...getAnimationInVariable(
             routes,
@@ -71,6 +81,10 @@ export const LayoutTransition = ({
           )}
           transition={{ type: "ease-in-out", duration: 0.7 }}
           className="w-screen h-screen"
+          style={{ 
+            willChange: "transform",
+            backfaceVisibility: "hidden" 
+          }}
         >
           <div ref={currentPageRef}>{children}</div>
         </motion.div>
