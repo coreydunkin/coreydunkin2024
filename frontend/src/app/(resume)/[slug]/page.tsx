@@ -23,8 +23,6 @@ async function ResumePage({ params }: ResumePageProps) {
     // Fetch the resume data for the given slug
     const resumeData = await getResumeBySlug(slug);
 
-    console.log(resumeData);
-
     // If no resume is found for this slug, return 404
     if (!resumeData) {
         notFound();
