@@ -12,7 +12,7 @@ interface ResumePageProps {
 export async function generateStaticParams() {
     const slugs = await getAllResumeSlugs();
 
-    return slugs.map((slug) => ({
+    return slugs.map((slug: any) => ({
         slug,
     }));
 }
