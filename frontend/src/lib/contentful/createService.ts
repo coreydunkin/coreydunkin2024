@@ -20,7 +20,7 @@ const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 export const getPage = async (type: string, slug: string): Promise<Entry<PageFields> | null> => {
   const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=${type}&fields.slug=${slug}&include=1`, {
     next: {
-      revalidate: 60,
+      revalidate: 10,
     }
   });
 
@@ -100,7 +100,7 @@ export async function getAllResumeSlugs() {
   try {
     const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=resume&limit=1000`, {
       next: {
-        revalidate: 60,
+        revalidate: 10,
       }
     });
 
@@ -132,7 +132,7 @@ export async function getAllResumeSlugs() {
 export const getResume = async (): Promise<Entry<PageFields>> => {
   const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=resume&fields.slug=resume&include=5`, {
     next: {
-      revalidate: 60,
+      revalidate: 10,
     }
   });
 
