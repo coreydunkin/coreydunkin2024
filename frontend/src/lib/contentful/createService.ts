@@ -98,14 +98,31 @@ export async function getResumeBySlug(slug: string) {
  */
 export async function getAllResumeSlugs() {
   try {
-    // Fetch all resume entries without using the select parameter
-    const response = await client.getEntries({
-      content_type: 'resume',
-      limit: 1000,
+    const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=resume&limit=1000`, {
+      next: {
+        revalidate: 60,
+      }
     });
 
-    // Extract the slugs from the response
-    return response.items.map(item => item.fields.slug as string);
+    if (!res.ok) {
+      throw new Error('Failed to fetch resume slugs');
+    }
+
+    const data = await res.json();
+
+    // Define a proper type for Contentful entry
+    interface ContentfulEntry {
+      fields: {
+        slug: string;
+        [key: string]: any;
+      };
+      sys: {
+        id: string;
+        [key: string]: any;
+      };
+    }
+
+    return data.items.map((item: ContentfulEntry) => item.fields.slug as string);
   } catch (error) {
     console.error('Error fetching resume slugs:', error);
     return ['resume']; // Fallback to at least the default resume
