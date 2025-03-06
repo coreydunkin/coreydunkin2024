@@ -71,6 +71,47 @@ export const getPage = async (type: string, slug: string): Promise<Entry<PageFie
   return mainEntry;
 };
 
+/**
+ * Get a specific resume by its slug
+ */
+export async function getResumeBySlug(slug: string) {
+  try {
+    const response = await client.getEntries({
+      content_type: 'resume',
+      'fields.slug': slug,
+      limit: 1,
+    });
+
+    if (response.items.length === 0) {
+      return null;
+    }
+
+    return response.items[0];
+  } catch (error) {
+    console.error('Error fetching resume by slug:', error);
+    return null;
+  }
+}
+
+/**
+ * Get all resume slugs for static generation
+ */
+export async function getAllResumeSlugs() {
+  try {
+    // Fetch all resume entries without using the select parameter
+    const response = await client.getEntries({
+      content_type: 'resume',
+      limit: 1000,
+    });
+
+    // Extract the slugs from the response
+    return response.items.map(item => item.fields.slug as string);
+  } catch (error) {
+    console.error('Error fetching resume slugs:', error);
+    return ['resume']; // Fallback to at least the default resume
+  }
+}
+
 export const getResume = async (): Promise<Entry<PageFields>> => {
   const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=resume&fields.slug=resume&include=5`, {
     next: {
