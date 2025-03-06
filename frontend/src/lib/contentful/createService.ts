@@ -98,9 +98,9 @@ export async function getResumeBySlug(slug: string) {
  */
 export async function getAllResumeSlugs() {
   try {
+    // Fetch all resume entries without using the select parameter
     const response = await client.getEntries({
       content_type: 'resume',
-      select: ['fields.slug'],
       limit: 1000,
     });
 
@@ -111,7 +111,6 @@ export async function getAllResumeSlugs() {
     return ['resume']; // Fallback to at least the default resume
   }
 }
-
 
 export const getResume = async (): Promise<Entry<PageFields>> => {
   const res = await fetch(`https://cdn.contentful.com/spaces/${contentfulSpace}/entries?access_token=${contentfulAccessToken}&content_type=resume&fields.slug=resume&include=5`, {
