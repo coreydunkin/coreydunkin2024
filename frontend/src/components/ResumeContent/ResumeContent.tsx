@@ -26,7 +26,7 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
     education,
     resumeContacts
   } = data;
-  const avatarFile = avatar?.file?.url || "";
+  const avatarFile = avatar?.file?.url || avatar?.fields?.file?.url || "";
 
   return (
     <main className="max-w-xl mx-auto px-6 py-10 relative min-h-screen font-light">
@@ -37,13 +37,15 @@ const ResumeContent = ({ data }: ResumeContentProps | any) => {
 
         {/*Header section*/}
         <section className="flex items-center">
-          <Image
-            alt="Author"
-            src={`https:${avatarFile}`}
-            width={80}
-            height={80}
-            className="rounded-full object-cover"
-          />
+        {avatarFile && (
+            <Image
+              alt="Author"
+              src={`https:${avatarFile}`}
+              width={80}
+              height={80}
+              className="rounded-full object-cover"
+            />
+        )}
           <div className="ml-4">
             <Link href="/">
               <h1 className="mb-0.5 mt-1 text-2xl text-slate-900 font-playfairDisplay font-bold">
