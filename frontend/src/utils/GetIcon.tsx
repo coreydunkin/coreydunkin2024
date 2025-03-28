@@ -92,16 +92,16 @@ const GetIcon = (iconColor: string, icon: string) => {
           className="text-red-600 w-8 h-8"
         />
       );
-    case "github":
-      return (
-        <FaGithub/>
-      );
     case "github-portfolio":
       return (
           <FaGithub
               style={{ color: iconColor }}
               className="text-red-600 w-8 h-8"
           />
+      );
+    case "github":
+      return (
+        <FaGithub/>
       );
     case "linkedin":
       return <FaLinkedin />;
