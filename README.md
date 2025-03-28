@@ -106,7 +106,7 @@ The site is deployed on Vercel with continuous deployment from the main branch.
 
 ## License
 
-© 2024 Corey Dunkin. All Rights Reserved.
+© 2025 Corey Dunkin. All Rights Reserved.
 
 ---
 
